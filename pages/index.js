@@ -11,7 +11,6 @@ export default function Principal() {
         <meta name="description" content="enseñar a leer" />
         <link rel="icon" href="/icono_vocablo.svg" />
       </Head>
-
       <main className={styles.main}>
         <Image src="/logo_vocablo.svg" width={700} height={250}/>
         <p className={styles.description}>
@@ -32,8 +31,9 @@ export default function Principal() {
       <footer className={styles.footer}>
         <a href="https://github.com/EzequielLara"
            target="_blank"
-           rel="noreferrer" 
-        >Create by EzequielLara
+           rel="noreferrer"
+           className='text-decoration-none text-dark'
+        >-Create by EzequielLara-
         </a>
       </footer>
 
