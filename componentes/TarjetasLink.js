@@ -1,6 +1,8 @@
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 
+//Cards de la página index
+
 const TarjetasLink = ({href, titulo, parrafo}) => {
     return (
       <Link href={href}>

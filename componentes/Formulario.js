@@ -1,4 +1,4 @@
-
+import styles from '../styles/Formularios.module.css'
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,23 +10,21 @@ const Formulario = () => {
      const [datosUsuarioSesion, setDatosUsuarioSesion] = useState({});
      const [datosUsuarioRegistro, setDatosUsuarioRegistro] = useState({});
 
+     // Estados para controlar cual de los dos formularios se mostrará
+     const [iniciarSesion, setIniciarSesion] = useState(false);
+
      //Estado para controlar la validación del formulario
      const [validacionFormulario, setValidacionFormulario] = useState();
 
-     // Estados para controlar si se trata de un formulario o el otro
-     const [iniciarSesion, setIniciarSesion] = useState(false);
-
     return (
        <>
-        <div className="w-100 border-1 rounded-4 shadow-lg">
-                    
+        <div className="w-100 border-1 rounded-4 shadow-lg">          
             <div className={"w-75 m-auto p-2 pb-5 pt-4"}>
                 <Link href="/">
                     <a>
                         <Image src="/logo_vocablo.svg" width={400} height={130} layout="responsive" priority="true"/> 
                     </a>
-                </Link> 
-                    
+                </Link>         
             </div>          
                         
             { iniciarSesion === false ?
@@ -69,30 +67,9 @@ const Formulario = () => {
                 )
             } 
                 <div>
-                    <button className='color-naranja ' onClick={()=>{setIniciarSesion(!iniciarSesion);}}>{ iniciarSesion ? "* Iniciar Sesión" : "* Registrarme"}</button>      
+                    <button className={styles.boton_registro} onClick={()=>{setIniciarSesion(!iniciarSesion);}}>{ iniciarSesion ? "* Iniciar Sesión" : "* Registrarme"}</button>      
                 </div>
         </div>
-        <style>{`
-        
-            .color-naranja{
-                background-color: transparent;
-                margin: 1rem;
-                padding: 1rem;
-                text-align: left;
-                color: black;
-                text-decoration: none;
-                border: 3px solid #eaeaea;
-                border-radius: 10px;
-                transition: color 0.15s ease, border-color 0.15s ease;
-                max-width: 300px;  
-            }
-            .color-naranja:hover,
-            .color-naranja:focus,
-            .color-naranja:active {
-                color: #FFC172;
-                border-color:#FFC172;
-            }   
-        `}</style>
         </>    
     );
 };

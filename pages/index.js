@@ -33,7 +33,7 @@ export default function Principal() {
            target="_blank"
            rel="noreferrer"
            className='text-decoration-none text-dark'
-        >-Create by EzequielLara-
+        >- Create by EzequielLara -
         </a>
       </footer>
 
