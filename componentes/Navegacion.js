@@ -21,8 +21,8 @@ const Navegacion = () => {
           </Navbar.Brand>
           <Nav className="me-auto">
           {/* investigar que pasa con los link y nav.link */}
-            <Link href={"/home"} className='text-black'><a>Home</a></Link>
-            <Link href="/creargrupo">Crear grupo de trabajo</Link>
+            <Link href={"/docentes"} className='text-black'><a>Home</a></Link>
+            <Link href="/docentes/creargrupo">Crear grupo de trabajo</Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
           <Navbar.Collapse className="justify-content-end">

@@ -17,7 +17,7 @@ export default function Principal() {
          La herramienta para enseñar a leer 
         </p>
         <div className={styles.grid}>
-          <TarjetasLink href="/home" 
+          <TarjetasLink href="/familias" 
                         titulo="Comenzar" 
                         parrafo="Accede directamente a los recursos sin necesidad de registrarte"
           />

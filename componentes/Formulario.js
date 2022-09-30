@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useRouter } from 'next/router'
 
 const Formulario = () => {
      // Tenemos dos formularios, el de registro y el de iniciar sesión, por lo tanto dos estados con los datos de cada formulario.
@@ -15,6 +16,8 @@ const Formulario = () => {
 
      //Estado para controlar la validación del formulario
      const [validacionFormulario, setValidacionFormulario] = useState();
+
+     const router = useRouter()
 
     return (
        <>
@@ -38,8 +41,8 @@ const Formulario = () => {
                         <Form.Control type="password" placeholder="Password" className='border border-dark bg-transparent text-dark'/>
                     </Form.Group>
 
-                    <div class="d-flex justify-content-center p-4">
-                        <Button variant="white" type="button" onClick={()=>{}} className='border border-dark bg-transparent text-dark rounded-2 p-2 w-100 pt-2 pb-2 toggle'>
+                    <div className="d-flex justify-content-center p-4">
+                        <Button variant="white" type="button" className='border border-dark bg-transparent text-dark rounded-2 p-2 w-100 pt-2 pb-2' onClick={()=>{router.push("/docentes");}}>
                             Iniciar Sesión
                         </Button>
                     </div>
@@ -58,7 +61,7 @@ const Formulario = () => {
                         <Form.Control type="password" placeholder="Password" className='border border-dark text-dark'/>
                     </Form.Group>
 
-                    <div class="d-flex justify-content-center p-4">
+                    <div className="d-flex justify-content-center p-4">
                         <Button variant="white" type="button" onClick={()=>{}} className='border border-dark text-dark rounded-2 p-2 w-100 pt-2 pb-2'>
                     Registrarme
                         </Button>
