@@ -4,11 +4,10 @@ import Link from "next/link";
 import TarjetasLink from '../../componentes/tarjetasLink';
 import styles from '../../styles/Home.module.css'
 
-
-
 const Home = () => {
     return (
         <>
+       <Layout title="familias">
          <Link href={"/"}>
           <a>
             <img alt="Logo vocablo"
@@ -18,7 +17,6 @@ const Home = () => {
             />
           </a>
           </Link>
-       <Layout title="home">
             <main className={styles.main}>
                 <div className={styles.grid}>
                     <TarjetasLink href="/familias/domain" 
