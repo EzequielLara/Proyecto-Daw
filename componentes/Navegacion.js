@@ -1,37 +1,56 @@
-import Link from 'next/link';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Link from 'next/link'
+import Layout from './Layout';
 import NavUsuario from './NavUsuario';
 
 const Navegacion = () => {
     return (
-      <Navbar bg="light" variant="light">
-        <Container>
-        <Navbar.Brand href="#home">
+      <Layout title="home - docentes">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
           <Link href={"/"}>
-          <a>
-            <img alt="Logo vocablo"
-                 src="/logo_vocablo.svg"
-                 width="170"
-                 className="d-inline-block align-top"
-            />
-          </a>
-          </Link>
-          </Navbar.Brand>
-          <Nav className="me-auto">
-          {/* investigar que pasa con los link y nav.link */}
-            <Link href={"/docentes"} className='text-black'><a>Home</a></Link>
-            <Link href="/docentes/creargrupo">Crear grupo de trabajo</Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-               <NavUsuario usuario={{nombre:"Jose Juan"}}></NavUsuario>
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+            <a>
+              <img alt="Logo vocablo"
+                  src="/logo_vocablo.svg"
+                  width="170"
+                  className="d-inline-block align-top"
+              />
+              </a>
+            </Link>
+          <div className="navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+              <Link href={"/"}>
+                <a className="nav-link active" aria-current="page">
+                  Home
+                </a>
+              </Link>
+              </li>
+              <li className="nav-item">
+              <Link href={"/"}>
+                <a className="nav-link" href="#">
+                  Features
+                </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+              <Link href={"/docentes/creargrupo"}>
+                <a className="nav-link" href="#">
+                  grupos
+                </a>
+              </Link>
+              </li>
+            </ul>
+          </div>
+              <div className="nav-item">
+              <Link href={"/"}>
+                <a className="nav-link justify-content-end me-5" href="#">
+                  <NavUsuario usuario={{nombre:"Jose Juan"}}></NavUsuario>
+                </a>
+              </Link>
+              </div>
+        </div>
+      </nav>
+      </Layout>
     );
 };
 

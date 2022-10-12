@@ -5,7 +5,6 @@ import Navegacion from '../../componentes/Navegacion';
 const Home = () => {
     return (
         <Layout title="home">
-            
             <Navegacion></Navegacion>
             <main>
             </main>

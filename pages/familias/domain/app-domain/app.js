@@ -1,14 +1,24 @@
+import { useEffect, useState } from "react";
 
 
 const AppDomain = () => {
+    const [palabras, setPalabras] = useState(['manzana', 'pera', 'platano', 'cacahuete', 'frambuesa', 'fresa']);
+    const [contador, setContador] = useState(0);
+    const [palabra, setPalabra] = useState(palabras[0]);
+
+    useEffect(()=>{
+        //Arregla, cambia de palabras cada dos pulsaciones de botón
+        setPalabra(palabras[contador]);
+
+    },[contador]);
     return (
         <>
         <div className="d-flex align-items-center estilo">
-                <button className="border-0 bg-transparent "><i className="bi bi-arrow-left-circle icono hover"></i></button>
+            <button className="border-0 bg-transparent " onClick={()=>{setContador(contador --)}}><i className="bi bi-arrow-left-circle icono hover"></i></button>
             <div className="box w-75 m-auto text-success">
-                <h1 className="text-center letra fw-bold">manzanas</h1>
+                <h1 className="text-center letra fw-bold">{palabra}</h1>
             </div>
-            <button className="border-0 bg-transparent"> <i className="bi bi-arrow-right-circle icono hover"></i></button>
+            <button className="border-0 bg-transparent" onClick={()=>{setContador(contador ++)}}> <i className="bi bi-arrow-right-circle icono hover"></i></button>
         </div>
         <div>
         </div>
