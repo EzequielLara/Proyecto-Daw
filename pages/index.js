@@ -14,16 +14,16 @@ export default function Principal() {
       <main className={styles.main}>
         <Image src="/logo_vocablo.svg" width={700} height={250}/>
         <p className={styles.description}>
-         La herramienta para enseñar a leer 
+         La herramienta educativa para enseñar a leer 
         </p>
         <div className={styles.grid}>
           <TarjetasLink href="/familias" 
                         titulo="Comenzar" 
-                        parrafo="Accede directamente a los recursos sin necesidad de registrarte"
+                        parrafo="Accede directamente a recursos sin necesidad de registrarte"
           />
           <TarjetasLink href="/autenticacion" 
                         titulo="Registrarme" 
-                        parrafo="Crea grupos de trabajo y contextos colaborativos de aprendizaje"
+                        parrafo="Guarda los progresos y crea contextos colaborativos de aprendizaje"              
           />
         </div>
       </main>

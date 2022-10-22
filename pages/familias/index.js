@@ -7,7 +7,7 @@ import styles from '../../styles/Home.module.css'
 const Home = () => {
     return (
         <>
-       <Layout title="familias">
+       <Layout title="familias" className="container">
          <Link href={"/"}>
           <a>
             <img alt="Logo vocablo"
@@ -18,26 +18,47 @@ const Home = () => {
           </a>
           </Link>
             <main className={styles.main}>
+                <h3 className="title">Selección de Metodologías:</h3>
                 <div className={styles.grid}>
                     <TarjetasLink href="/familias/domain" 
-                                titulo="Domain" 
+                                titulo="Método Domain" 
                                 parrafo="Accede directamente a los recursos sin necesidad de registrarte"
                     />
-                    <TarjetasLink href="#silabio" 
-                                titulo="Silabio" 
+                    <TarjetasLink href="/familias/fenicio"
+                                habilitado={false}
+                                titulo="Método 2" 
                                 parrafo="Accede directamente a los recursos sin necesidad de registrarte"
+                                anularEnlace
                     />
-                    <TarjetasLink href="#Montesori" 
-                                titulo="Montesori" 
+                    <TarjetasLink href="/familias/fenicio" 
+                                titulo="Método 3" 
                                 parrafo="Accede directamente a los recursos sin necesidad de registrarte"
+                                anularEnlace
                     />
-                    <TarjetasLink href="#fenicio" 
-                                titulo="Fenicio" 
+                    <TarjetasLink href="/familias/fenicio" 
+                                titulo="Método 4" 
                                 parrafo="Accede directamente a los recursos sin necesidad de registrarte"
+                                anularEnlace
+                    />
+                    <TarjetasLink href="/familias/fenicio" 
+                                titulo="Método 5" 
+                                parrafo="Accede directamente a los recursos sin necesidad de registrarte"
+                                anularEnlace
+                    />
+                    <TarjetasLink href="/familias/fenicio" 
+                                titulo="Método 6" 
+                                parrafo="Accede directamente a los recursos sin necesidad de registrarte"
+                                anularEnlace
                     />
                 </div>
             </main>
        </Layout>
+       <style>{`
+          .title{
+            margin-bottom:60px;
+          }
+       
+       `}</style>
        </> 
        
          

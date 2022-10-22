@@ -3,10 +3,10 @@ import Link from 'next/link'
 
 //Cards de la página index
 
-const TarjetasLink = ({href, titulo, parrafo}) => {
+const TarjetasLink = ({href, titulo, parrafo, anularEnlace}) => {
     return (
       <Link href={href}>
-        <a className={styles.card}>
+        <a className={anularEnlace ? styles.anular : styles.card}>
           <h2>{titulo} &rarr;</h2>
           <p>{parrafo}</p>
         </a>

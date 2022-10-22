@@ -11,15 +11,17 @@ const Avatares = () => {
     const [seleccion, setSeleccion] = useState('');
    
     const getPerro=(perro)=>{
-        setSeleccion(perro);   
+        setSeleccion(perro); 
+         
     }
   
     return (
         <>
             <Layout title="crear grupo">
-            {seleccion ? (<ModalAvatar seleccion={seleccion} setSeleccion={setSeleccion}></ModalAvatar>): null}
                 <Navegacion></Navegacion>
+                {seleccion ? (<ModalAvatar seleccion={seleccion} setSeleccion={setSeleccion}></ModalAvatar>): null}
                 <Personajes getPerro={getPerro}></Personajes>
+                
             
             </Layout> 
             

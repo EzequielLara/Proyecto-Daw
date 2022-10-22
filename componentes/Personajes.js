@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 
 const Avatares = ({getPerro}) => {
-
+    
     const [seleccionados, setSeleccionados] = useState([]);
     const personajes = ['/perretes/perro1.png', '/perretes/perro2.png','/perretes/perro4.png', '/perretes/perro6.png', '/perretes/perro7.png', '/perretes/perro8.png','/perretes/perro9.png', '/perretes/perro10.png', '/perretes/perro11.png', '/perretes/perro12.png','/perretes/perro13.png', '/perretes/perro14.png', '/perretes/perro15.png', '/perretes/perro16.png','/perretes/perro17.png'];
 
@@ -13,8 +13,8 @@ const Avatares = ({getPerro}) => {
             <div className="col-4">
                 <div className="row">
                 {personajes.map(per=>(
-                    <div className="col bg-transparent ">
-                    <img src={per} width='80' alt={per} key={per} className="m-auto estiloFila p-1" onClick={(e)=>{setSeleccionados([...seleccionados, {imagen:e.target.src, nombre:'Federico'} ]); getPerro(e.target.src)}}/>
+                    <div key={per} className="col bg-transparent ">
+                    <img src={per} width='80' alt={per} key={per} className="m-auto estiloFila p-1" onClick={(e)=>{setSeleccionados([...seleccionados, {imagen:e.target.src, nombre:''} ]); getPerro({imagen:e.target.src, nombre:''})}}/>
                     </div>
                  ))}  
                 </div>
