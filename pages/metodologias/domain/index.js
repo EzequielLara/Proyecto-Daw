@@ -18,13 +18,13 @@ const DomainInfo = () => {
        <Layout title="domain">
             <main className={styles.main}>
                 <div className={styles.grid}>
-                    <TarjetasLink href="/familias/domain/info" 
+                    <TarjetasLink href="/metodologias/domain/info" 
                                 titulo="Info Domain" 
-                                parrafo="Accede directamente a los recursos sin necesidad de registrarte"
+                                parrafo="Aquí encontrarás toda la información sobre como aplicar este método"
                     />
-                    <TarjetasLink href="/familias/domain/app-domain" 
+                    <TarjetasLink href="/metodologias/domain/app-domain" 
                                 titulo="app-domain" 
-                                parrafo="Accede directamente a los recursos sin necesidad de registrarte"
+                                parrafo="Accede directamente a los recursos de la aplicación sin necesidad de registrarte"
                     />
                 </div>
             </main>

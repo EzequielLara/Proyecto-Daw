@@ -8,11 +8,12 @@ const Error404 = () => {
                 <a>
                     <img alt="Icono vocablo"
                         src="/icono_vocablo.svg"
-                        width="70"
+                        width="60"
                         className="m-2"
                     />
                 </a>
             </Link>4</h1>
+            <small>Ooops! La página que busca no se encuentra en nuestros servidores</small>
             </div>
             <style jsx>{`
 
@@ -23,23 +24,25 @@ const Error404 = () => {
                 }
 
                 .main{
-                    display: flex;
-                    height: 100vh;
+                    /* display: flex; */
+                    height: 50vh;
                     margin:auto;
-                    width:80%;
+                    margin-top:20%;
+                    width:50%;
                     align-items: center;
                     text-align:center;
-                    min-width:100px;    
+                    min-width:315px;    
                     
                 }
                 
                 h1{
                     margin:auto;
-                    font-size: 4em;
+                    font-size: 3em;
                    
                     
 
-                }    
+                } 
+                 
             `}</style>
         </>
     );

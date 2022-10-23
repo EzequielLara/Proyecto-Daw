@@ -1,7 +1,16 @@
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
 
 const Layout = ({children, title}) => {
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+    }, []);
+
     return (
+        <>
+        {loading ? (
         <>
         <Head>
             <title>vocablo | {title}</title>
@@ -11,6 +20,8 @@ const Layout = ({children, title}) => {
         <div>
             {children}
         </div>
+        </>
+        ):(<small>Cargando página...</small>)}
         </>
     );
 };

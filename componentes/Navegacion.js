@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Layout from './Layout';
 import NavUsuario from './NavUsuario';
 
+
 const Navegacion = () => {
     return (
       <Layout title="home - docentes">
@@ -19,9 +20,9 @@ const Navegacion = () => {
           <div className="navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-              <Link href={"/"}>
+              <Link href={"/metodologias"}>
                 <a className="nav-link active" aria-current="page">
-                  Home
+                  Metodologías
                 </a>
               </Link>
               </li>
@@ -42,11 +43,10 @@ const Navegacion = () => {
             </ul>
           </div>
               <div className="nav-item">
-              <Link href={"/"}>
-                <a className="nav-link justify-content-end me-5" href="#">
-                  <NavUsuario usuario={{nombre:"Jose Juan"}}></NavUsuario>
-                </a>
-              </Link>
+              <NavUsuario usuario={{nombre:"Jose Juan"}} 
+                          className="nav-link justify-content-end me-5">
+              </NavUsuario>
+      
               </div>
         </div>
       </nav>
