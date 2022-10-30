@@ -21,8 +21,6 @@ const Avatares = () => {
                 <Navegacion></Navegacion>
                 {seleccion ? (<ModalAvatar seleccion={seleccion} setSeleccion={setSeleccion}></ModalAvatar>): null}
                 <Personajes getPerro={getPerro}></Personajes>
-                
-            
             </Layout> 
             
            

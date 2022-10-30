@@ -5,7 +5,6 @@ import NavUsuario from './NavUsuario';
 
 const Navegacion = () => {
     return (
-      <Layout title="home - docentes">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <Link href={"/"}>
@@ -50,7 +49,6 @@ const Navegacion = () => {
               </div>
         </div>
       </nav>
-      </Layout>
     );
 };
 

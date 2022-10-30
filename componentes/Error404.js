@@ -1,18 +1,20 @@
-import Link from "next/link";
+import { useRouter } from 'next/router';
+
 const Error404 = () => {
+    const route = useRouter();
+    console.log(route);
+    
     return (
         <>
             <div className="main">
                 <h1 className='fof'>Error 4
-            <Link href={"/"}>
-                <a>
+                <button onClick={()=>route.back()}>
                     <img alt="Icono vocablo"
                         src="/icono_vocablo.svg"
                         width="60"
-                        className="m-2"
+                        className="m-2"    
                     />
-                </a>
-            </Link>4</h1>
+                </button>4</h1>
             <small>Ooops! La página que busca no se encuentra en nuestros servidores</small>
             </div>
             <style jsx>{`
@@ -27,7 +29,7 @@ const Error404 = () => {
                     /* display: flex; */
                     height: 50vh;
                     margin:auto;
-                    margin-top:20%;
+                    margin-top:15%;
                     width:50%;
                     align-items: center;
                     text-align:center;
@@ -39,9 +41,11 @@ const Error404 = () => {
                     margin:auto;
                     font-size: 3em;
                    
-                    
-
                 } 
+                button{
+                    border:none;
+                    background-color:transparent;
+                }
                  
             `}</style>
         </>

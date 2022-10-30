@@ -2,15 +2,11 @@
 import Head from "next/head";
 import Formulario from "../componentes/Formulario";
 import Eslogan from '../componentes/Eslogan';
+import Layout from "../componentes/Layout";
 
 const Autenticacion = () => {
     return (
-        <>
-            <Head>
-                <title>vocablo - formulario</title>
-                <meta name="formulario" content="Formulario de registro" />
-                <link rel="icon" href="/icono_vocablo.svg"></link>
-            </Head>
+        <Layout title="login">
             <div className="container">
                 <div className="row">
                     <div className="col-4 bg-transparent pt-5">
@@ -21,7 +17,7 @@ const Autenticacion = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </Layout>
     );
 };
 
