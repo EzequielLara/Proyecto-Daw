@@ -1,32 +1,32 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import Head from "next/head";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const LayoutInfo = ({children, title, content}) => {
-    const [loading, setLoading] = useState(false);
+const LayoutInfo = ({ children, title, content }) => {
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        setLoading(true);
-    }, []);
+  useEffect(() => {
+    setLoading(true);
+  }, []);
 
-    return (
+  return (
+    <>
+      {loading ? (
         <>
-        {loading ? (
-        <>
-        <Head>
+          <Head>
             <title>vocablo | {title}</title>
             <meta name="description" content={content} />
             <link rel="icon" href="/icono_vocablo.svg" />
-        </Head>
-        <main>
-        <div>
-            {children}
-        </div>
-        </main>
+          </Head>
+          <main>
+            <div>{children}</div>
+          </main>
         </>
-        ):(<small>Cargando página...</small>)}
-        </>
-    );
+      ) : (
+        <small>Cargando página...</small>
+      )}
+    </>
+  );
 };
 
 export default LayoutInfo;

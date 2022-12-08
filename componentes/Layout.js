@@ -1,29 +1,29 @@
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import Head from "next/head";
+import { useEffect, useState } from "react";
 
-const Layout = ({children, title}) => {
-    const [loading, setLoading] = useState(false);
+const Layout = ({ children, title }) => {
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        setLoading(true);
-    }, []);
+  useEffect(() => {
+    setLoading(true);
+  }, []);
 
-    return (
+  return (
+    <>
+      {loading ? (
         <>
-        {loading ? (
-        <>
-        <Head>
+          <Head>
             <title>vocablo | {title}</title>
             <meta name="description" content="teaching reading" />
             <link rel="icon" href="/icono_vocablo.svg" />
-        </Head>
-        <div>
-            {children}
-        </div>
+          </Head>
+          <div>{children}</div>
         </>
-        ):(<small>Cargando página...</small>)}
-        </>
-    );
+      ) : (
+        <small>Cargando página...</small>
+      )}
+    </>
+  );
 };
 
 export default Layout;
