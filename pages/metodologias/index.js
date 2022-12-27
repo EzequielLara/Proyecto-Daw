@@ -21,7 +21,7 @@ const Home = () => {
           <h3 className="title">Selección de Metodologías:</h3>
           <div className={styles.grid}>
             <TarjetasLink
-              href="/metodologias/domain"
+              href="/metodologias/doman"
               titulo="Método Doman"
               parrafo="Relaciona palabras con sonidos, objetos e imágenes"
             />

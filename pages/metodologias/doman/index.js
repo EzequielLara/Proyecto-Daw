@@ -20,12 +20,12 @@ const DomainInfo = () => {
         <main className={styles.main}>
           <div className={styles.grid}>
             <TarjetasLink
-              href="/metodologias/domain/info"
+              href="/metodologias/doman/info"
               titulo="Info Doman"
               parrafo="Aquí encontrarás toda la información sobre como aplicar este método"
             />
             <TarjetasLink
-              href="/metodologias/domain/app-domain"
+              href="/metodologias/doman/app-doman"
               titulo="app-doman"
               parrafo="Accede directamente a los recursos de la aplicación sin necesidad de registrarte"
             />

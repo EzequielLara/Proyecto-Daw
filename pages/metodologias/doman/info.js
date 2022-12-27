@@ -22,17 +22,17 @@ const info = () => {
                 <ul>
                   <li>
                     <a href="#localizador">
-                      <h5>Título 1 </h5>
+                      <h5>Cabecera 1 </h5>
                     </a>
                   </li>
                   <li>
                     <a href="#localizador2">
-                      <h5>Título 2</h5>
+                      <h5>Cabecera 2</h5>
                     </a>
                   </li>
                   <li>
                     <a href="#localizador3">
-                      <h5>Título 3</h5>
+                      <h5>Cabecera 3</h5>
                     </a>
                   </li>
                 </ul>
@@ -40,7 +40,7 @@ const info = () => {
             </div>
             <div className="col-md pt-5 offset-md-1 lateralDerecho">
               <a name="localizador"></a>
-              <h3>Titulo 1</h3>
+              <h3>Cabecera Título 1</h3>
               <p className="text-justify">
                 {" "}
                 Lorem ipsum odor amet, consectetuer adipiscing elit. Est
@@ -204,7 +204,7 @@ const info = () => {
                 nam. Diam ac et rutrum.
               </p>
               <a name="localizador2"></a>
-              <h3>Titulo 2</h3>
+              <h3>Cabecera título 2</h3>
               <p className="text-justify">
                 {" "}
                 Lorem ipsum odor amet, consectetuer adipiscing elit. Est
@@ -368,7 +368,7 @@ const info = () => {
                 nam. Diam ac et rutrum.
               </p>
               <a name="localizador3"></a>
-              <h3>Titulo 3</h3>
+              <h3>Cabecera título 3</h3>
               <p className="text-justify">
                 {" "}
                 Lorem ipsum odor amet, consectetuer adipiscing elit. Est
