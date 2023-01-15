@@ -26,13 +26,12 @@ const Avatares = ({ getPerro }) => {
         <div className="row">
           <div className="col-4">
             <div className="row">
-              {personajes.map((per) => (
-                <div key={per} className="col bg-transparent ">
+              {personajes.map((personaje, index) => (
+                <div key={index} className="col bg-transparent ">
                   <img
-                    src={per}
+                    src={personaje}
                     width="80"
-                    alt={per}
-                    key={per}
+                    alt={personaje}
                     className="m-auto estiloFila p-1"
                     onClick={(e) => {
                       setSeleccionados([
@@ -49,16 +48,15 @@ const Avatares = ({ getPerro }) => {
           <div className="col"></div>
           <div className="col-7">
             <div className="row">
-              {seleccionados.map((per) => (
-                <div className="col bg-transparent ">
+              {seleccionados.map((personaje, index) => (
+                <div key={index} className="col bg-transparent ">
                   <img
-                    src={per.imagen}
+                    src={personaje.imagen}
                     width="80"
-                    alt={per.imagen}
-                    key={per}
+                    alt={personaje.imagen}
                     className="m-auto p-1"
                   />
-                  <p text-center>{per.nombre}</p>
+                  <p className="text-center">{personaje.nombre}</p>
                 </div>
               ))}
             </div>

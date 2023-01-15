@@ -40,8 +40,8 @@ const Home = () => {
             />
             <TarjetasLink
               href="/metodologias/fenicio"
-              titulo="Método Palabras Completas"
-              parrafo="Proximamente podrás acceder a los recursos"
+              titulo="Palabras Completas"
+              parrafo="Estamos trabajando en ello. Proximamente podrás acceder a los recursos"
               anularEnlace
             />
             <TarjetasLink
@@ -61,6 +61,7 @@ const Home = () => {
       <style>{`
           .title{
             margin-bottom:60px;
+            color:#247c8c;
           }
        
        `}</style>
