@@ -26,16 +26,30 @@ const Navegacion = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href={"/"}>
+              <Link href={"/docentes/graficos"}>
                 <a className="nav-link" href="#">
-                  Features
+                  Estadísticas
                 </a>
               </Link>
             </li>
             <li className="nav-item">
               <Link href={"/docentes/creargrupo"}>
                 <a className="nav-link" href="#">
-                  grupos
+                  Grupos
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href={"/metodologias/doman/app-doman/app"}>
+                <a className="nav-link" href="#">
+                  App
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href={"/docentes/creargrupo"}>
+                <a className="nav-link" href="#">
+                  Configuración
                 </a>
               </Link>
             </li>

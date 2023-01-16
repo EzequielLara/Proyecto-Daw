@@ -25,9 +25,14 @@ const DomainInfo = () => {
               parrafo="Aquí encontrarás toda la información sobre como aplicar este método"
             />
             <TarjetasLink
+              href="/metodologias/doman/info"
+              titulo="Recursos Doman"
+              parrafo="Descarga recursos y amplia la información sobre el método Doman"
+            />
+            <TarjetasLink
               href="/metodologias/doman/app-doman"
               titulo="app-doman"
-              parrafo="Accede directamente a los recursos de la aplicación sin necesidad de registrarte"
+              parrafo="Accede a nuestras propuestas educativas para el aula"
             />
           </div>
         </main>

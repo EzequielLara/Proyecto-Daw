@@ -1,7 +1,13 @@
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import LayoutInfo from "../../../componentes/LayoutInfo";
 
 const info = () => {
+  const [loadvideo, setLoadvideo] = useState(false);
+
+  useEffect(() => {
+    setLoadvideo(true);
+  }, []);
   return (
     <>
       <LayoutInfo title="info-doman" content="método doman">
@@ -106,14 +112,20 @@ const info = () => {
                 perspicacia, del sentido artístico, de la imaginación, de la
                 percepción tridimensional y del sentido musical.
               </p>
-              <iframe
-                className="mx-auto d-block mt-5 mb-5"
-                loading="lazy"
-                title="YouTube video player"
-                src="https://www.youtube.com/embed/y5cANfwg0hM"
-                width="90%"
-                height="400"
-              ></iframe>
+              {loadvideo ? (
+                <iframe
+                  className="mx-auto d-block mt-5 mb-5"
+                  loading="lazy"
+                  title="YouTube video player"
+                  src="https://www.youtube.com/embed/y5cANfwg0hM"
+                  width="90%"
+                  height="400"
+                ></iframe>
+              ) : (
+                <>
+                  <small className="pb-5">Cargando Video...</small>
+                </>
+              )}
               <p className="text-justify">
                 Al leer de forma global, estamos utilizando los dos hemisferios,
                 percibimos la palabra como un todo, sin distinguir las letras,

@@ -3,7 +3,7 @@ import Navegacion from "../../componentes/Navegacion";
 
 const Home = () => {
   return (
-    <Layout title="home">
+    <Layout title="docente | home">
       <Navegacion></Navegacion>
       <main></main>
     </Layout>
