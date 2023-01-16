@@ -13,7 +13,7 @@ const Home = () => {
               alt="Logo vocablo"
               src="/logo_vocablo.svg"
               width="170"
-              className="m-2"
+              className="m-2 imgvocablo"
             />
           </a>
         </Link>
@@ -62,6 +62,17 @@ const Home = () => {
           .title{
             margin-bottom:60px;
             color:#247c8c;
+          }
+          @media (max-width:490px){
+            .imgvocablo{
+              min-width:323px;
+              padding-left:10%;
+            }
+            .title{
+              min-width:300px;
+              margin:5%;
+    
+            }
           }
        
        `}</style>

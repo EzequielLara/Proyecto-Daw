@@ -1,6 +1,5 @@
 import Link from "next/link";
 import LayoutInfo from "../../../componentes/LayoutInfo";
-import styles from "../../../styles/Home.module.css";
 
 const info = () => {
   return (
@@ -59,7 +58,7 @@ const info = () => {
                 </ul>
               </nav>
             </div>
-            <div className="col-md pt-5 offset-md-1 lateralDerecho">
+            <div className="col-sm lateralDerecho">
               <header>
                 <h1 className="text-justify">Método Doman</h1>
               </header>
@@ -327,7 +326,7 @@ const info = () => {
               </p>
               <p>
                 <small>
-                  *Contenido de ejemplo para el proyecto propiedad de:
+                  *Contenido de ejemplo para el proyecto extraido de:{" "}
                   <a
                     href="https://webdelmaestrocmf.com/portal/resumen-del-metodo-de-lectura-doman-y-como-aplicarlo-pdf/"
                     target="_blank"
@@ -360,13 +359,15 @@ const info = () => {
       <style>{`
         .lateralIzquierdo{
           border-right: 2px solid #eaeaea;
-          width:20%;
-          min-width:200px;
+          max-width:22%;
+          min-width:220px;
           height:100vh;
           
         }
         .lateralDerecho{
-          margin-left: 300px; 
+          margin-left: 40%;
+          max-width:75ch;
+          
         }
         .navegador{
           margin-top:10px;
@@ -392,14 +393,14 @@ const info = () => {
           margin-top:30px;
         }
         .footer{
-          width:95%;
-          margin:auto;
-          margin-top:40px;
+          width:100%;
+          margin-top:100px;
           margin-bottom:200px;
         }
         .footer a{
           text-decoration: none;
           color: #247c8c;
+         
         }
         .footer a:hover {
            color: #fbcf8b;  
@@ -407,6 +408,21 @@ const info = () => {
         }
         header{
           color:#247c8c;
+        }
+
+        @media (max-width:590px){
+          .lateralIzquierdo{
+            display: none;
+          }
+          .lateralDerecho{
+            margin:auto;
+            text-align:center;
+            max-width:40ch;
+            min-width:25ch;
+          }
+          .footer{
+            margin-top:50px;
+          }
         }
       
       `}</style>
