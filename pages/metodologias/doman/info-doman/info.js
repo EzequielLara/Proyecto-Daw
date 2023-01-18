@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import LayoutInfo from "../../../componentes/LayoutInfo";
+import LayoutInfo from "../../../../componentes/LayoutInfo";
 
 const info = () => {
   const [loadvideo, setLoadvideo] = useState(false);
@@ -19,7 +19,7 @@ const info = () => {
                   <img
                     alt="Logo vocablo"
                     src="/logo_vocablo.svg"
-                    width="170"
+                    width="200"
                     className="m-2"
                   />
                 </a>
@@ -350,14 +350,14 @@ const info = () => {
               </p>
               <div className="footer">
                 <div className="float-start">
-                  <Link href="../../metodologias">
+                  <Link href="../../../metodologias">
                     <a>
                       <h5>&larr; Volver a metodologías</h5>
                     </a>
                   </Link>
                 </div>
                 <div className="float-end">
-                  <Link href="../../metodologias">
+                  <Link href="../recursos-doman/recursos">
                     <a>
                       <h5>Ir a recursos Doman &rarr; </h5>
                     </a>

@@ -11,7 +11,7 @@ const DomainInfo = () => {
           <img
             alt="Logo vocablo"
             src="/logo_vocablo.svg"
-            width="170"
+            width="200"
             className="m-2"
           />
         </a>
@@ -20,12 +20,12 @@ const DomainInfo = () => {
         <main className={styles.main}>
           <div className={styles.grid}>
             <TarjetasLink
-              href="/metodologias/doman/info"
+              href="/metodologias/doman/info-doman/info"
               titulo="Info Doman"
               parrafo="Aquí encontrarás toda la información sobre como aplicar este método"
             />
             <TarjetasLink
-              href="/metodologias/doman/info"
+              href="/metodologias/doman/recursos-doman/recursos"
               titulo="Recursos Doman"
               parrafo="Descarga recursos y amplia la información sobre el método Doman"
             />

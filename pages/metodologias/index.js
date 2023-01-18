@@ -12,7 +12,7 @@ const Home = () => {
             <img
               alt="Logo vocablo"
               src="/logo_vocablo.svg"
-              width="170"
+              width="200"
               className="m-2 imgvocablo"
             />
           </a>
@@ -62,6 +62,7 @@ const Home = () => {
           .title{
             margin-bottom:60px;
             color:#247c8c;
+            
           }
           @media (max-width:490px){
             .imgvocablo{
