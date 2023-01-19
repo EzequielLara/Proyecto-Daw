@@ -6,16 +6,15 @@ import styles from "../../../styles/Home.module.css";
 const DomainInfo = () => {
   return (
     <>
-      <Link href={"/"}>
-        <a>
-          <img
-            alt="Logo vocablo"
-            src="/logo_vocablo.svg"
-            width="200"
-            className="m-2"
-          />
-        </a>
-      </Link>
+      <div className="imgvocablo">
+        <div className="imgvocablo">
+          <Link href={"/"}>
+            <a>
+              <img alt="Logo vocablo" src="/logo_vocablo.svg" width="200" />
+            </a>
+          </Link>
+        </div>
+      </div>
       <Layout title="doman">
         <main className={styles.main}>
           <div className={styles.grid}>
@@ -37,6 +36,15 @@ const DomainInfo = () => {
           </div>
         </main>
       </Layout>
+      <style>{`
+       @media (max-width:440px){
+            .imgvocablo{
+              width:100%;
+              text-align:center;
+              margin-top:15px;
+            }      
+        }
+    `}</style>
     </>
   );
 };

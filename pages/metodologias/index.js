@@ -7,16 +7,13 @@ const Home = () => {
   return (
     <>
       <Layout title="metodologías" className="container">
-        <Link href={"/"}>
-          <a>
-            <img
-              alt="Logo vocablo"
-              src="/logo_vocablo.svg"
-              width="200"
-              className="m-2 imgvocablo"
-            />
-          </a>
-        </Link>
+        <div className="imgvocablo">
+          <Link href={"/"}>
+            <a>
+              <img alt="Logo vocablo" src="/logo_vocablo.svg" width="200" />
+            </a>
+          </Link>
+        </div>
         <main className={styles.main}>
           <h3 className="title">Selección de Metodologías:</h3>
           <div className={styles.grid}>
@@ -64,15 +61,16 @@ const Home = () => {
             color:#247c8c;
             
           }
-          @media (max-width:490px){
+          @media (max-width:440px){
             .imgvocablo{
-              min-width:323px;
-              padding-left:10%;
+              width:100%;
+              text-align:center;
+              margin-top:15px;
             }
             .title{
-              min-width:300px;
-              margin:5%;
-    
+              width:100%;
+              text-align:center;
+              margin-top:0px;
             }
           }
        
