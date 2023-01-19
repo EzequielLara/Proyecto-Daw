@@ -1,4 +1,3 @@
-import React from "react";
 import LayoutInfo from "../../../../componentes/LayoutInfo";
 
 const recursos = () => {

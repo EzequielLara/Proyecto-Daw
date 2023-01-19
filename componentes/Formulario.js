@@ -18,7 +18,7 @@ const Formulario = () => {
   const router = useRouter();
 
   return (
-    <div className="w-100 border-1 rounded-4 shadow-lg">
+    <div className="border-1 rounded-4 shadow-lg">
       <div className={"w-75 m-auto p-2 pb-5 pt-4"}>
         <Link href="/">
           <a>

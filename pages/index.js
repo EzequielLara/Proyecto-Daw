@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import TarjetasLink from "../componentes/tarjetasLink";
 import Transicion from "../componentes/animaciones-transiciones/transicion";
+import Link from "next/link";
 
 export default function Principal() {
   return (
@@ -46,6 +47,11 @@ export default function Principal() {
           >
             - Create by EzequielLara -
           </a>
+          <Link href="/infovocablo">
+            <a className="text-decoration-none text-dark">
+              <span className="vocablo">¿Qué es vocablo?</span>
+            </a>
+          </Link>
           <a
             href="https://github.com/EzequielLara/Proyecto-Daw"
             target="_blank"
@@ -57,6 +63,11 @@ export default function Principal() {
           </a>
         </footer>
       </div>
+      <style>{`
+          .vocablo{
+            color: #247c8c;
+          }
+      `}</style>
     </>
   );
 }

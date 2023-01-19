@@ -2,12 +2,29 @@ import React from "react";
 
 const Eslogan = () => {
   return (
-    <div className="ps-5 w-75 ">
-      <h2 className="text-dark text-start tex">
-        La herramienta educativa para familias y profesionales de la educación
-      </h2>
-      <h4 className="text-black text-end">- Erase una vez en el campo -</h4>
-    </div>
+    <>
+      <div>
+        <h3 className="texto-principal text-start">
+          Si aceptamos que aprendemos de formas distintas y creemos en una
+          educación individualizada...¿Por qué seguimos enseñando bajo una única
+          metodología?
+        </h3>
+        <p className="texto-secundario text-end m-5">
+          Colaborando en la transformación del aula
+        </p>
+      </div>
+      <style>{`
+         @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+        .texto-principal{
+          font-family: 'Maven Pro', sans-serif;
+          text-align:justify;
+        }
+        .texto-secundario{
+          font-family: 'Maven Pro', sans-serif;
+          text-align:justify;
+        }
+      `}</style>
+    </>
   );
 };
 

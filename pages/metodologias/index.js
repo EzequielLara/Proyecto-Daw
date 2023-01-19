@@ -59,7 +59,6 @@ const Home = () => {
           .title{
             margin-bottom:60px;
             color:#247c8c;
-            
           }
           @media (max-width:440px){
             .imgvocablo{

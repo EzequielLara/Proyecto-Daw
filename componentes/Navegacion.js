@@ -19,6 +19,13 @@ const Navegacion = () => {
           <div className="navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
+                <Link href={"/infovocablo"}>
+                  <a className="nav-link active" aria-current="page">
+                    Proyecto vocablo
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link href={"/metodologias"}>
                   <a className="nav-link active" aria-current="page">
                     Metodologías
