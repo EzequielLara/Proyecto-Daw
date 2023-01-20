@@ -1,12 +1,12 @@
-import LayoutInfo from "../../componentes/layouts/LayoutInfo";
+import LayoutMainContent from "../../componentes/layouts/LayoutMainContent";
 
 const Infovocablo = () => {
   return (
-    <LayoutInfo title="doman-recursos" content="método doman">
+    <LayoutMainContent title="doman-recursos" content="método doman">
       <div>
         <h3>Página de información vocablo</h3>
       </div>
-    </LayoutInfo>
+    </LayoutMainContent>
   );
 };
 

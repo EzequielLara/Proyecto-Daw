@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Formulario from "../componentes/Formulario";
 import Eslogan from "../componentes/Eslogan";
-import LayoutInfo from "../componentes/layouts/LayoutMainContent";
+import LayoutMainContent from "../componentes/layouts/LayoutMainContent";
 
 const Autenticacion = () => {
   return (
     <>
-      <LayoutInfo title="login" content="vocablo">
+      <LayoutMainContent title="login" content="vocablo">
         <div className="container">
           <div className="row">
             <div className="m-auto col-sm col-xl-4 col-lg bg-transparent ">
@@ -21,7 +21,7 @@ const Autenticacion = () => {
             </div>
           </div>
         </div>
-      </LayoutInfo>
+      </LayoutMainContent>
       <style>{`
        
         .formulario{

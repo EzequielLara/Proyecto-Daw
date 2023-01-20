@@ -3,7 +3,7 @@ import { useState } from "react";
 import Personajes from "../../componentes/Personajes";
 import Navegacion from "../../componentes/navegacion/Navegacion";
 import ModalAvatar from "../../componentes/modales/ModalAvatar";
-import LayoutInfo from "../../componentes/layouts/LayoutInfo";
+import LayoutMainContent from "../../componentes/layouts/LayoutMainContent";
 
 const Avatares = () => {
   const [seleccion, setSeleccion] = useState("");
@@ -14,7 +14,7 @@ const Avatares = () => {
 
   return (
     <>
-      <LayoutInfo title="crear grupo" content="método doman">
+      <LayoutMainContent title="crear grupo" content="método doman">
         <Navegacion></Navegacion>
         {seleccion ? (
           <ModalAvatar
@@ -23,7 +23,7 @@ const Avatares = () => {
           ></ModalAvatar>
         ) : null}
         <Personajes getPerro={getPerro}></Personajes>
-      </LayoutInfo>
+      </LayoutMainContent>
     </>
   );
 };

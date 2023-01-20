@@ -1,9 +1,8 @@
-import LayoutInfo from "../../../../componentes/layouts/LayoutInfo";
+import LayoutMainContent from "../../../../componentes/layouts/LayoutMainContent";
 const recursos = () => {
   return (
     <>
-      <LayoutInfo title="doman-recursos" content="método doman">
-        const archivos = []
+      <LayoutMainContent title="doman-recursos" content="método doman">
         <h3>pagina recursos para descargar</h3>
         <a
           href="/descargas/libro-como-ensenar-a-leer-a-su-bebe-glenn-doman.pdf"
@@ -11,7 +10,7 @@ const recursos = () => {
         >
           <button type="button">Download</button>
         </a>
-      </LayoutInfo>
+      </LayoutMainContent>
     </>
   );
 };

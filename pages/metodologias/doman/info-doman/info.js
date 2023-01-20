@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import LayoutInfo from "../../../../componentes/layouts/LayoutInfo";
+import LayoutMainContent from "../../../../componentes/layouts/LayoutMainContent";
 
 const info = () => {
   const [loadvideo, setLoadvideo] = useState(false);
@@ -10,7 +10,7 @@ const info = () => {
   }, []);
   return (
     <>
-      <LayoutInfo title="info-doman" content="método doman">
+      <LayoutMainContent title="info-doman" content="método doman">
         <div className="container m-2">
           <div className="row">
             <div className=" col-3 lateralIzquierdo position-fixed">
@@ -367,7 +367,7 @@ const info = () => {
             </div>
           </div>
         </div>
-      </LayoutInfo>
+      </LayoutMainContent>
       <style>{`
         .lateralIzquierdo{
           border-right: 2px solid #eaeaea;

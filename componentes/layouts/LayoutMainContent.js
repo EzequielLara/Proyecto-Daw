@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-const LayoutInfo = ({ children, title, content }) => {
+const LayoutMainContent = ({ children, title, content }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -28,4 +28,4 @@ const LayoutInfo = ({ children, title, content }) => {
   );
 };
 
-export default LayoutInfo;
+export default LayoutMainContent;
