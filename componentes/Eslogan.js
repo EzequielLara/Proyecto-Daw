@@ -1,5 +1,3 @@
-import React from "react";
-
 const Eslogan = () => {
   return (
     <>
@@ -10,7 +8,7 @@ const Eslogan = () => {
           metodología?
         </h3>
         <p className="texto-secundario text-end m-5">
-          Colaborando en la transformación del aula
+          Colaboremos en la transformación del aula
         </p>
       </div>
       <style>{`

@@ -49,7 +49,7 @@ const Navegacion = () => {
               <li className="nav-item">
                 <Link href={"/metodologias/doman/app-doman/app"}>
                   <a className="nav-link" href="#">
-                    App
+                    Applicaciones
                   </a>
                 </Link>
               </li>
@@ -63,10 +63,7 @@ const Navegacion = () => {
             </ul>
           </div>
           <div className="nav-item">
-            <NavUsuario
-              usuario={{ nombre: "Jose Juan" }}
-              className="nav-link justify-content-end me-5"
-            ></NavUsuario>
+            <NavUsuario usuario={{ nombre: "Jose Juan" }}></NavUsuario>
           </div>
         </div>
       </nav>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import LayoutInfo from "../../../../componentes/LayoutInfo";
+import LayoutInfo from "../../../../componentes/layouts/LayoutInfo";
 
 const info = () => {
   const [loadvideo, setLoadvideo] = useState(false);

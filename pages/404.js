@@ -1,12 +1,11 @@
-import React from "react";
 import Error404 from "../componentes/Error404";
-import Layout from "../componentes/Layout";
+import LayoutInfo from "../componentes/layouts/LayoutMainContent";
 
 const Error = () => {
   return (
-    <Layout title="página no encontrada">
+    <LayoutInfo title="página no encontrada" content="página de error 404">
       <Error404></Error404>
-    </Layout>
+    </LayoutInfo>
   );
 };
 

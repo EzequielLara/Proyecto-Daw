@@ -1,5 +1,5 @@
-import Layout from "../../componentes/Layout";
-import Navegacion from "../../componentes/Navegacion";
+import Layout from "../../componentes/layouts/Layout";
+import Navegacion from "../../componentes/navegacion/Navegacion";
 import Donut from "../../componentes/graficos/donut";
 import Radargrafico from "../../componentes/graficos/radargrafico";
 

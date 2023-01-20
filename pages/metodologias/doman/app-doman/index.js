@@ -1,6 +1,6 @@
-import Layout from "../../../../componentes/Layout";
+import Layout from "../../../../componentes/layouts/Layout";
 import Link from "next/link";
-import Header from "../../../../componentes/Header";
+import Header from "../../../../componentes/compartidos/Header";
 
 const ConfiguracionDomain = () => {
   return (

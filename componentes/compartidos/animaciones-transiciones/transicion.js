@@ -1,5 +1,4 @@
 import { AnimatePresence } from "framer-motion";
-import Autenticacion from "../../pages/autenticacion";
 import { useRouter } from "next/router";
 
 export default function Transicion() {

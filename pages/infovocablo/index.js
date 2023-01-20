@@ -1,4 +1,4 @@
-import LayoutInfo from "../../componentes/LayoutInfo";
+import LayoutInfo from "../../componentes/layouts/LayoutInfo";
 
 const Infovocablo = () => {
   return (

@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import Personajes from "../../componentes/Personajes";
-import Layout from "../../componentes/Layout";
-import Navegacion from "../../componentes/Navegacion";
-import ModalAvatar from "../../componentes/ModalAvatar";
+import Navegacion from "../../componentes/navegacion/Navegacion";
+import ModalAvatar from "../../componentes/modales/ModalAvatar";
+import LayoutInfo from "../../componentes/layouts/LayoutInfo";
 
 const Avatares = () => {
   const [seleccion, setSeleccion] = useState("");
@@ -14,7 +14,7 @@ const Avatares = () => {
 
   return (
     <>
-      <Layout title="crear grupo">
+      <LayoutInfo title="crear grupo" content="método doman">
         <Navegacion></Navegacion>
         {seleccion ? (
           <ModalAvatar
@@ -23,7 +23,7 @@ const Avatares = () => {
           ></ModalAvatar>
         ) : null}
         <Personajes getPerro={getPerro}></Personajes>
-      </Layout>
+      </LayoutInfo>
     </>
   );
 };

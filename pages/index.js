@@ -1,20 +1,20 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Image from "next/image";
-import TarjetasLink from "../componentes/tarjetasLink";
-import Transicion from "../componentes/animaciones-transiciones/transicion";
+import TarjetasLink from "../componentes/compartidos/tarjetasLink";
+import Transicion from "../componentes/compartidos/animaciones-transiciones/transicion";
 import Link from "next/link";
 
 export default function Principal() {
   return (
     <>
       {/* <Transicion></Transicion> */}
+      <Head>
+        <title>vocablo</title>
+        <meta name="description" content="enseñar a leer" />
+        <link rel="icon" href="/icono_vocablo.svg" />
+      </Head>
       <div className={styles.container}>
-        <Head>
-          <title>vocablo</title>
-          <meta name="description" content="enseñar a leer" />
-          <link rel="icon" href="/icono_vocablo.svg" />
-        </Head>
         <main className={styles.main}>
           <Image
             src="/logo_vocablo.svg"
@@ -43,7 +43,7 @@ export default function Principal() {
             href="https://github.com/EzequielLara"
             target="_blank"
             rel="noreferrer"
-            className="text-decoration-none text-dark"
+            className="text-decoration-none text-center text-dark d-none d-sm-block"
           >
             - Create by EzequielLara -
           </a>
@@ -59,7 +59,12 @@ export default function Principal() {
             className="text-decoration-none text-dark"
           >
             <span className="p-2">¿Quieres colaborar?</span>
-            <Image src="/github-mark/github-mark.svg" width={30} height={30} />
+            <Image
+              src="/github-mark/github-mark.svg"
+              width={30}
+              height={30}
+              className=""
+            />
           </a>
         </footer>
       </div>

@@ -1,5 +1,3 @@
-import React from "react";
-
 const Header = ({ contenido }) => {
   return <h2 className="text-center text-dark m-4 pb-3">{contenido}</h2>;
 };
