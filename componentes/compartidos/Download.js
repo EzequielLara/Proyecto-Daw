@@ -22,7 +22,11 @@ const Download = ({
         </div>
       </div>
       <div className="font-weight-bold bg-warning text-center mt-2">
-        <a href={direccionArchivo} download={nombreDescarga}>
+        <a
+          href={direccionArchivo}
+          download={nombreDescarga}
+          className="text-decoration-none text-reset"
+        >
           <p>{texto1}</p>
         </a>
       </div>
