@@ -3,9 +3,9 @@ const Eslogan = () => {
     <>
       <div>
         <h3 className="texto-principal text-start">
-          Si aceptamos que aprendemos de formas distintas y creemos en una
-          educación individualizada...¿Por qué seguimos enseñando bajo una única
-          metodología?
+          "Si aceptamos la variedad en los procesos de aprendizaje y creemos en
+          una educación individualizada, ¿por qué continuamos enseñando a todos
+          los alumnos bajo una única metodología?"
         </h3>
         <p className="texto-secundario text-end m-5">
           Colaboremos en la transformación del aula

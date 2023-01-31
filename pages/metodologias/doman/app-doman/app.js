@@ -1,75 +1,172 @@
 import { useEffect, useState } from "react";
 
-
-
-
 const AppDomain = () => {
-    const [palabras, setPalabras] = useState(['manzana', 'pera', 'plátano', 'cacahuete', 'frambuesa', 'fresa', 'dragón', 'dinosaurio', 'abeja', 'tigre','tonto tú papá', '236.544.546', 'pedo culo lerdo y feo quien lo lea ']);
-    const [contador, setContador] = useState(0);
-    const [disabled, setDisabled] = useState(true);
+  const [palabras, setPalabras] = useState([
+    "",
+    "león",
+    "perro",
+    "gato",
+    "oso",
+    "rana",
+    "elefante",
+    "zorro",
+    "jirafa",
+    "conejo",
+  ]);
+  const [imagen, setImagenes] = useState([
+    "",
+    "/animales/leon.png",
+    "/animales/perro.png",
+    "/animales/gato.png",
+    "/animales/oso.png",
+    "/animales/rana.png",
+    "/animales/elefante.png",
+    "/animales/zorro.png",
+    "/animales/jirafa.png",
+    "/animales/conejo.png",
+  ]);
+  const [contador, setContador] = useState(0);
+  const [disabled, setDisabled] = useState(true);
+  const [configuracion, setConfiguracion] = useState({
+    imagen: false,
+    sonido: true,
+    tiempo: "5",
+  });
 
-    useEffect(()=>{
-       setTimeout(()=>{
-           reproduce(palabras[contador]);
-        }, 1000);
-        
-    },[contador]);
-    useEffect(()=>{
-       setTimeout(()=>{
-           setDisabled(false); //Para que no se pueda cambiar de palabra hasta que termine de decirla
-        }, 1500);
-        
-    },[contador]);
-
-    const reproduce=(text)=>{
-        if(window['speechSynthesis'] === undefined) {
-            return;
-        }
-        const  reproductor= window.speechSynthesis;
-        const reproduceEstaPalabra= new SpeechSynthesisUtterance(text);
-        reproductor.speak(reproduceEstaPalabra);
+  useEffect(() => {
+    if (configuracion.sonido) {
+      setTimeout(() => {
+        reproduce(palabras[contador]);
+      }, 1000);
     }
-    return (
-        <>
-        {}
-        <div className="d-flex align-items-center estilo">
-            <button className="border-0 bg-transparent " 
-                    onClick={()=>{setContador(contador - 1); setDisabled(true)}}
-                    disabled={disabled}>
+  }, [contador]);
+  useEffect(() => {
+    if (configuracion.sonido) {
+      setTimeout(() => {
+        setDisabled(false); //Para que no se pueda cambiar de palabra hasta que termine de decirla
+      }, 1500);
+    } else {
+      setTimeout(() => {
+        setDisabled(false);
+      }, 100);
+    }
+  }, [contador]);
 
-            {contador > 0 ? (<i className="bi bi-arrow-left-circle icono hover"></i>):('')} 
-            </button>
-            <div className="box w-75 m-auto text-success">
-                <h1 className="text-center letra fw-bold">{palabras[contador]}</h1>
+  const reproduce = (text) => {
+    if (window["speechSynthesis"] === undefined) {
+      return;
+    }
+    const reproductor = window.speechSynthesis;
+    const reproduceEstaPalabra = new SpeechSynthesisUtterance(text);
+    reproductor.speak(reproduceEstaPalabra);
+  };
+  return (
+    <>
+      <div className="container">
+        {palabras[contador] === "" ? (
+          <h1 className="mt-5 w-50 m-auto display-1 text-center">ANIMALES</h1>
+        ) : (
+          ""
+        )}
+        {configuracion.imagen && palabras[contador] !== "" ? (
+          <div className="row arriba">
+            <div className="w-75 m-auto text-center">
+              <img src={imagen[contador]} width={300} />
             </div>
-            <button className="border-0 bg-transparent" 
-                    onClick={()=>{setContador(contador + 1); setDisabled(true)}}
-                    disabled = {disabled}> 
-                    
-            {contador < palabras.length -1 ? (<i className="bi bi-arrow-right-circle icono hover"></i>):('')}
+          </div>
+        ) : (
+          <div className="row sinimagen"></div>
+        )}
+        <div className="row">
+          <div className="col-1">
+            <button
+              className="border-0 bg-transparent p-0 m-0"
+              onClick={() => {
+                setContador(contador - 1);
+                setDisabled(true);
+              }}
+              disabled={disabled}
+            >
+              {contador > 1 ? (
+                <i className="bi bi-arrow-left-circle icono hover p-0"></i>
+              ) : (
+                ""
+              )}
             </button>
+          </div>
+          <div className="col">
+            <h1 className="display-1 text-center fw-semibold palabra">
+              {palabras[contador]}
+            </h1>
+          </div>
+
+          <div className="col-1">
+            {palabras[contador] === "" ? <span>Comenzar</span> : ""}
+            <button
+              className="border-0 bg-transparent p-0 m-0"
+              onClick={() => {
+                setContador(contador + 1);
+                setDisabled(true);
+              }}
+              disabled={disabled}
+            >
+              {contador < palabras.length - 1 ? (
+                <i className="bi bi-arrow-right-circle icono hover p-0 m-0"></i>
+              ) : (
+                ""
+              )}
+            </button>
+          </div>
         </div>
-        <div>
-        </div>
-        <style>{`
-            .estilo{
-                min-height: 100vh;
-            }
-            .letra{
-                font-size: 9rem;
-                color:#393d42;
-            }
+      </div>
+      <style>{`
             .icono{
-                font-size: 5rem;
+                font-size: 4rem;
                 color:#dcdcdc;
                 padding:1rem;
+            }
+            .arriba{
+              height: 450px;
+            }
+            .sinimagen{
+              height: 35vh;
+            }
+            .palabra{
+              font-size:7.5rem
             }
             .hover:hover{
                 color: #a7a7a7
             }
+
+            @media (max-width:1000px){
+              .icono{
+                font-size: 3rem;
+              }
+              .palabra{
+                font-size:6.5rem;
+      
+              }
+              img{
+                width:150px;
+                
+              }
+              .arriba{
+              height: 200px;
+            }
+              
+            }
+            @media (max-width:680px){
+              .icono{
+                font-size: 2rem;
+              }
+              .palabra{
+                font-size:4.5rem;
+
+              }
+            }
         `}</style>
-        </>
-    );
+    </>
+  );
 };
 
-export default AppDomain
+export default AppDomain;
