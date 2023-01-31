@@ -28,8 +28,9 @@ const AppDomain = () => {
   const [contador, setContador] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [configuracion, setConfiguracion] = useState({
-    imagen: false,
-    sonido: true,
+    imagen: true,
+    sonido: false,
+    mayusculas: false,
     tiempo: "5",
   });
 
@@ -95,9 +96,15 @@ const AppDomain = () => {
             </button>
           </div>
           <div className="col">
-            <h1 className="display-1 text-center fw-semibold palabra">
-              {palabras[contador]}
-            </h1>
+            {configuracion.mayusculas ? (
+              <h1 className=" text-uppercase display-1 text-center fw-semibold palabra">
+                {palabras[contador]}
+              </h1>
+            ) : (
+              <h1 className="display-1 text-center fw-semibold palabra">
+                {palabras[contador]}
+              </h1>
+            )}
           </div>
 
           <div className="col-1">

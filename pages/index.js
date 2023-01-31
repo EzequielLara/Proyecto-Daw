@@ -27,7 +27,7 @@ export default function Principal() {
           </p>
           <div className={styles.grid}>
             <TarjetasLink
-              href="/metodologias"
+              href="/familias"
               titulo="Comenzar"
               parrafo="Accede directamente a recursos sin necesidad de registrarte"
             />

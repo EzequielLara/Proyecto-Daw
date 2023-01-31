@@ -352,7 +352,7 @@ const info = () => {
                 <div className="float-start">
                   <Link href="../../../metodologias">
                     <a>
-                      <h5>&larr; Volver a metodologías</h5>
+                      <h5>&larr; Ir a metodologías</h5>
                     </a>
                   </Link>
                 </div>
