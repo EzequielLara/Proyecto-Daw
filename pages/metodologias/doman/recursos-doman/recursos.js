@@ -1,6 +1,7 @@
 import Download from "../../../../componentes/compartidos/Download";
-import Header from "../../../../componentes/compartidos/Header";
 import LayoutMainContent from "../../../../componentes/layouts/LayoutMainContent";
+import Link from "next/link";
+import styles from "../../../../styles/Home.module.css";
 
 const recursos = () => {
   const descargables = [
@@ -34,10 +35,17 @@ const recursos = () => {
   return (
     <>
       <LayoutMainContent title="doman-recursos" content="método doman">
-        <Header contenido="Recursos para descargar"></Header>
+        <div className="imgvocablo">
+          <Link href={"/"}>
+            <a>
+              <img alt="Logo vocablo" src="/logo_vocablo.svg" width="200" />
+            </a>
+          </Link>
+        </div>
+        <h3 className="title">Recursos Doman</h3>
         <h5>Libros y documentos:</h5>
         <hr></hr>
-        <div className="grid">
+        <div className="m-5 row">
           {descargables.map((libro) => (
             <Download
               texto1={libro.texto1}
@@ -50,6 +58,24 @@ const recursos = () => {
           ))}
         </div>
       </LayoutMainContent>
+      <style>{`
+           .title{
+            margin-bottom:60px;
+            color:#247c8c;
+            text-align:center;
+            }
+          @media (max-width:440px){
+                .imgvocablo{
+                  width:100%;
+                  text-align:center;
+                  margin-top:15px;
+                }
+                .title{
+              width:100%;
+              text-align:center;
+              margin-top:0px;
+            }  
+      `}</style>
     </>
   );
 };

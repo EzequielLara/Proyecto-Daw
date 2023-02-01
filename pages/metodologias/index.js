@@ -24,7 +24,6 @@ const Home = () => {
             />
             <TarjetasLink
               href="/metodologias/alfabetico"
-              habilitado={false}
               titulo="Método Alfabético"
               parrafo="Estamos trabajando en ello. Proximamente podrás acceder a los recursos"
               anularEnlace

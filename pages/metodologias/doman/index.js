@@ -17,6 +17,7 @@ const DomainInfo = () => {
       </div>
       <Layout title="doman">
         <main className={styles.main}>
+          <h3 className="title">Metodología Doman:</h3>
           <div className={styles.grid}>
             <TarjetasLink
               href="/metodologias/doman/info-doman/info"
@@ -37,12 +38,22 @@ const DomainInfo = () => {
         </main>
       </Layout>
       <style>{`
+        .title{
+        margin-bottom:60px;
+        color:#247c8c;
+        }
+        
        @media (max-width:440px){
             .imgvocablo{
               width:100%;
               text-align:center;
               margin-top:15px;
-            }      
+            } 
+            .title{
+              width:100%;
+              text-align:center;
+              margin-top:0px;
+            }     
         }
     `}</style>
     </>

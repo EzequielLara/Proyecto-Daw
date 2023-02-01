@@ -3,7 +3,6 @@ import Head from "next/head";
 
 const Error404 = () => {
   const route = useRouter();
-  console.log(route);
 
   return (
     <>

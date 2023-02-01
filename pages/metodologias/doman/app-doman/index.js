@@ -21,13 +21,26 @@ const Aplicaciones = () => {
             <div className={styles.grid}>
               <TarjetasLink
                 href="/metodologias/doman/app-doman/app1"
-                titulo="Aplicación Uno"
-                parrafo="Aplicación de ejemplo para metodología Doman"
+                titulo="Acierta la imagen"
+                parrafo="Relaciona cada palabra con su imagen"
               />
               <TarjetasLink
                 href="/metodologias/doman/app-doman/app2"
-                titulo="Aplicación Dos"
-                parrafo="Aplicación de ejemplo para metodología Doman"
+                titulo="Aplicación 2"
+                parrafo="Aplicación Doman de ejemplo en construcción"
+                anularEnlace
+              />
+              <TarjetasLink
+                href="/metodologias/doman/app-doman/app2"
+                titulo="Aplicación 3"
+                parrafo="Aplicación Doman de ejemplo en construcción"
+                anularEnlace
+              />
+              <TarjetasLink
+                href="/metodologias/doman/app-doman/app2"
+                titulo="Aplicación 4"
+                parrafo="Aplicación Doman de ejemplo en construcción"
+                anularEnlace
               />
             </div>
           </main>
