@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const AppDomain = () => {
+  const [vertical, setVertical] = useState();
   const [palabras, setPalabras] = useState([
     "",
     "león",
@@ -33,6 +34,19 @@ const AppDomain = () => {
     mayusculas: false,
     tiempo: "5",
   });
+  // REVISAR (quiero que la aplicación detecte cuando la pantalla esta en vertical para avisar al usuario de que debe girar el dispositivo)
+
+  // useEffect(() => {
+  //   if (screen.orientation.angle !== 90) {
+  //     setVertical(true);
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   if (screen.orientation.onchange !== null) {
+  //     setVertical(!vertical);
+  //     console.log("la pantalla esta en vertical?...", vertical);
+  //   }
+  // });
 
   useEffect(() => {
     if (configuracion.sonido) {
@@ -63,6 +77,13 @@ const AppDomain = () => {
   };
   return (
     <>
+      {vertical ? (
+        <div className="fixed-top h-100 bg-dark opacity-75 align-content-center ">
+          <div className="bg-warning w-25 m-auto ">hkjhkjhj</div>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="container">
         {palabras[contador] === "" ? (
           <h1 className="mt-5 w-50 m-auto display-1 text-center">ANIMALES</h1>

@@ -43,7 +43,7 @@ const recursos = () => {
           </Link>
         </div>
         <h3 className="title">Recursos Doman</h3>
-        <h5>Libros y documentos:</h5>
+        <h5 className="ms-3">Libros y documentos:</h5>
         <hr></hr>
         <div className="m-5 row">
           {descargables.map((libro) => (
@@ -65,12 +65,12 @@ const recursos = () => {
             text-align:center;
             }
           @media (max-width:440px){
-                .imgvocablo{
-                  width:100%;
-                  text-align:center;
-                  margin-top:15px;
-                }
-                .title{
+            .imgvocablo{
+              width:100%;
+              text-align:center;
+              margin-top:15px;
+            }
+            .title{
               width:100%;
               text-align:center;
               margin-top:0px;

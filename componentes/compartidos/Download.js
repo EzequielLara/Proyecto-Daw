@@ -35,6 +35,7 @@ const Download = ({
       <style>{`
         .tarjeta {
           width:350px;
+          min-width:280px;
         }
       
       
