@@ -1,18 +1,15 @@
 import Link from "next/link";
-import { useState } from "react";
 
 const NavUsuario = ({ usuario }) => {
-  const [control, setControl] = useState(true);
-
   return (
     <>
       {usuario ? (
-        <Link href={"/autenticacion"}>
-          <a>{usuario.nombre}</a>
-        </Link>
+        <span className="nav-link font-monospace ps-5 text-dark">
+          {usuario.name}
+        </span>
       ) : (
-        <Link href={"/autenticacion"}>
-          <a>Acceso</a>
+        <Link href={"/api/auth/signout"}>
+          <a className="nav-link font-monospace">Acceso no autorizado</a>
         </Link>
       )}
     </>

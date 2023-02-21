@@ -3,9 +3,10 @@ const Eslogan = () => {
     <>
       <div>
         <h3 className="texto-principal text-start">
-          "Si aceptamos la variedad en los procesos de aprendizaje y creemos en
-          una educación individualizada, ¿por qué continuamos enseñando a todos
-          los alumnos bajo una única metodología?"
+          "Si valoramos la diversidad en los procesos de aprendizaje y estamos
+          convencidos de la importancia de una educación individualizada, ¿por
+          qué seguimos enseñando a todos los alumnos bajo una única
+          metodología?"
         </h3>
         <p className="texto-secundario text-end m-5">
           Colaboremos en la transformación del aula

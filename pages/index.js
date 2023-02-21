@@ -32,7 +32,7 @@ export default function Principal() {
               parrafo="Accede directamente a recursos sin necesidad de registrarte"
             />
             <TarjetasLink
-              href="/autenticacion"
+              href="/signin"
               titulo="Registrarme"
               parrafo="Guarda los progresos y crea contextos colaborativos de aprendizaje"
             />
@@ -58,7 +58,7 @@ export default function Principal() {
             rel="noreferrer"
             className="text-decoration-none text-dark"
           >
-            <span className="p-2">¿Quieres colaborar?</span>
+            <span className="p-2">¿Quieres participar?</span>
             <Image
               src="/github-mark/github-mark.svg"
               width={30}

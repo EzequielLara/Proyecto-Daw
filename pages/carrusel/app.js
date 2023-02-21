@@ -30,9 +30,9 @@ const AppDomain = () => {
   const [disabled, setDisabled] = useState(true);
   const [configuracion, setConfiguracion] = useState({
     imagen: true,
-    sonido: false,
+    sonido: true,
     mayusculas: false,
-    tiempo: "5",
+    tiempo: 5,
   });
   // REVISAR (quiero que la aplicación detecte cuando la pantalla esta en vertical para avisar al usuario de que debe girar el dispositivo)
 

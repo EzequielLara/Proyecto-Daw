@@ -3,10 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
+import axios from "axios";
 
-const Formulario = () => {
+const Formulario = ({ providers }) => {
   // Tenemos dos formularios, el de registro y el de iniciar sesión, por lo tanto dos estados con los datos de cada formulario.
-  const [datosUsuarioSesion, setDatosUsuarioSesion] = useState({});
+  const [datosUsuarioSesion, setDatosUsuarioSesion] = useState({
+    email: "",
+    password: "",
+  });
   const [datosUsuarioRegistro, setDatosUsuarioRegistro] = useState({});
 
   // Estados para controlar cual de los dos formularios se mostrará
@@ -17,9 +22,23 @@ const Formulario = () => {
 
   const router = useRouter();
 
+  const handleChange = (e) => {
+    setDatosUsuarioSesion({
+      ...datosUsuarioSesion,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(datosUsuarioSesion);
+    const respuesta = await axios.post("/api/auth/login", datosUsuarioSesion);
+    console.log("respuesta servidor:", respuesta);
+  };
+
   return (
     <div className="border-1 rounded-4 shadow-lg">
-      <div className={"w-75 m-auto p-2 pb-5 pt-4"}>
+      <div className={"w-75 m-auto p-2 pt-4 pb-4"}>
         <Link href="/">
           <a>
             <Image
@@ -35,32 +54,69 @@ const Formulario = () => {
 
       {iniciarSesion === false ? (
         <>
-          <form className="w-75 m-auto p-2">
-            <div className="form-group mb-4">
+          <div className="w-75 m-auto p-2">
+            <div className="form-group pt-2 pb-2">
+              {providers &&
+                Object.values(providers).map((provider) => {
+                  const { id, type } = provider;
+                  return (
+                    <button
+                      key={id}
+                      className="form-control mb-2 bg-light"
+                      onClick={() => signIn(id, { callbackUrl: "/docentes" })}
+                    >
+                      {id === "github" ? (
+                        <img
+                          src="/github-mark/github-mark.svg"
+                          width={25}
+                          height={25}
+                          className=""
+                        />
+                      ) : (
+                        <img
+                          src="/google-icon.svg"
+                          width={25}
+                          height={25}
+                          className=""
+                        />
+                      )}
+                      <span className="ps-3 fw-light">
+                        Inicia sesión con {id}
+                      </span>
+                    </button>
+                  );
+                })}
+            </div>
+            <hr></hr>
+          </div>
+          <form onSubmit={handleSubmit} className="w-75 m-auto p-2">
+            <div className="form-group mb-4 mt-2">
               <input
+                name="email"
                 type="email"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="email"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
+                onChange={handleChange}
+                required
               />
             </div>
             <div className="form-group">
               <input
+                name="password"
                 type="password"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="password"
                 placeholder="Password"
+                onChange={handleChange}
+                required
               />
             </div>
             <div className="d-flex justify-content-center p-4">
               <button
                 type="submit"
                 className="border border-dark text-dark bg-transparent rounded-2 p-2 w-100 pt-2 pb-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push("/docentes");
-                }}
               >
                 Iniciar Sesion
               </button>
@@ -85,26 +141,29 @@ const Formulario = () => {
               <input
                 type="email"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="email2"
                 aria-describedby="emailHelp"
-                placeholder="Enter email"
+                placeholder="Email"
+                required
               />
             </div>
             <div className="form-group mb-4">
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="name2"
                 aria-describedby="name"
-                placeholder="Enter name"
+                placeholder="Nombre"
+                required
               />
             </div>
             <div className="form-group">
               <input
                 type="password"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="password2"
                 placeholder="Password"
+                required
               />
             </div>
             <div className="d-flex justify-content-center p-4">
