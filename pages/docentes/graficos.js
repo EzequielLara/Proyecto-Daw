@@ -2,11 +2,12 @@ import Layout from "../../componentes/layouts/Layout";
 import Navegacion from "../../componentes/navegacion/Navegacion";
 import Donut from "../../componentes/graficos/donut";
 import Radargrafico from "../../componentes/graficos/radargrafico";
+import { getSession } from "next-auth/react";
 
-const Graficos = () => {
+const Graficos = ({ usuario }) => {
   return (
     <Layout title="docente | gráficos">
-      <Navegacion></Navegacion>
+      <Navegacion usuario={usuario}></Navegacion>
       <main>
         <div className="container">
           <div className="row m-5">
@@ -23,6 +24,23 @@ const Graficos = () => {
       </main>
     </Layout>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const usuario = await getSession(context);
+  console.log("resultado session:", usuario);
+  if (!usuario)
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  return {
+    props: {
+      usuario: usuario.user,
+    },
+  };
 };
 
 export default Graficos;

@@ -1,10 +1,11 @@
 const Download = ({
-  texto1,
-  texto2,
+  titulo,
+  descripcion,
   imagen,
   direccionArchivo,
   nombreDescarga,
   imagenSize,
+  autor,
 }) => {
   return (
     <>
@@ -19,16 +20,20 @@ const Download = ({
             ></img>
           </div>
           <div className="col ">
-            <small className="text-justify">{texto2}</small>
+            <small className="text-justify">{descripcion}</small>
           </div>
         </div>
-        <div className="font-weight-bold bg-warning text-center mt-2">
+        <small className="pt-2">
+          <span className="fw-bold">Autor: </span>
+          {autor}
+        </small>
+        <div className="font-weight-bold   bg-warning text-center mt-2">
           <a
             href={direccionArchivo}
             download={nombreDescarga}
             className="text-decoration-none text-reset"
           >
-            <p>{texto1}</p>
+            <p>{titulo}</p>
           </a>
         </div>
       </div>

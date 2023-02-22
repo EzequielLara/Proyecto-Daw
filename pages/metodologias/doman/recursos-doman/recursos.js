@@ -1,35 +1,37 @@
 import Download from "../../../../componentes/compartidos/Download";
 import LayoutMainContent from "../../../../componentes/layouts/LayoutMainContent";
 import Link from "next/link";
-import styles from "../../../../styles/Home.module.css";
 
 const recursos = () => {
   const descargables = [
     {
-      texto1: "Como educar en casa",
-      texto2: "Libro de contenido infantil para padres y madres",
+      titulo: "Como educar en casa",
+      descripcion: "Libro de contenido infantil para padres y madres",
       direccionArchivo: "",
       imagen: "/descargar.png",
-      nombreDescarga: "libro",
+      nombreDescarga: "libro.png",
       imagenSize: "50",
+      autor: "",
     },
     {
-      texto1: "Didactica aplicativa del mundo occidental",
-      texto2: "Texto académico de la universidad de Almería",
+      titulo: "Método Doman",
+      descripcion: "Texto académico de la universidad de Almería",
       direccionArchivo: "",
       imagen: "/descargar.png",
-      nombreDescarga: "libro",
+      nombreDescarga: "libro.png",
       imagenSize: "50",
+      autor: "",
     },
     {
-      texto1: "Pokemon",
-      texto2:
-        "Revista con las últimas novedades de los pokemon. Saga cristal y saga fuego",
+      titulo: "Cómo enseñar a leer a su bebé",
+      descripcion:
+        "Versíon en español de las páutas para aplicar el método Doman. Autor: Glenn J. Doman",
       direccionArchivo:
         "/descargas/libro-como-ensenar-a-leer-a-su-bebe-glenn-doman.pdf",
       imagen: "/descargar.png",
       nombreDescarga: "libro",
       imagenSize: "50",
+      autor: "Glenn Doman",
     },
   ];
   return (
@@ -48,12 +50,13 @@ const recursos = () => {
         <div className="m-5 row">
           {descargables.map((libro) => (
             <Download
-              texto1={libro.texto1}
-              texto2={libro.texto2}
+              titulo={libro.titulo}
+              descripcion={libro.descripcion}
               direccionArchivo={libro.direccionArchivo}
               imagen={libro.imagen}
               nombreDescarga={libro.nombreDescarga}
               imagenSize={libro.imagenSize}
+              autor={libro.autor}
             ></Download>
           ))}
         </div>
