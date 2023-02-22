@@ -11,13 +11,11 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      // clientId:"920706146633-b19j1otnllvikhe4tqlgd6vcidqv8iid.apps.googleusercontent.com",
-      // clientSecret: "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",
     }),
   ],
 
   pages: {
-    // signIn: "/signin",
+    signIn: "/signin",
     // signOut: "/signOut",
     // error: "/error",
   },
