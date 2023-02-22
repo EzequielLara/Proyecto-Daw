@@ -2,13 +2,11 @@ import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Image from "next/image";
 import TarjetasLink from "../componentes/compartidos/tarjetasLink";
-import Transicion from "../componentes/compartidos/animaciones-transiciones/transicion";
 import Link from "next/link";
 
 export default function Principal() {
   return (
     <>
-      {/* <Transicion></Transicion> */}
       <Head>
         <title>vocablo</title>
         <meta name="description" content="enseñar a leer" />
@@ -23,7 +21,7 @@ export default function Principal() {
             alt="logo vocablo"
           />
           <p className={styles.description}>
-            La herramienta educativa para enseñar a leer
+            La herramienta educativa profesional para enseñar a leer
           </p>
           <div className={styles.grid}>
             <TarjetasLink
