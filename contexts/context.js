@@ -34,6 +34,8 @@ function Context({ children }) {
     imagen: false,
     sonido: false,
     mayusculas: false,
+    numeroTarjetas: 5,
+    tiempo: 0,
   });
 
   return (

@@ -26,19 +26,19 @@ const Aplicaciones = () => {
               />
               <TarjetasLink
                 href="/metodologias/doman/app-doman/app2"
-                titulo="Aplicación 2"
+                titulo="Recurso 2"
                 parrafo="Aplicación Doman de ejemplo en construcción"
                 anularEnlace
               />
               <TarjetasLink
                 href="/metodologias/doman/app-doman/app2"
-                titulo="Aplicación 3"
+                titulo="Recurso 3"
                 parrafo="Aplicación Doman de ejemplo en construcción"
                 anularEnlace
               />
               <TarjetasLink
                 href="/metodologias/doman/app-doman/app2"
-                titulo="Aplicación 4"
+                titulo="Recurso 4"
                 parrafo="Aplicación Doman de ejemplo en construcción"
                 anularEnlace
               />

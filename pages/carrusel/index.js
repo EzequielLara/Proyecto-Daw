@@ -13,7 +13,9 @@ const ConfiguracionDomain = () => {
   const [imagen, setImagen] = useState(false);
   const [sonido, setSonido] = useState(false);
   const [mayusculas, setMayusculas] = useState(false);
-  const [tiempo, setTiempo] = useState(true);
+  const [numeroTarjetas, setNumeroTarjetas] = useState(5);
+  const [tiempo, setTiempo] = useState(4);
+  const [tematica, setTematica] = useState("animales");
 
   useEffect(() => {
     setDatos({
@@ -21,9 +23,25 @@ const ConfiguracionDomain = () => {
       imagen,
       sonido,
       mayusculas,
+      numeroTarjetas,
+      tiempo,
     });
-    console.log("resumen useeffect:", imagen, sonido, mayusculas);
-  }, [imagen, sonido, mayusculas]);
+    console.log(
+      "resumen useeffect:",
+      "imagen:",
+      imagen,
+      "sonido:",
+      sonido,
+      "mayusculas:",
+      mayusculas,
+      "numero tarjetas:",
+      numeroTarjetas,
+      "tiempo:",
+      tiempo,
+      "tematica:",
+      tematica
+    );
+  }, [imagen, sonido, mayusculas, numeroTarjetas, tiempo, tematica]);
 
   return (
     <>
@@ -42,7 +60,7 @@ const ConfiguracionDomain = () => {
               <select
                 class="form-select mb-1"
                 aria-label="Default select example"
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => e.target.value}
               >
                 <option selected>Temática</option>
                 <option value="animales">Animáles</option>
@@ -52,9 +70,24 @@ const ConfiguracionDomain = () => {
             </div>
             <div className="form-row pb-3 ">
               <select
+                class="form-select mb-1"
+                aria-label="Default select example"
+                onChange={(e) => setNumeroTarjetas(e.target.value)}
+              >
+                <option selected>Número de tarjetas</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            <div className="form-row pb-3 ">
+              <select
                 class="form-select mb-3"
                 aria-label="Default select example"
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => setTiempo(e.target.value)}
               >
                 <option selected>Transición manual</option>
                 <option value="1">1 segundo</option>
