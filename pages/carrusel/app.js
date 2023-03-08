@@ -6,16 +6,18 @@ const AppDomain = () => {
   const { datos, setDatos } = useContext(Configuracion);
   const [contador, setContador] = useState(0);
   const [disabled, setDisabled] = useState(true);
+  const [palabras, setPalabras] = useState();
 
-  const { tematica } = datos;
-  const { animales, imagenes } = tematica;
+  const { tematica, tema } = datos;
+  const { animales, vehiculos, alimentos, imagenes } = tematica;
 
-  console.log("DATOS aplicacion: ", datos);
+  console.log("DATOS aplicacion: ", tematica[tema]);
 
+  useEffect(() => console.log("primero o final"), []);
   useEffect(() => {
     if (datos.sonido) {
       setTimeout(() => {
-        reproduce(animales[contador]);
+        reproduce(tematica[tema][contador]);
       }, 1000);
     }
   }, [contador]);
@@ -42,12 +44,14 @@ const AppDomain = () => {
   return (
     <>
       <div className="container">
-        {animales[contador] === "" ? (
-          <h1 className="mt-5 w-50 m-auto display-1 text-center">ANIMALES</h1>
+        {!tematica[tema] || tematica[tema][contador] === "" ? (
+          <h1 className="mt-5 w-50 m-auto display-1 text-center text-uppercase">
+            {tema}
+          </h1>
         ) : (
           ""
         )}
-        {datos.imagen && animales[contador] !== "" ? (
+        {datos.imagen && tematica[tema][contador] !== "" ? (
           <div className="row arriba">
             <div className="w-75 m-auto text-center">
               <img src={imagenes[contador]} width={300} />
@@ -76,17 +80,21 @@ const AppDomain = () => {
           <div className="col">
             {datos.mayusculas ? (
               <h1 className=" text-uppercase display-1 text-center fw-semibold palabra">
-                {animales[contador]}
+                {tematica[tema][contador]}
               </h1>
             ) : (
               <h1 className="display-1 text-center fw-semibold palabra">
-                {animales[contador]}
+                {!tematica[tema] ? "nooo" : tematica[tema][contador]}
               </h1>
             )}
           </div>
 
           <div className="col-1">
-            {animales[contador] === "" ? <span>Comenzar</span> : ""}
+            {!tematica[tema] || tematica[tema][contador] === "" ? (
+              <span>Comenzar</span>
+            ) : (
+              ""
+            )}
             <button
               className="border-0 bg-transparent p-0 m-0"
               onClick={() => {
@@ -95,10 +103,14 @@ const AppDomain = () => {
               }}
               disabled={disabled}
             >
-              {contador < animales.length - 1 ? (
-                <i className="bi bi-arrow-right-circle icono hover p-0 m-0"></i>
+              {tematica[tema] ? (
+                contador < tematica[tema].length - 1 ? (
+                  <i className="bi bi-arrow-right-circle icono hover p-0 m-0"></i>
+                ) : (
+                  ""
+                )
               ) : (
-                ""
+                "noooo"
               )}
             </button>
           </div>

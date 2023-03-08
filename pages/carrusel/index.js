@@ -15,11 +15,12 @@ const ConfiguracionDomain = () => {
   const [mayusculas, setMayusculas] = useState(false);
   const [numeroTarjetas, setNumeroTarjetas] = useState(5);
   const [tiempo, setTiempo] = useState(4);
-  const [tematica, setTematica] = useState("animales");
+  const [tema, setTema] = useState("animales");
 
   useEffect(() => {
     setDatos({
       ...datos,
+      tema,
       imagen,
       sonido,
       mayusculas,
@@ -38,10 +39,10 @@ const ConfiguracionDomain = () => {
       numeroTarjetas,
       "tiempo:",
       tiempo,
-      "tematica:",
-      tematica
+      "tema:",
+      tema
     );
-  }, [imagen, sonido, mayusculas, numeroTarjetas, tiempo, tematica]);
+  }, [imagen, sonido, mayusculas, numeroTarjetas, tiempo, tema]);
 
   return (
     <>
@@ -60,11 +61,13 @@ const ConfiguracionDomain = () => {
               <select
                 class="form-select mb-1"
                 aria-label="Default select example"
-                onChange={(e) => e.target.value}
+                onChange={(e) => {
+                  setTema(e.target.value);
+                }}
               >
                 <option selected>Temática</option>
                 <option value="animales">Animáles</option>
-                <option value="vehículos">Vehículos</option>
+                <option value="vehiculos">Vehículos</option>
                 <option value="alimentos">Alimentos</option>
               </select>
             </div>
