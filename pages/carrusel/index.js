@@ -108,10 +108,10 @@ const ConfiguracionDomain = () => {
                   type="checkbox"
                   role="switch"
                   defaultValue
-                  id="invalidCheck2"
+                  id="invalidCheck1"
                   onChange={() => setImagen(!imagen)}
                 />
-                <label className="form-check-label" htmlFor="invalidCheck2">
+                <label className="form-check-label" htmlFor="invalidCheck1">
                   Imagen
                 </label>
               </div>
@@ -138,12 +138,12 @@ const ConfiguracionDomain = () => {
                   type="checkbox"
                   role="switch"
                   defaultValue
-                  id="invalidCheck2"
+                  id="invalidCheck3"
                   onChange={() => {
                     setMayusculas(!mayusculas);
                   }}
                 />
-                <label className="form-check-label" htmlFor="invalidCheck2">
+                <label className="form-check-label" htmlFor="invalidCheck3">
                   Mayúsculas
                 </label>
               </div>
