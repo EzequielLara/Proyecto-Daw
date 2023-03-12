@@ -45,11 +45,15 @@ export default function Principal() {
           >
             - Create by EzequielLara -
           </a>
-          <Link href="/infovocablo">
-            <a className="text-decoration-none text-dark">
-              <span className="vocablo">¿Qué es vocablo?</span>
-            </a>
-          </Link>
+          {/* <Link href="/infovocablo"> */}
+          <a
+            href="https://www.canva.com/design/DAFZWQEOF6Y/0W38RhZ8xtuax-4XEGE0_A/view?utm_content=DAFZWQEOF6Y&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink "
+            className="text-decoration-none text-dark"
+            target="_blank"
+          >
+            <span className="vocablo">¿Qué es vocablo?</span>
+          </a>
+          {/* </Link> */}
           <a
             href="https://github.com/EzequielLara/Proyecto-Daw"
             target="_blank"
