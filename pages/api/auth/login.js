@@ -24,7 +24,7 @@ export default function loginHandler(req, res) {
       //este tercer valor del metodo serialize no es obligatorio
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      sameSite: "strict",
       maxAge: 1000 * 60 * 60 * 24 * 30,
       path: "/",
     });

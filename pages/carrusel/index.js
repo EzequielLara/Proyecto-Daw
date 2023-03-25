@@ -59,13 +59,13 @@ const ConfiguracionDomain = () => {
           <form className={styles.card2}>
             <div className="form-row pb-3 ">
               <select
-                class="form-select mb-1"
+                className="form-select mb-1"
                 aria-label="Default select example"
                 onChange={(e) => {
                   setTema(e.target.value);
                 }}
               >
-                <option selected>Temática</option>
+                <option defaultValue="animales">Temática</option>
                 <option value="animales">Animáles</option>
                 <option value="vehiculos">Vehículos</option>
                 <option value="alimentos">Alimentos</option>
@@ -73,11 +73,11 @@ const ConfiguracionDomain = () => {
             </div>
             <div className="form-row pb-3 ">
               <select
-                class="form-select mb-1"
+                className="form-select mb-1"
                 aria-label="Default select example"
                 onChange={(e) => setNumeroTarjetas(e.target.value)}
               >
-                <option selected>Número de tarjetas</option>
+                <option defaultValue="5">Número de tarjetas</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
                 <option value="7">7</option>
@@ -88,11 +88,11 @@ const ConfiguracionDomain = () => {
             </div>
             <div className="form-row pb-3 ">
               <select
-                class="form-select mb-3"
+                className="form-select mb-3"
                 aria-label="Default select example"
                 onChange={(e) => setTiempo(e.target.value)}
               >
-                <option selected>Transición manual</option>
+                <option defaultValue="6">Transición manual</option>
                 <option value="1">1 segundo</option>
                 <option value="2">2 segundos</option>
                 <option value="3">3 segundos</option>

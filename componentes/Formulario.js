@@ -33,7 +33,7 @@ const Formulario = ({ providers }) => {
     e.preventDefault();
     console.log(datosUsuarioSesion);
     const respuesta = await axios.post("/api/auth/login", datosUsuarioSesion);
-    console.log("respuesta servidor:", respuesta);
+    console.log("respuesta servidor:", respuesta.headers);
   };
 
   return (
@@ -99,6 +99,7 @@ const Formulario = ({ providers }) => {
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
                 onChange={handleChange}
+                autoComplete="true"
                 required
               />
             </div>
@@ -110,6 +111,7 @@ const Formulario = ({ providers }) => {
                 id="password"
                 placeholder="Password"
                 onChange={handleChange}
+                autoComplete="true"
                 required
               />
             </div>
@@ -144,6 +146,7 @@ const Formulario = ({ providers }) => {
                 id="email2"
                 aria-describedby="emailHelp"
                 placeholder="Email"
+                autoComplete="true"
                 required
               />
             </div>
@@ -154,6 +157,7 @@ const Formulario = ({ providers }) => {
                 id="name2"
                 aria-describedby="name"
                 placeholder="Nombre"
+                autoComplete="true"
                 required
               />
             </div>
@@ -163,6 +167,7 @@ const Formulario = ({ providers }) => {
                 className="form-control"
                 id="password2"
                 placeholder="Password"
+                autoComplete="true"
                 required
               />
             </div>
