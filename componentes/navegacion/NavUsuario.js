@@ -5,7 +5,7 @@ const NavUsuario = ({ usuario }) => {
     <>
       {usuario ? (
         <span className="nav-link font-monospace ps-5 text-dark">
-          {usuario.name}
+          {usuario}
         </span>
       ) : (
         <Link href={"/api/auth/signout"}>

@@ -13,7 +13,7 @@ export default function loginHandler(req, res) {
     //generar un token jwt
     const token = jwt.sign(
       {
-        email: "admin@local.local",
+        email: email,
         username: "Ezek",
         exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 30,
       },
