@@ -4,10 +4,10 @@ import { getSession } from "next-auth/react";
 import { verify } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
 
-const Home = ({ usuario }) => {
+const Home = ({ usuario, loginAuth }) => {
   return (
     <Layout title="docente | home">
-      <Navegacion usuario={usuario}></Navegacion>
+      <Navegacion usuario={usuario} loginAuth={loginAuth}></Navegacion>
       <main></main>
     </Layout>
   );
@@ -22,6 +22,7 @@ export const getServerSideProps = async (context) => {
       return {
         props: {
           usuario: jwt.decode(myTokenName).username,
+          loginAuth: false,
         },
       };
     } catch {
@@ -35,6 +36,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       usuario: usuario.user.name,
+      loginAuth: true,
     },
   };
 };

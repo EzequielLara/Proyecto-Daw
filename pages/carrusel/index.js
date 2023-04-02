@@ -27,21 +27,6 @@ const ConfiguracionDomain = () => {
       numeroTarjetas,
       tiempo,
     });
-    console.log(
-      "resumen useeffect:",
-      "imagen:",
-      imagen,
-      "sonido:",
-      sonido,
-      "mayusculas:",
-      mayusculas,
-      "numero tarjetas:",
-      numeroTarjetas,
-      "tiempo:",
-      tiempo,
-      "tema:",
-      tema
-    );
   }, [imagen, sonido, mayusculas, numeroTarjetas, tiempo, tema]);
 
   return (

@@ -31,9 +31,8 @@ const Formulario = ({ providers }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(datosUsuarioSesion);
     const respuesta = await axios.post("/api/auth/login", datosUsuarioSesion);
-    console.log("respuesta servidor:", respuesta.headers);
+    router.push("/docentes");
   };
 
   return (

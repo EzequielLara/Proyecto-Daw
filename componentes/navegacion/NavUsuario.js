@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const NavUsuario = ({ usuario }) => {
+const NavUsuario = ({ usuario, loginAuth }) => {
   return (
     <>
       {usuario ? (

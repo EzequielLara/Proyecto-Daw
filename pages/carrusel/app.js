@@ -10,10 +10,6 @@ const AppDomain = () => {
 
   const { tematica, tema } = datos;
   const { animales, vehiculos, alimentos, imagenes } = tematica;
-
-  console.log("DATOS aplicacion: ", tematica[tema]);
-
-  useEffect(() => console.log("primero o final"), []);
   useEffect(() => {
     if (datos.sonido) {
       setTimeout(() => {

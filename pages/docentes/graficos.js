@@ -28,7 +28,6 @@ const Graficos = ({ usuario }) => {
 
 export const getServerSideProps = async (context) => {
   const usuario = await getSession(context);
-  console.log("resultado session:", usuario);
   if (!usuario)
     return {
       redirect: {

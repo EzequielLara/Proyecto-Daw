@@ -8,8 +8,6 @@ export default function loginHandler(req, res) {
   // si el password es correcto
   // Datos harcodeados:
   if (email === "eze@eze" && password === "eze") {
-    console.log("primer valor", email);
-    console.log("segundo valor", password);
     //generar un token jwt
     const token = jwt.sign(
       {
@@ -29,7 +27,6 @@ export default function loginHandler(req, res) {
       path: "/",
     });
     res.setHeader("Set-Cookie", serialized);
-    console.log("token serializado", serialized);
     return res.status(200).json({ exito: "login satisfactorio" });
   }
   return res.status(401).json({ error: "email o password no válidos" });

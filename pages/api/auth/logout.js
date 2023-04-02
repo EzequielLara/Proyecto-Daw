@@ -18,7 +18,6 @@ export default function logout(req, res) {
       path: "/",
     });
     res.setHeader("Set-Cookie", serialized);
-    console.log("logout exitoso", serialized);
     return res.status(200).json({ exito: "logout satisfactorio" });
   } catch {
     return res.status(401).json("no se ha podido realizar la operación");

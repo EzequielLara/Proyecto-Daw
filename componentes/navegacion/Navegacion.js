@@ -1,7 +1,7 @@
 import Link from "next/link";
 import NavUsuario from "./NavUsuario";
 
-const Navegacion = ({ usuario }) => {
+const Navegacion = ({ usuario, loginAuth }) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -59,10 +59,13 @@ const Navegacion = ({ usuario }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <NavUsuario usuario={usuario}></NavUsuario>
+                <NavUsuario
+                  usuario={usuario}
+                  loginAuth={loginAuth}
+                ></NavUsuario>
               </li>
               <li>
-                <Link href={"/api/auth/signout"}>
+                <Link href={loginAuth ? "/api/auth/signout" : "/pruebaborrar"}>
                   <a>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

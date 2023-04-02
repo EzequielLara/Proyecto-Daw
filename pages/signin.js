@@ -64,7 +64,6 @@ const Signin = ({ providers }) => {
 
 export const getStaticProps = async () => {
   const providers = await getProviders();
-  console.log("aqui estan:", providers);
   return {
     props: { providers },
   };

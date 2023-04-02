@@ -8,7 +8,6 @@ export default function handler(req, res) {
   }
   try {
     const user = verify(myTokenName, "secret");
-    console.log("usuario:", user);
     res.status(200).json({ name: "John Doe" });
   } catch (error) {
     return res.status(401).json({ error: "acceso denegado" });
