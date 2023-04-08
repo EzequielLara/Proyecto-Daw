@@ -5,6 +5,8 @@ import Navegacion from "../../componentes/navegacion/Navegacion";
 import ModalAvatar from "../../componentes/modales/ModalAvatar";
 import LayoutMainContent from "../../componentes/layouts/LayoutMainContent";
 import { getSession } from "next-auth/react";
+import { verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const Avatares = ({ usuario }) => {
   const [seleccion, setSeleccion] = useState("");
@@ -31,16 +33,28 @@ const Avatares = ({ usuario }) => {
 
 export const getServerSideProps = async (context) => {
   const usuario = await getSession(context);
+  const myTokenName = context.req.cookies.myTokenName;
   if (!usuario)
-    return {
-      redirect: {
-        destination: "/signin",
-        permanent: false,
-      },
-    };
+    try {
+      verify(myTokenName, "secret");
+      return {
+        props: {
+          usuario: jwt.decode(myTokenName).username,
+          loginAuth: false,
+        },
+      };
+    } catch {
+      return {
+        redirect: {
+          destination: "/signin",
+          permanent: false,
+        },
+      };
+    }
   return {
     props: {
-      usuario: usuario.user,
+      usuario: usuario.user.name,
+      loginAuth: true,
     },
   };
 };

@@ -31,9 +31,9 @@ const Navegacion = ({ usuario, loginAuth }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href={"/docentes/graficos"}>
+                <Link href={"/docentes/dashboard"}>
                   <a className="nav-link" href="#">
-                    Estadísticas
+                    Dashboard
                   </a>
                 </Link>
               </li>
@@ -65,7 +65,7 @@ const Navegacion = ({ usuario, loginAuth }) => {
                 ></NavUsuario>
               </li>
               <li>
-                <Link href={loginAuth ? "/api/auth/signout" : "/pruebaborrar"}>
+                <Link href={loginAuth ? "/api/auth/signout" : "/logout"}>
                   <a>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

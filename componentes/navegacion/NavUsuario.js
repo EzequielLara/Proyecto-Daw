@@ -1,6 +1,11 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const NavUsuario = ({ usuario, loginAuth }) => {
+  const router = useRouter();
+  if (!usuario) {
+    router.push("/login");
+  }
   return (
     <>
       {usuario ? (
@@ -8,9 +13,7 @@ const NavUsuario = ({ usuario, loginAuth }) => {
           {usuario}
         </span>
       ) : (
-        <Link href={"/api/auth/signout"}>
-          <a className="nav-link font-monospace">Acceso no autorizado</a>
-        </Link>
+        ""
       )}
     </>
   );
