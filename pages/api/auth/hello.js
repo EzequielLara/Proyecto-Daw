@@ -7,7 +7,7 @@ export default function handler(req, res) {
     return res.status(401).json({ error: "no token" });
   }
   try {
-    const user = verify(myTokenName, "secret");
+    const user = verify(myTokenName, process.env.SECRET_JWT);
     res.status(200).json({ name: "John Doe" });
   } catch (error) {
     return res.status(401).json({ error: "acceso denegado" });

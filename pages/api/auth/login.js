@@ -15,7 +15,7 @@ export default function loginHandler(req, res) {
         username: "Ezek",
         exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 30,
       },
-      "secret"
+      process.env.SECRET_JWT
     );
     // para no enviar el token mejor serializarlo antes (proceso de convertir un objeto en una secuencia de bytes para almacenarlo)
     const serialized = serialize("myTokenName", token, {

@@ -8,7 +8,7 @@ export default function logout(req, res) {
     return res.status(401).json({ error: "no token" });
   }
   try {
-    verify(myTokenName, "secret");
+    verify(myTokenName, process.env.SECRET_JWT);
     const serialized = serialize("myTokenName", null, {
       //este tercer valor del metodo serialize no es obligatorio
       httpOnly: true,

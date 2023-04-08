@@ -36,7 +36,7 @@ export const getServerSideProps = async (context) => {
   const myTokenName = context.req.cookies.myTokenName;
   if (!usuario)
     try {
-      verify(myTokenName, "secret");
+      verify(myTokenName, process.env.SECRET_JWT);
       return {
         props: {
           usuario: jwt.decode(myTokenName).username,
