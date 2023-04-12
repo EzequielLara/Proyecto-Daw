@@ -2,14 +2,11 @@ import Layout from "../../componentes/layouts/Layout";
 import Navegacion from "../../componentes/navegacion/Navegacion";
 import Donut from "../../componentes/dashboard/donut";
 import Radargrafico from "../../componentes/dashboard/radargrafico";
-import { getSession } from "next-auth/react";
-import { verify } from "jsonwebtoken";
-import jwt from "jsonwebtoken";
 
-const Dashboard = ({ usuario }) => {
+const Dashboard = () => {
   return (
     <Layout title="docente | gráficos">
-      <Navegacion usuario={usuario}></Navegacion>
+      <Navegacion usuario={"prueba"}></Navegacion>
       <main>
         <div className="container">
           <div className="row m-5">
@@ -26,34 +23,6 @@ const Dashboard = ({ usuario }) => {
       </main>
     </Layout>
   );
-};
-
-export const getServerSideProps = async (context) => {
-  const usuario = await getSession(context);
-  const myTokenName = context.req.cookies.myTokenName;
-  if (!usuario)
-    try {
-      verify(myTokenName, process.env.SECRET_JWT);
-      return {
-        props: {
-          usuario: jwt.decode(myTokenName).username,
-          loginAuth: false,
-        },
-      };
-    } catch {
-      return {
-        redirect: {
-          destination: "/signin",
-          permanent: false,
-        },
-      };
-    }
-  return {
-    props: {
-      usuario: usuario.user.name,
-      loginAuth: true,
-    },
-  };
 };
 
 export default Dashboard;

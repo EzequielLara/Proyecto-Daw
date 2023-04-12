@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 const NavUsuario = ({ usuario, loginAuth }) => {
   const router = useRouter();
   if (!usuario) {
-    router.push("/login");
+    router.push("/signin");
   }
   return (
     <>

@@ -64,15 +64,14 @@ const Avatares = ({ getPerro }) => {
         </div>
       </div>
       <style>
-        {`
-            
-            .estiloFila:hover{
-                border: 7px solid orange;
-                border-radius: 50%;
-                margin: auto;
-                cursor: pointer;
-                }
-            `}
+        {` 
+          .estiloFila:hover{
+              border: 7px solid orange;
+              border-radius: 50%;
+              margin: auto;
+              cursor: pointer;
+              }
+        `}
       </style>
     </>
   );

@@ -8,7 +8,9 @@ const Home = ({ usuario, loginAuth }) => {
   return (
     <Layout title="docente | home">
       <Navegacion usuario={usuario} loginAuth={loginAuth}></Navegacion>
-      <main></main>
+      <main>
+        <h1>Index</h1>
+      </main>
     </Layout>
   );
 };

@@ -45,9 +45,9 @@ const Navegacion = ({ usuario, loginAuth }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href={"/metodologias/doman/app-doman/app"}>
+                <Link href={"/docentes/alumnos"}>
                   <a className="nav-link" href="#">
-                    Applicaciones
+                    Alumnos
                   </a>
                 </Link>
               </li>
