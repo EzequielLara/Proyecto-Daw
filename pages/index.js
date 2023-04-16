@@ -19,6 +19,7 @@ export default function Principal() {
             width={700}
             height={250}
             alt="logo vocablo"
+            priority={true}
           />
           <p className={styles.description}>
             La herramienta educativa profesional para enseñar a leer

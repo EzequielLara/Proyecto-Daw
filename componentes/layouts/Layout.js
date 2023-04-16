@@ -1,5 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import Spinner from "../compartidos/Spinner";
+import { Suspense } from "react";
 
 const Layout = ({ children, title }) => {
   const [loading, setLoading] = useState(false);
@@ -20,7 +22,9 @@ const Layout = ({ children, title }) => {
           <div>{children}</div>
         </>
       ) : (
-        <small>Cargando página...</small>
+        <Suspense fallback={<div>Cargando...</div>}>
+          <Spinner />
+        </Suspense>
       )}
     </>
   );

@@ -48,8 +48,9 @@ const recursos = () => {
         <h5 className="ms-3">Libros y documentos:</h5>
         <hr></hr>
         <div className="m-5 row">
-          {descargables.map((libro) => (
+          {descargables.map((libro, index) => (
             <Download
+              key={index}
               titulo={libro.titulo}
               descripcion={libro.descripcion}
               direccionArchivo={libro.direccionArchivo}

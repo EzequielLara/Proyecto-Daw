@@ -1,4 +1,5 @@
 const Download = ({
+  key,
   titulo,
   descripcion,
   imagen,

@@ -17,9 +17,11 @@ export default function loginHandler(req, res) {
       },
       process.env.SECRET_JWT
     );
-    // para no enviar el token mejor serializarlo antes (proceso de convertir un objeto en una secuencia de bytes para almacenarlo)
+    // para no enviar el token directamente y sea facilmente identificable
+    // mejor serializarlo antes (proceso de convertir un objeto en una secuencia de bytes para almacenarlo)
     const serialized = serialize("myTokenName", token, {
       //este tercer valor del metodo serialize no es obligatorio
+      //cuando se esté en producción cambiar la variable NODE_ENV del archivo .env.local por 'production'
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
