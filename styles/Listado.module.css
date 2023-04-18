@@ -97,6 +97,7 @@
           font-weight: bolder;
           text-align: left;
           border-bottom: solid 7px red;
+         
         }
         .datatable_container .datatable td{
           border-bottom: solid 7px green;

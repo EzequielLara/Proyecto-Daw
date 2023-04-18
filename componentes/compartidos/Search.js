@@ -45,11 +45,8 @@ const SearchBox = ({ suggestions }) => {
           type="text"
           value={value}
           onChange={onInputChange}
-          placeholder="Alumno"
-        />
-        <span className="m-2">
-          <img src="/icono_vocablo.svg" alt="icono" width={30}></img>
-        </span>
+          placeholder="Buscador..."
+        ></input>
         {filteredSuggestions.length > 0 && (
           <ul className="suggestions">
             {filteredSuggestions.map((suggestion) => (
@@ -57,7 +54,7 @@ const SearchBox = ({ suggestions }) => {
                 key={suggestion._id}
                 onClick={() => onSuggestionClick(suggestion.nombre)}
               >
-                {suggestion.nombre}
+                {suggestion.nombre} {suggestion.apellidos}
               </li>
             ))}
           </ul>
@@ -68,18 +65,22 @@ const SearchBox = ({ suggestions }) => {
           position: relative;
         }
         .input{
-          border:3px solid #247c8c;
-          min-width:15%;
+          border-radius:15px;
+          padding-left: 15px;
+          border:3px solid gray;
+          min-width:150px;
+          max-width:250px;
           
         }
 
         .suggestions {
           position: absolute;
-          min-width:15%;
+          min-width:150px;
+          max-width:250px;
           top: 100%;
-          left: 0;
+          left: 350;
           right: 0;
-          background-color: #fff;
+          background-color: white;
           border: 1px solid #ccc;
           border-top: none;
           list-style-type: none;
