@@ -1,24 +1,18 @@
-:root {
-    --azul: #3b82f6;
-    --blanco: #ffffff;
-    --gris-claro: #f5f5f5;
-    --gris: #94a3b8;
-    --gris-oscuro: #64748b;
-    --negro: #000;
-}
 
-body {
+/* css de ModalAlumnos.module */
+
+.body {
     font-size: 1.6rem;
     font-family: "Lato", sans-serif;
-    background-color: var(--gris-claro);
+    background-color: #f5f5f5;
 }
-html {
+.html {
     font-size: 62.5%;
     box-sizing: border-box;
 }
-*,
-*:before,
-*:after {
+
+.cambiar:before,
+.cambiar:after {
     box-sizing: inherit;
 }
 
@@ -27,10 +21,10 @@ html {
     height: 100vh;
 }
 
-h1 {
+.h1 {
     font-size: 4rem;
 }
-h2 {
+.h2 {
     font-size: 3rem;
 }
 
@@ -38,19 +32,19 @@ h2 {
     box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
     -webkit-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
     -moz-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
-    background-color: var(--blanco);
+    background-color: #ffffff;
     padding: 4rem;
     border-radius: 1.2rem;
 }
 
-header {
-    background-color: var(--azul);
+.header {
+    background-color: #3b82f6;
 }
 
-header h1 {
+.header h1 {
     padding: 3rem 0;
     margin: 0;
-    color: var(--blanco);
+    color: #ffffff;
     text-align: center;
 
     text-transform: uppercase;
@@ -72,10 +66,10 @@ header h1 {
     text-align: center;
     display: block;
     text-transform: uppercase;
-    color: var(--blanco);
+    color: #ffffff;
     margin-bottom: 4rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--azul);
+    border-bottom: 2px solid #3b82f6;
 }
 .formulario .campo {
     display: grid;
@@ -83,7 +77,7 @@ header h1 {
 }
 
 .formulario label {
-    color: var(--azul);
+    color: #3b82f6;
     font-size: 2.8rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -91,7 +85,7 @@ header h1 {
 
 .formulario input[type="text"],
 .formulario input[type="number"] {
-    background-color: var(--gris-claro);
+    background-color: #f5f5f5;
     border-radius: 1rem;
     padding: 1rem;
     border: none;
@@ -104,7 +98,7 @@ header h1 {
     padding: 1rem;
     text-align: center;
     margin-top: 2rem;
-    color: var(--blanco);
+    color: #ffffff;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 1.9rem;
@@ -128,7 +122,7 @@ header h1 {
     border: none;
     border-radius: 1rem;
     text-align: center;
-    background-color: var(--gris-claro);
+    background-color: #f5f5f5;
 }
 
 .alerta {
@@ -141,7 +135,7 @@ header h1 {
     text-align: center;
 }
 .alerta.error {
-    background-color: var(--blanco);
+    background-color: #ffffff;
     border-left: 5px solid #b91c1c;
     color: #b91c1c;
 }
@@ -196,7 +190,7 @@ header h1 {
 }
 .contenido-presupuesto p {
     font-weight: 400;
-    color: var(--gris-oscuro);
+    color: #64748b;
     font-size: 2.4rem;
     text-align: center;
 }
@@ -211,7 +205,7 @@ header h1 {
 }
 .contenido-presupuesto span {
     font-weight: 900;
-    color: var(--azul);
+    color: #3b82f6;
 }
 .reset-app {
     border: none;
@@ -219,7 +213,7 @@ header h1 {
     padding: 1rem;
     width: 100%;
     text-align: center;
-    color: var(--blanco);
+    color: #ffffff;
     text-transform: uppercase;
     font-weight: 900;
     border-radius: 1rem;
@@ -231,7 +225,7 @@ header h1 {
     cursor: pointer;
 }
 
-main {
+.main {
     padding-top: 10rem;
 }
 
@@ -243,7 +237,7 @@ main {
 .filtros label {
     font-size: 3rem;
     font-weight: 900;
-    color: var(--gris-oscuro);
+    color: #64748b;
 }
 .filtros select {
     flex: 1;
@@ -251,14 +245,14 @@ main {
     border: none;
     border-radius: 1rem;
     text-align: center;
-    background-color: var(--gris-claro);
+    background-color: #f5f5f5;
 }
 
 .listado-gastos {
     margin-top: 5rem;
 }
 .listado-gastos h2 {
-    color: var(--gris-oscuro);
+    color: #64748b;
     font-weight: 900;
 }
 .no-gastos {
@@ -277,7 +271,7 @@ main {
 
 .cantidad-gasto {
     font-size: 2.4rem;
-    color: var(--negro);
+    color: #000;
     font-weight: 900;
 }
 
@@ -295,7 +289,7 @@ main {
     margin: 0 0 0.3rem 0;
 }
 .descripcion-gasto .categoria {
-    color: var(--gris);
+    color: #94a3b8;
     font-size: 1.6rem;
     font-weight: 900;
     text-transform: uppercase;
@@ -304,7 +298,7 @@ main {
     margin-bottom: 1rem;
 }
 .descripcion-gasto .nombre-gasto {
-    color: var(--gris-oscuro);
+    color: #64748b;
     font-size: 2.4rem;
     font-weight: 700;
 }
@@ -314,7 +308,7 @@ main {
 .descripcion-gasto .fecha-gasto {
     font-size: 1.8rem;
     font-weight: 900;
-    color: var(--gris-oscuro);
+    color: #64748b;
 }
 .descripcion-gasto .fecha-gasto span {
     font-weight: 400;
@@ -361,9 +355,9 @@ main {
     opacity: 0;
 }
 .modal label {
-    color: var(--blanco);
+    color: #ffffff;
 }
-body .modal {
+.body .modal {
     overflow: hidden;
 }
 
@@ -386,15 +380,15 @@ body .modal {
 
 /*** SWIPE LIST OVERRIDES **/
 .swipe-action__leading {
-    background-color: var(--azul);
-    color: var(--blanco);
+    background-color: #3b82f6;
+    color: #ffffff;
     margin-bottom: 2rem;
 }
 
 .swipe-action__trailing {
     background-color: #db2777;
     margin-bottom: 2rem;
-    color: var(--blanco);
+    color: #ffffff;
 }
 
 .swipeable-list .swipe-action {
@@ -404,3 +398,4 @@ body .modal {
     font-size: 2.4rem;
     text-align: right;
 }
+/* --------------------------- */

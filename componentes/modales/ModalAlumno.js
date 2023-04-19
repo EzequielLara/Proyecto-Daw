@@ -1,4 +1,6 @@
 import style from "../../styles/ModalAlumnos.module.css";
+import { useState, useEffect } from "react";
+
 const ModalAlumno = ({
   setModal,
   animarModal,
@@ -16,12 +18,12 @@ const ModalAlumno = ({
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (Object.keys(gastoEditar).length > 0) {
-      setNombreGasto(gastoEditar.nombreGasto);
-      setCantidad(gastoEditar.cantidad);
-      setCategoria(gastoEditar.categoria);
-      setId(gastoEditar.id);
-    }
+    // if (Object.keys(gastoEditar).length > 0) {
+    //   setNombreGasto(gastoEditar.nombreGasto);
+    //   setCantidad(gastoEditar.cantidad);
+    //   setCategoria(gastoEditar.categoria);
+    //   setId(gastoEditar.id);
+    // }
   }, []);
 
   const ocultarModal = () => {
@@ -98,15 +100,15 @@ const ModalAlumno = ({
   return (
     <>
       <div className={style.modal}>
-        <div className={style.cerrar - modal}>
-          <img src={CerrarBtn} alt="cerrar modal" onClick={ocultarModal} />
+        <div className={style.cerrar_modal}>
+          <img src="/cerrar.svg" alt="cerrar modal" onClick={ocultarModal} />
         </div>
         <form
           onSubmit={handleSubmit}
           className={`formulario ${animarModal ? "animar" : "cerrar"}`}
         >
           <legend>
-            {gastoEditar.nombreGasto ? "Editar Gasto" : "Nuevo Gasto"}
+            {/* {gastoEditar.nombreGasto ? "Editar Gasto" : "Nuevo Gasto"} */}
           </legend>
           <div className={style.campo}>
             <label htmlFor="nombre">Nombre Gasto</label>
@@ -116,7 +118,7 @@ const ModalAlumno = ({
               placeholder="Añade el Nombre del Gasto"
               value={nombreGasto}
               onChange={(e) => {
-                setNombreGasto(e.target.value);
+                // setNombreGasto(e.target.value);
               }}
             />
           </div>
@@ -127,7 +129,7 @@ const ModalAlumno = ({
               placeholder="Añade cantidad del Gasto"
               value={cantidad}
               onChange={(e) => {
-                setCantidad(Number(e.target.value));
+                // setCantidad(Number(e.target.value));
               }}
             />
           </div>
@@ -152,9 +154,9 @@ const ModalAlumno = ({
             <input
               id="boton"
               type="submit"
-              value={
-                gastoEditar.nombreGasto ? "Guardar cambios" : "Añadir Gasto"
-              }
+              // value={
+              //   gastoEditar.nombreGasto ? "Guardar cambios" : "Añadir Gasto"
+              // }
             />
             {error ? <p>No se admiten campos vacíos</p> : ""}
           </div>

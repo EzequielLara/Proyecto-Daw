@@ -3,7 +3,7 @@ import SearchBox from "./compartidos/SearchBox";
 import Spinner from "../componentes/compartidos/Spinner";
 import { Suspense } from "react";
 
-const Listado = () => {
+const Listado = ({ nuevoAlumno }) => {
   const [alumnos, setAlumnos] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -35,7 +35,7 @@ const Listado = () => {
     const datosPaginados = alumnos.slice(inicio, fin);
     setDatosPaginados(datosPaginados);
     console.log("datos paginados", datosPaginados);
-  }, [paginaActual]);
+  }, [paginaActual, numElementosPorPagina]);
 
   const cambiarPagina = (direccion) => {
     if (direccion === "siguiente") {
@@ -58,6 +58,9 @@ const Listado = () => {
               data-toggle="tooltip"
               data-placement="top"
               title="Crear alumno nuevo"
+              onClick={() => {
+                nuevoAlumno();
+              }}
             >
               person_add
             </span>
@@ -140,7 +143,9 @@ const Listado = () => {
                   name="n-entries"
                   className="m-2"
                   onChange={(e) => {
-                    setNumElementosPorPagina(e.target.value);
+                    let numero = parseInt(e.target.value);
+                    setNumElementosPorPagina(numero);
+                    console.log("numero: ", numero);
                   }}
                 >
                   <option value="5">5</option>
