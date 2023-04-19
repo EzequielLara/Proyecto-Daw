@@ -39,16 +39,16 @@ const SearchBox = ({ suggestions }) => {
 
   return (
     <>
-      <div className="search-box">
+      <div className="search-box-container">
         <input
-          className="input"
+          className="input w-50"
           type="text"
           value={value}
           onChange={onInputChange}
           placeholder="Buscador..."
         ></input>
         {filteredSuggestions.length > 0 && (
-          <ul className="suggestions">
+          <ul className="suggestions w-50 text-start">
             {filteredSuggestions.map((suggestion) => (
               <li
                 key={suggestion._id}
@@ -61,35 +61,38 @@ const SearchBox = ({ suggestions }) => {
         )}
       </div>
       <style>{`
-        .search-box {
+        .search-box-container {
           position: relative;
         }
-        .input{
-          border-radius:15px;
-          padding-left: 15px;
-          border:3px solid gray;
-          min-width:150px;
-          max-width:250px;
-          
+
+        .input {
+          width: 100%;
+          padding: 10px;
+          padding-left:30px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
         }
 
         .suggestions {
+          list-style: none;
+          padding: 0;
+          margin: 0;
           position: absolute;
-          min-width:150px;
-          max-width:250px;
           top: 100%;
-          left: 350;
-          right: 0;
+          right:0;
+          
+          z-index: 1;
+          max-height: 200px;
+          overflow-y: auto;
           background-color: white;
           border: 1px solid #ccc;
           border-top: none;
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
+          border-radius: 0 0 4px 4px;
         }
 
         .suggestions li {
           padding: 10px;
+          cursor: pointer;
         }
 
         .suggestions li:hover {

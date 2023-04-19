@@ -1,6 +1,5 @@
-import styles from "../styles/Listado.module.css";
 import { useEffect, useState } from "react";
-import SearchBox from "../componentes/compartidos/Search";
+import SearchBox from "./compartidos/SearchBox";
 import Spinner from "../componentes/compartidos/Spinner";
 import { Suspense } from "react";
 
@@ -48,27 +47,26 @@ const Listado = () => {
 
   return (
     <>
-      <div className="container w-50 mt-5">
-        <div></div>
+      <div className="container w-auto mt-5">
         <div className="row justify-content-center align-items-center ">
           <div className="col-3 ">
             <h4 className="colorTexto">Alumnos</h4>
           </div>
-          <div className="col-3">
+          <div className="col-1 text-center">
             <span
               className="material-icons colorIcono"
               data-toggle="tooltip"
               data-placement="top"
-              title="añadir alumno nuevo"
+              title="Crear alumno nuevo"
             >
               person_add
             </span>
           </div>
-          <div className="col-6 text-end">
+          <div className="col-8 text-end">
             <SearchBox suggestions={alumnos}></SearchBox>
           </div>
         </div>
-        <hr></hr>
+        <hr className="pb-4"></hr>
         <ul className="list-group zindex ">
           {alumnos &&
             alumnos.map((alumno) => (
@@ -78,24 +76,19 @@ const Listado = () => {
               >
                 <div className="card-body">
                   <div className="row justify-content-center align-items-center ">
-                    <div className="col-sm-4 p-2">
+                    <div className="col-4  ps-4">
                       <h5 className="card-title">{alumno.nombre}</h5>
-                      <p className="card-subtitle colorTexto">
+                      <p className="card-subtitle font-weight-light colorTexto">
                         {alumno.apellidos}
                       </p>
                     </div>
-                    <div className="col-sm-4 text-center">
-                      <small
-                        className="card-subtitle text-capitalize"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Crear alumno nuevo"
-                      >
+                    <div className="col-4  text-center">
+                      <small className="card-subtitle text-capitalize">
                         {alumno.curso} - {alumno.grupo}
                       </small>
                     </div>
-                    <div className="col-sm-4 ">
-                      <div className="m-auto text-center ">
+                    <div className="col-4">
+                      <div className="m-auto text-end pe-4">
                         <button
                           type="button"
                           className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
@@ -138,14 +131,14 @@ const Listado = () => {
           </div>
         )}
         {alumnos && (
-          <div className={styles.datatable_container}>
-            <div className={styles.footer_tools}>
-              <div className={styles.list_items}>
+          <div className="mt-4 ps-4">
+            <div className="row">
+              <div className="col-6">
                 Ver
                 <select
-                  className={styles.n_entries}
                   id="n-enties"
                   name="n-entries"
+                  className="m-2"
                   onChange={(e) => {
                     setNumElementosPorPagina(e.target.value);
                   }}
@@ -156,24 +149,34 @@ const Listado = () => {
                 </select>
                 resultados
               </div>
-              <div className={styles.pages}>
-                <ul>
-                  {datosPaginados.map((dato) => (
-                    <li key={dato.id}>{dato.nombre}</li>
-                  ))}
-                </ul>
-                <button
-                  disabled={paginaActual === 1}
-                  onClick={() => cambiarPagina("anterior")}
-                >
-                  Anterior
-                </button>
-                <button
-                  disabled={paginaActual === numTotalPaginas}
-                  onClick={() => cambiarPagina("siguiente")}
-                >
-                  Siguiente
-                </button>
+              <div className="col-6 text-end pe-5">
+                <div>
+                  <button
+                    className="border-0 bg-transparent flecha"
+                    disabled={paginaActual === 1}
+                    onClick={() => cambiarPagina("anterior")}
+                  >
+                    <img
+                      src="/arrow_circle_left.svg"
+                      href="botón izquierdo"
+                      width={35}
+                    ></img>
+                  </button>
+                  <span className="d-md-inline d-none">
+                    {paginaActual} de {numTotalPaginas}
+                  </span>
+                  <button
+                    className="border-0 bg-transparent flecha"
+                    disabled={paginaActual === numTotalPaginas}
+                    onClick={() => cambiarPagina("siguiente")}
+                  >
+                    <img
+                      src="/arrow_circle_right.svg"
+                      href="botón izquierdo"
+                      width={35}
+                    ></img>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -193,6 +196,11 @@ const Listado = () => {
             .colorIcono{
               color:orange;
               cursor: pointer;
+            }
+            .flecha:hover{
+              border-transparent:none;
+              border:2px solid orange;
+              cursor:pointer;
             }
             {/* .zindex{
                position: relative;
