@@ -58,16 +58,17 @@
 @media (min-width: 768px) {
     .formulario {
         padding: 5rem 0;
-        width: 60rem;
+        width: 50rem;
     }
 }
 .formulario legend {
-    font-size: 3.6rem;
+    font-size: 1.8rem;
+    font-weight: 700;
     text-align: center;
     display: block;
     text-transform: uppercase;
     color: #ffffff;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid #3b82f6;
 }
@@ -78,19 +79,20 @@
 
 .formulario label {
     color: #3b82f6;
-    font-size: 2.8rem;
+    font-size: 1.3rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .formulario input[type="text"],
 .formulario input[type="number"] {
     background-color: #f5f5f5;
+    box-sizing: border-box;
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 0.2rem;
     border: none;
-    flex: 1;
-    font-size: 1.6rem;
+    /* flex: 1; */
+    font-size: 1.3rem;
 }
 .formulario input[type="submit"] {
     background-color: #1048a4;
@@ -101,7 +103,7 @@
     color: #ffffff;
     font-weight: 900;
     text-transform: uppercase;
-    font-size: 1.9rem;
+    font-size: 1rem;
     width: 100%;
     transition: background-color 300ms ease;
 }
@@ -118,11 +120,14 @@
 
 .formulario select {
     flex: 1;
-    padding: 1rem;
+    padding: 0.8rem;
+    margin-left:3rem;
+    margin-bottom: 2rem;
     border: none;
     border-radius: 1rem;
     text-align: center;
     background-color: #f5f5f5;
+    font-size:1.1rem;
 }
 
 .alerta {
@@ -139,8 +144,7 @@
     border-left: 5px solid #b91c1c;
     color: #b91c1c;
 }
-.alerta.success {
-}
+
 
 .contenedor {
     width: 90%;
@@ -198,7 +202,16 @@
     .contenido-presupuesto p {
         text-align: left;
     }
+    .modal form{
+      width: 60%;
+    }
 }
+@media (min-width: 992px){
+  .modal.form{
+    width: 40%;
+  }
+} 
+
 .contenido-presupuesto p.negativo,
 .contenido-presupuesto p.negativo span {
     color: red;
@@ -327,28 +340,33 @@
     cursor: pointer;
 }
 
+
+
 .modal {
-    position: absolute;
-    background-color: rgb(0 0 0 / 0.85);
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.85);
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
+    height: 100vh;
 }
-.modal .cerrar-modal {
+.modal .cerrar_modal {
     position: absolute;
     right: 3rem;
     top: 3rem;
     width: 3rem;
     height: 3rem;
 }
-.modal .cerrar-modal img {
-    width: 100%;
+.modal .cerrar_modal img {
+    width: 80%;
 }
 
 .modal .formulario {
-    max-width: 80rem;
-    width: 40rem;
+    /* max-width: 80rem; */
+    /* width: 40rem; */
+    width: 45%;
     transition-property: all;
     transition-duration: 300ms;
     transition-timing-function: ease-in;

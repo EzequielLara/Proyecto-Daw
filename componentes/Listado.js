@@ -3,7 +3,7 @@ import SearchBox from "./compartidos/SearchBox";
 import Spinner from "../componentes/compartidos/Spinner";
 import { Suspense } from "react";
 
-const Listado = ({ nuevoAlumno }) => {
+const Listado = ({ setAlumnoEditar }) => {
   const [alumnos, setAlumnos] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -34,7 +34,6 @@ const Listado = ({ nuevoAlumno }) => {
     const fin = inicio + numElementosPorPagina;
     const datosPaginados = alumnos.slice(inicio, fin);
     setDatosPaginados(datosPaginados);
-    console.log("datos paginados", datosPaginados);
   }, [paginaActual, numElementosPorPagina]);
 
   const cambiarPagina = (direccion) => {
@@ -59,7 +58,7 @@ const Listado = ({ nuevoAlumno }) => {
               data-placement="top"
               title="Crear alumno nuevo"
               onClick={() => {
-                nuevoAlumno();
+                setAlumnoEditar({});
               }}
             >
               person_add
@@ -107,6 +106,15 @@ const Listado = ({ nuevoAlumno }) => {
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Editar cambios en alumno"
+                          onClick={() => {
+                            setAlumnoEditar({
+                              _id: alumno._id,
+                              nombre: alumno.nombre,
+                              apellidos: alumno.apellidos,
+                              curso: alumno.curso,
+                              grupo: alumno.grupo,
+                            });
+                          }}
                         >
                           edit
                         </button>
@@ -145,7 +153,6 @@ const Listado = ({ nuevoAlumno }) => {
                   onChange={(e) => {
                     let numero = parseInt(e.target.value);
                     setNumElementosPorPagina(numero);
-                    console.log("numero: ", numero);
                   }}
                 >
                   <option value="5">5</option>

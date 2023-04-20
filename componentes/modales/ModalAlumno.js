@@ -5,33 +5,50 @@ const ModalAlumno = ({
   setModal,
   animarModal,
   setAnimarModal,
-  gastos,
-  setGastos,
-  gastoEditar,
-  setGastoEditar,
+  alumnos,
+  setAlumnos,
+  alumnoEditar,
+  setAlumnoEditar,
 }) => {
-  const [nombreGasto, setNombreGasto] = useState("");
-  const [cantidad, setCantidad] = useState("");
-  const [categoria, setCategoria] = useState("");
-  //  const [id, setId] = useState("");
+  const [nombreAlumno, setNombreAlumno] = useState("");
+  const [apellidosAlumno, setApellidosAlumno] = useState("");
+  const [cursoAlumno, setCursoAlumno] = useState("");
+  const [grupoAlumno, setGrupoAlumno] = useState("");
+  const [id, setId] = useState("");
+  const [cursos, setCursos] = useState([
+    "PRIMERO",
+    "SEGUNDO",
+    "TERCERO",
+    "CUARTO",
+    "QUINTO",
+  ]);
+  const [grupos, setGrupos] = useState(["A", "B", "C"]);
 
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // if (Object.keys(gastoEditar).length > 0) {
-    //   setNombreGasto(gastoEditar.nombreGasto);
-    //   setCantidad(gastoEditar.cantidad);
-    //   setCategoria(gastoEditar.categoria);
-    //   setId(gastoEditar.id);
-    // }
+    if (Object.keys(alumnoEditar).length > 0) {
+      setNombreAlumno(alumnoEditar.nombre);
+      setApellidosAlumno(alumnoEditar.apellidos);
+      setCursoAlumno(alumnoEditar.curso);
+      setGrupoAlumno(alumnoEditar.grupo);
+      setId(alumnoEditar._id);
+      console.log(
+        "hay alumno:",
+        Object.keys(alumnoEditar).length,
+        alumnoEditar
+      );
+    } else {
+      console.log("no hay alumno para modificar");
+    }
   }, []);
 
   const ocultarModal = () => {
-    setAnimarModal(false);
-    setGastoEditar({});
+    setAnimarModal();
+    setAlumnoEditar({});
     setTimeout(() => {
-      setModal(false);
-    }, 300);
+      setModal();
+    }, 400);
   };
   const generarId = () => {
     const random = Math.random().toString(36).substring(2);
@@ -47,53 +64,58 @@ const ModalAlumno = ({
     return datoFecha;
   };
 
-  const guardarGasto = () => {
-    if (gastoEditar.id) {
+  const guardarAlumno = () => {
+    if (alumnoEditar.id) {
       const gastoNuevo = {
-        id: gastoEditar.id,
+        id: alumnoEditar.id,
         fecha: generarFecha(),
-        nombreGasto,
-        cantidad,
-        categoria,
+        nombreAlumno,
+        apellidosAlumno,
+        cursoAlumno,
+        grupoAlumno,
       };
       //Actualizar
-      const gastosActualizados = gastos.map((gastoState) =>
-        gastoState.id === gastoEditar.id ? gastoNuevo : gastoState
+      const alumnosActualizados = alumnos.map((alumnoState) =>
+        alumnoState.id === alumnoEditar.id ? gastoNuevo : alumnoState
       );
 
-      setGastos(gastosActualizados);
-      setGastoEditar({});
+      setAlumnos(alumnosActualizados);
+      setAlumnoEditar({});
       return;
     }
 
-    setGastos([
-      ...gastos,
+    setAlumnos([
+      ...alumnos,
       {
         id: generarId(),
         fecha: generarFecha(),
-        nombreGasto,
-        cantidad,
-        categoria,
+        nombreAlumno,
+        apellidosAlumno,
+        cursoAlumno,
+        grupoAlumno,
       },
     ]);
   };
 
   const resetearFormularioModal = () => {
-    setNombreGasto("");
-    setCantidad("");
-    setCategoria("");
+    setNombreAlumno("");
+    setApellidosAlumno("");
+    setCursoAlumno("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Botón pulsado");
 
-    if ([nombreGasto, cantidad, categoria].includes("")) {
+    if (
+      [nombreAlumno, apellidosAlumno, cursoAlumno, grupoAlumno].includes(
+        "" || undefined
+      )
+    ) {
       setError(true);
       return;
     }
     setError(false);
-    guardarGasto();
+    guardarAlumno();
     resetearFormularioModal();
     ocultarModal();
   };
@@ -105,63 +127,94 @@ const ModalAlumno = ({
         </div>
         <form
           onSubmit={handleSubmit}
-          className={`formulario ${animarModal ? "animar" : "cerrar"}`}
+          // className={`formulario ${animarModal ? style.animar : style.cerrar}`}
+          className={`${style.formulario} ${
+            animarModal ? style.animar : style.cerrar
+          }`}
         >
           <legend>
-            {/* {gastoEditar.nombreGasto ? "Editar Gasto" : "Nuevo Gasto"} */}
+            {alumnoEditar.nombre ? "Editar Alumno" : "Nuevo Alumno"}
           </legend>
           <div className={style.campo}>
-            <label htmlFor="nombre">Nombre Gasto</label>
+            <label htmlFor="nombre">Nombre Alumno</label>
             <input
               id="nombre"
               type="text"
-              placeholder="Añade el Nombre del Gasto"
-              value={nombreGasto}
+              placeholder="Añade el Nombre del Alumno"
+              value={nombreAlumno}
               onChange={(e) => {
-                // setNombreGasto(e.target.value);
+                setNombreAlumno(e.target.value);
               }}
             />
           </div>
           <div className={style.campo}>
-            <label htmlFor="cantidad">Cantidad</label>
+            <label htmlFor="apellidosAlumno">Apellidos Alumno</label>
             <input
-              type="number"
-              placeholder="Añade cantidad del Gasto"
-              value={cantidad}
+              type="text"
+              placeholder="Añade apellidos del Alumno"
+              value={apellidosAlumno}
               onChange={(e) => {
-                // setCantidad(Number(e.target.value));
+                setApellidosAlumno(e.target.value);
               }}
             />
           </div>
           <div className={style.campo}>
-            <label htmlFor="categoria">Categoría</label>
-            <select
-              id="categoria"
-              value={categoria}
-              onChange={(e) => {
-                setCategoria(e.target.value);
-              }}
-            >
-              <option value="">-- Seleccione --</option>
-              <option value="ahorro">Ahorro</option>
-              <option value="comida">Comida</option>
-              <option value="casa">Casa</option>
-              <option value="gastos">Gastos Varios</option>
-              <option value="ocio">Ocio</option>
-              <option value="salud">Salud</option>
-              <option value="suscripciones">Suscripciones</option>
-            </select>
+            <div className="row">
+              <div className="col-12 col-lg-6">
+                <label htmlFor="cursoAlumno">Curso:</label>
+                <select
+                  id="cursoAlumno"
+                  value={cursoAlumno}
+                  onChange={(e) => {
+                    setCursoAlumno(e.target.value);
+                  }}
+                >
+                  <option value="">-- Seleccione --</option>
+                  {cursos.map((cur, index) => (
+                    <option key={index} value={cur}>
+                      {cur}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="col-6">
+                <label htmlFor="grupoAlumno">Grupo:</label>
+                <select
+                  id="grupoAlumno"
+                  value={grupoAlumno}
+                  onChange={(e) => {
+                    setGrupoAlumno(e.target.value);
+                  }}
+                >
+                  <option value="">-- Seleccione --</option>
+                  {grupos.map((grup, index) => (
+                    <option key={index} value={grup}>
+                      {grup}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            {error && <h3 className="uno">*No se admiten campos vacíos</h3>}
             <input
               id="boton"
               type="submit"
-              // value={
-              //   gastoEditar.nombreGasto ? "Guardar cambios" : "Añadir Gasto"
-              // }
+              value={alumnoEditar.nombre ? "Modificar Alumno" : "Añadir Alumno"}
             />
-            {error ? <p>No se admiten campos vacíos</p> : ""}
           </div>
         </form>
       </div>
+      <style>
+        {`
+              .uno{
+                color:tomato;
+                text-align: center;
+              }
+         @media (min-width: 768px) {
+
+          }
+      `}
+      </style>
     </>
   );
 };
