@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Layout from "../../../../componentes/layouts/Layout";
-import TarjetasLink from "../../../../componentes/compartidos/tarjetasLink";
+import TarjetasLink from "../../../../componentes/compartidos/TarjetasLink";
 import styles from "../../../../styles/Home.module.css";
 
 const Aplicaciones = () => {
