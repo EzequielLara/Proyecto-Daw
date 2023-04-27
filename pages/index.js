@@ -51,6 +51,7 @@ export default function Principal() {
             href="https://www.canva.com/design/DAFZWQEOF6Y/0W38RhZ8xtuax-4XEGE0_A/view?utm_content=DAFZWQEOF6Y&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink "
             className="text-decoration-none text-dark"
             target="_blank"
+            rel="noreferrer"
           >
             <span className="vocablo">¿Qué es vocablo?</span>
           </a>

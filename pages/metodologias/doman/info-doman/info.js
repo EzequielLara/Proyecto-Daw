@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import LayoutMainContent from "../../../../componentes/layouts/LayoutMainContent";
 
-const info = () => {
+const Info = () => {
   const [loadvideo, setLoadvideo] = useState(false);
 
   useEffect(() => {
@@ -330,7 +330,7 @@ const info = () => {
                   <a
                     href="http://orientacionandujar.es"
                     target="_blank"
-                    rel="noopener"
+                    rel="noreferrer"
                   >
                     orientacionandujar.es
                   </a>
@@ -342,7 +342,7 @@ const info = () => {
                   <a
                     href="https://webdelmaestrocmf.com/portal/resumen-del-metodo-de-lectura-doman-y-como-aplicarlo-pdf/"
                     target="_blank"
-                    rel="noopener"
+                    rel="noreferrer"
                   >
                     https://webdelmaestrocmf.com/
                   </a>
@@ -442,4 +442,4 @@ const info = () => {
   );
 };
 
-export default info;
+export default Info;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Configuracion } from "../../contexts/context";
 import { useContext } from "react";
 
@@ -6,19 +7,18 @@ const AppDomain = () => {
   const { datos, setDatos } = useContext(Configuracion);
   const [contador, setContador] = useState(0);
   const [disabled, setDisabled] = useState(true);
-  const [palabras, setPalabras] = useState();
 
-  const { tematica, tema } = datos;
-  const { animales, vehiculos, alimentos, imagenes } = tematica;
+  const { tematica, tema, sonido } = datos;
+  const { imagenes } = tematica;
   useEffect(() => {
-    if (datos.sonido) {
+    if (sonido) {
       setTimeout(() => {
         reproduce(tematica[tema][contador]);
       }, 1000);
     }
   }, [contador]);
   useEffect(() => {
-    if (datos.sonido) {
+    if (sonido) {
       setTimeout(() => {
         setDisabled(false); //Para que no se pueda cambiar de palabra hasta que termine de decirla
       }, 1500);
@@ -50,7 +50,7 @@ const AppDomain = () => {
         {datos.imagen && tematica[tema][contador] !== "" ? (
           <div className="row arriba">
             <div className="w-75 m-auto text-center">
-              <img src={imagenes[contador]} width={300} />
+              <img src={imagenes[contador]} width={300} alt="imagen" />
             </div>
           </div>
         ) : (
@@ -113,6 +113,10 @@ const AppDomain = () => {
         </div>
       </div>
       <style>{`
+                .estilito{
+                   width: 300px;
+                   
+                }
             .icono{
                 font-size: 4rem;
                 color:#dcdcdc;
