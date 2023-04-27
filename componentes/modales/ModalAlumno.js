@@ -2,7 +2,7 @@ import style from "../../styles/ModalAlumnos.module.css";
 import { useState, useEffect } from "react";
 
 const ModalAlumno = ({
-  setModal,
+  cambiarModal,
   animarModal,
   setAnimarModal,
   alumnos,
@@ -16,11 +16,11 @@ const ModalAlumno = ({
   const [grupoAlumno, setGrupoAlumno] = useState("");
   const [id, setId] = useState("");
   const [cursos, setCursos] = useState([
-    "PRIMERO",
-    "SEGUNDO",
-    "TERCERO",
-    "CUARTO",
-    "QUINTO",
+    "Primero",
+    "Segundo",
+    "Tercero",
+    "Cuarto",
+    "Quinto",
   ]);
   const [grupos, setGrupos] = useState(["A", "B", "C"]);
 
@@ -44,10 +44,10 @@ const ModalAlumno = ({
   }, []);
 
   const ocultarModal = () => {
-    setAnimarModal();
-    setAlumnoEditar({});
     setTimeout(() => {
-      setModal();
+      setAnimarModal();
+      setAlumnoEditar({});
+      cambiarModal();
     }, 400);
   };
   const generarId = () => {
@@ -66,7 +66,7 @@ const ModalAlumno = ({
 
   const guardarAlumno = () => {
     if (alumnoEditar.id) {
-      const gastoNuevo = {
+      const alumnoNuevo = {
         id: alumnoEditar.id,
         fecha: generarFecha(),
         nombreAlumno,
@@ -76,7 +76,7 @@ const ModalAlumno = ({
       };
       //Actualizar
       const alumnosActualizados = alumnos.map((alumnoState) =>
-        alumnoState.id === alumnoEditar.id ? gastoNuevo : alumnoState
+        alumnoState.id === alumnoEditar.id ? alumnoNuevo : alumnoState
       );
 
       setAlumnos(alumnosActualizados);
@@ -127,7 +127,6 @@ const ModalAlumno = ({
         </div>
         <form
           onSubmit={handleSubmit}
-          // className={`formulario ${animarModal ? style.animar : style.cerrar}`}
           className={`${style.formulario} ${
             animarModal ? style.animar : style.cerrar
           }`}

@@ -31,5 +31,5 @@ export default function loginHandler(req, res) {
     res.setHeader("Set-Cookie", serialized);
     return res.status(200).json({ exito: "login satisfactorio" });
   }
-  return res.status(401).json({ error: "email o password no válidos" });
+  return res.status(401).json({ error: "Email o Password no válidos" });
 }

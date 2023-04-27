@@ -20,6 +20,9 @@ const Formulario = ({ providers }) => {
   //Estado para controlar si la validación del formulario es satisfactoria
   const [validacionFormulario, setValidacionFormulario] = useState(false);
 
+  //Errores al validar
+  const [error, setError] = useState(null);
+
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -31,7 +34,10 @@ const Formulario = ({ providers }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const respuesta = await axios.post("/api/auth/login", datosUsuarioSesion);
+    const respuesta = await axios
+      .post("/api/auth/login", datosUsuarioSesion)
+      .catch((e) => setError(e.response.data.error));
+
     router.push("/docentes");
   };
 
@@ -89,6 +95,11 @@ const Formulario = ({ providers }) => {
             <hr></hr>
           </div>
           <form onSubmit={handleSubmit} className="w-75 m-auto p-2">
+            {error && (
+              <div className="alert alert-warning" role="alert">
+                {error}
+              </div>
+            )}
             <div className="form-group mb-4 mt-2">
               <input
                 name="email"
@@ -114,6 +125,7 @@ const Formulario = ({ providers }) => {
                 required
               />
             </div>
+
             <div className="d-flex justify-content-center p-4">
               <button
                 type="submit"

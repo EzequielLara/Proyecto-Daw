@@ -3,7 +3,7 @@ import SearchBox from "./compartidos/SearchBox";
 import Spinner from "../componentes/compartidos/Spinner";
 import { Suspense } from "react";
 
-const Listado = ({ setAlumnoEditar }) => {
+const Listado = ({ nuevoAlumno }) => {
   const [alumnos, setAlumnos] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -12,6 +12,11 @@ const Listado = ({ setAlumnoEditar }) => {
   const [numTotalPaginas, setNumTotalPaginas] = useState(null);
 
   const [datosPaginados, setDatosPaginados] = useState([]);
+  const [seleccionBuscador, setSeleccionBuscador] = useState(null);
+
+  const setSeleccion = (e) => {
+    setSeleccionBuscador(e);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -58,19 +63,22 @@ const Listado = ({ setAlumnoEditar }) => {
               data-placement="top"
               title="Crear alumno nuevo"
               onClick={() => {
-                setAlumnoEditar({});
+                nuevoAlumno({});
               }}
             >
               person_add
             </span>
           </div>
           <div className="col-8 text-end">
-            <SearchBox suggestions={alumnos}></SearchBox>
+            <SearchBox
+              suggestions={alumnos}
+              setSeleccion={setSeleccion}
+            ></SearchBox>
           </div>
         </div>
         <hr className="pb-4"></hr>
         <ul className="list-group zindex ">
-          {alumnos &&
+          {alumnos && !seleccionBuscador ? (
             alumnos.map((alumno) => (
               <li
                 className="list-group-item m-2 shadow-sm rounded lihover"
@@ -107,7 +115,7 @@ const Listado = ({ setAlumnoEditar }) => {
                           data-placement="top"
                           title="Editar cambios en alumno"
                           onClick={() => {
-                            setAlumnoEditar({
+                            nuevoAlumno({
                               _id: alumno._id,
                               nombre: alumno.nombre,
                               apellidos: alumno.apellidos,
@@ -132,7 +140,69 @@ const Listado = ({ setAlumnoEditar }) => {
                   </div>
                 </div>
               </li>
-            ))}
+            ))
+          ) : (
+            <li
+              className="list-group-item m-2 shadow-sm rounded lihover"
+              key={seleccionBuscador._id}
+            >
+              <div className="card-body">
+                <div className="row justify-content-center align-items-center ">
+                  <div className="col-4  ps-4">
+                    <h5 className="card-title">{seleccionBuscador.nombre}</h5>
+                    <p className="card-subtitle font-weight-light colorTexto">
+                      {seleccionBuscador.apellidos}
+                    </p>
+                  </div>
+                  <div className="col-4  text-center">
+                    <small className="card-subtitle text-capitalize">
+                      {seleccionBuscador.curso} - {seleccionBuscador.grupo}
+                    </small>
+                  </div>
+                  <div className="col-4">
+                    <div className="m-auto text-end pe-4">
+                      <button
+                        type="button"
+                        className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="Ver mas información"
+                      >
+                        info
+                      </button>
+                      <button
+                        type="button"
+                        className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="Editar cambios en alumno"
+                        onClick={() => {
+                          nuevoAlumno({
+                            _id: seleccionBuscador._id,
+                            nombre: seleccionBuscador.nombre,
+                            apellidos: seleccionBuscador.apellidos,
+                            curso: seleccionBuscador.curso,
+                            grupo: seleccionBuscador.grupo,
+                          });
+                        }}
+                      >
+                        edit
+                      </button>
+                      <button
+                        type="button"
+                        className="border-0 bg-transparent text-danger material-icons iconhover"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="Eliminar alumno"
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          )}
         </ul>
         {loading && (
           <div className="m-5">

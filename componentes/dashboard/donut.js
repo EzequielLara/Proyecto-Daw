@@ -4,10 +4,10 @@ import { Doughnut } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  labels: ["Rojo", "Azul", "Amarillo", "Verde", "Morado", "Naranja"],
   datasets: [
     {
-      label: "# of Votes",
+      label: "# porcentaje del total",
       data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
         "rgba(255, 99, 132, 0.2)",

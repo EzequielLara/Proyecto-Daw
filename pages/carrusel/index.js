@@ -56,7 +56,7 @@ const ConfiguracionDomain = () => {
                 <option value="alimentos">Alimentos</option>
               </select>
             </div>
-            <div className="form-row pb-3 ">
+            {/* <div className="form-row pb-3 ">
               <select
                 className="form-select mb-1"
                 aria-label="Default select example"
@@ -85,7 +85,7 @@ const ConfiguracionDomain = () => {
                 <option value="5">5 segundos</option>
                 <option value="6">6 segundos</option>
               </select>
-            </div>
+            </div> */}
             <div className="form-group mb-3">
               <div className="form-check form-switch">
                 <input

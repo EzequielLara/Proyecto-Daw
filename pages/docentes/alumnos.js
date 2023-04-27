@@ -37,9 +37,9 @@ const Alumnos = () => {
   const [alumnoEditar, setAlumnoEditar] = useState({});
 
   const nuevoAlumno = (alumno) => {
-    setModal(!modal);
     const alum = alumno;
     setAlumnoEditar(alum);
+    setModal(!modal);
   };
 
   const cambiarModal = () => {
@@ -54,10 +54,10 @@ const Alumnos = () => {
       <Navegacion usuario={"prueba"}></Navegacion>
       <main>
         {modal ? (
-          <Listado setAlumnoEditar={nuevoAlumno}></Listado>
+          <Listado nuevoAlumno={nuevoAlumno}></Listado>
         ) : (
           <ModalAlumno
-            setModal={cambiarModal}
+            cambiarModal={cambiarModal}
             animarModal={animarModal}
             setAnimarModal={cambiarAnimarModal}
             alumnos={alumnos}

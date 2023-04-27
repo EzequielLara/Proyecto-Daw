@@ -5,33 +5,34 @@ import Link from "next/link";
 const recursos = () => {
   const descargables = [
     {
-      titulo: "Como educar en casa",
-      descripcion: "Libro de contenido infantil para padres y madres",
-      direccionArchivo: "",
-      imagen: "/descargar.png",
-      nombreDescarga: "libro.png",
-      imagenSize: "50",
-      autor: "",
-    },
-    {
-      titulo: "Método Doman",
-      descripcion: "Texto académico de la universidad de Almería",
-      direccionArchivo: "",
-      imagen: "/descargar.png",
-      nombreDescarga: "libro.png",
-      imagenSize: "50",
-      autor: "",
-    },
-    {
       titulo: "Cómo enseñar a leer a su bebé",
       descripcion:
-        "Versíon en español de las páutas para aplicar el método Doman. Autor: Glenn J. Doman",
+        "Versíon en español de las páutas para aplicar el método Doman.",
       direccionArchivo:
         "/descargas/libro-como-ensenar-a-leer-a-su-bebe-glenn-doman.pdf",
       imagen: "/descargar.png",
-      nombreDescarga: "libro",
+      nombreDescarga: "metodo-doman.pdf",
       imagenSize: "50",
       autor: "Glenn Doman",
+    },
+    {
+      titulo: "Método Doman en la escuela",
+      descripcion: "Aplicaciones del método Doman en los institutos",
+      direccionArchivo: "/descargas/adaptado-escuela.pdf",
+      imagen: "/descargar.png",
+      nombreDescarga: "Escuela-doman.pdf",
+      imagenSize: "50",
+      autor: "Víctor Estalayo y Rosario Vega",
+    },
+    {
+      titulo: "Propuesta de iniciación a la lectura",
+      descripcion:
+        "Trabajo de fin de grado de la universidad de Rioja sobre el método Doman",
+      direccionArchivo: "/descargas/UNIR_ESTUDIO_DEL_TRABAJO.pdf",
+      imagen: "/descargar.png",
+      nombreDescarga: "UNIR_doman.pdf",
+      imagenSize: "50",
+      autor: "Universidad Internacional de la Rioja",
     },
   ];
   return (

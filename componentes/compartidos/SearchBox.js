@@ -4,7 +4,7 @@ import React, { useState } from "react";
  * @param {Array} suggestions Un array de objetos que contengan las propiedades "nombre" y "_id"
  * @returns
  */
-const SearchBox = ({ suggestions }) => {
+const SearchBox = ({ suggestions, setSeleccion }) => {
   const [value, setValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
@@ -52,7 +52,10 @@ const SearchBox = ({ suggestions }) => {
             {filteredSuggestions.map((suggestion) => (
               <li
                 key={suggestion._id}
-                onClick={() => onSuggestionClick(suggestion.nombre)}
+                onClick={() => {
+                  setSeleccion(suggestion);
+                  onSuggestionClick(suggestion.nombre);
+                }}
               >
                 {suggestion.nombre} {suggestion.apellidos}
               </li>
