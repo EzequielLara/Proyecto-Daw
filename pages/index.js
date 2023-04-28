@@ -11,6 +11,10 @@ export default function Principal() {
         <title>vocablo</title>
         <meta name="description" content="enseñar a leer" />
         <link rel="icon" href="/icono_vocablo.svg" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <div className={styles.container}>
         <main className={styles.main}>

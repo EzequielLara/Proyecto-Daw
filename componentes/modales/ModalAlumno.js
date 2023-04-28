@@ -33,13 +33,6 @@ const ModalAlumno = ({
       setCursoAlumno(alumnoEditar.curso);
       setGrupoAlumno(alumnoEditar.grupo);
       setId(alumnoEditar._id);
-      console.log(
-        "hay alumno:",
-        Object.keys(alumnoEditar).length,
-        alumnoEditar
-      );
-    } else {
-      console.log("no hay alumno para modificar");
     }
   }, []);
 

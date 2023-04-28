@@ -16,7 +16,6 @@ const Dashboard = () => {
       const response = await fetch("/api/alumnos");
       const data = await response.json().catch((e) => {
         setLoading(false);
-        console.log(e.error);
       });
       setAlumnos(data);
       setLoading(false);
@@ -44,6 +43,7 @@ const Dashboard = () => {
                   >
                     <option defaultValue={""}>Selecciona Curso</option>
                     {cursos &&
+                      cursos.length > 0 &&
                       cursos.map((curso, index) => (
                         <option key={index} value={curso}>
                           {curso}
@@ -69,6 +69,7 @@ const Dashboard = () => {
                   >
                     <option defaultValue={""}>Selecciona Alumno</option>
                     {alumnos &&
+                      alumnos.length > 0 &&
                       alumnos.map((alumno) => (
                         <option key={alumno._id} value={alumno.nombre}>
                           {alumno.nombre} {alumno.apellidos}
@@ -83,7 +84,7 @@ const Dashboard = () => {
                     <h4 className="p-3 text-center text-secondary">
                       Gráfico 1
                     </h4>
-                    <Donut></Donut>
+                    {/* <Donut></Donut> */}
                   </div>
                 </div>
                 <div className="col-4 m-auto shadow-lg bg-white rounded mb-5">
@@ -91,7 +92,7 @@ const Dashboard = () => {
                     <h4 className="p-3 text-center text-secondary">
                       Gráfico 2
                     </h4>
-                    <Radargrafico></Radargrafico>
+                    {/* <Radargrafico></Radargrafico> */}
                   </div>
                 </div>
               </div>
