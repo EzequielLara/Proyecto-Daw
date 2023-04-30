@@ -7,14 +7,15 @@ import { getProviders } from "next-auth/react";
 
 const Signin = () => {
   const [providers, setProviders] = useState(null);
-  const pro = async () => {
+  const peticionProviders = async () => {
     const datos = await getProviders();
-    console.log("PROVIDERS: ", providers);
     setProviders(datos);
   };
+
   useEffect(() => {
-    pro();
-  });
+    peticionProviders();
+  }, []);
+
   return (
     <>
       <LayoutMainContent title="login" content="vocablo">
@@ -72,11 +73,12 @@ const Signin = () => {
   );
 };
 
-export const getStaticProps = async () => {
-  const providers = await getProviders();
-  return {
-    props: { providers },
-  };
-};
+// export const getStaticProps = async () => {
+//   const providers = await getProviders();
+//   return {
+//     props: { providers },
+//   };
+// };
+// Al desplegar la aplicación no deja que los provider se obtengan desde el servidor asi que se hace desde el front
 
 export default Signin;

@@ -25,10 +25,6 @@ const Formulario = ({ providers }) => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    console.log("providers llegando:", providers);
-  }, [providers]);
-
   const handleChange = (e) => {
     setDatosUsuarioSesion({
       ...datosUsuarioSesion,
@@ -67,7 +63,6 @@ const Formulario = ({ providers }) => {
             <div className="form-group pt-2 pb-2">
               {providers &&
                 Object.values(providers).map((provider) => {
-                  console.log("imprimiendo..", provider);
                   const { id, type } = provider;
                   return (
                     <button
