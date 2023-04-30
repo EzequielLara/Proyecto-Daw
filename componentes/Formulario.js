@@ -1,7 +1,7 @@
 import styles from "../styles/Formularios.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import axios from "axios";
@@ -24,6 +24,10 @@ const Formulario = ({ providers }) => {
   const [error, setError] = useState(null);
 
   const router = useRouter();
+
+  useEffect(() => {
+    console.log("providers llegando:", providers);
+  }, [providers]);
 
   const handleChange = (e) => {
     setDatosUsuarioSesion({

@@ -169,7 +169,7 @@ const ModalAlumno = ({
                   setCursoAlumno(e.target.value);
                 }}
               >
-                <option value="">* Curso *</option>
+                <option value="">Curso</option>
                 {cursos.map((cur, index) => (
                   <option key={index} value={cur}>
                     {cur}
@@ -189,7 +189,7 @@ const ModalAlumno = ({
                   setGrupoAlumno(e.target.value);
                 }}
               >
-                <option value="">* Grupo *</option>
+                <option value="">Grupo</option>
                 {grupos.map((grup, index) => (
                   <option key={index} value={grup}>
                     {grup}
