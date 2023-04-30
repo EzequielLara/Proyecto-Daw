@@ -15,9 +15,9 @@ const Dashboard = () => {
   const [seleccionCurso, setSeleccionCurso] = useState(false);
   const [seleccionGrupo, setSeleccionGrupo] = useState(false);
 
-  const [valueCurso, setValueCurso] = useState("");
-  const [valueGrupo, setValueGrupo] = useState("");
-  const [valueAlumno, setValueAlumno] = useState("");
+  const [valueCurso, setValueCurso] = useState("Curso");
+  const [valueGrupo, setValueGrupo] = useState("Grupo");
+  const [valueAlumno, setValueAlumno] = useState("Alumno");
 
   useEffect(() => {
     const fetchDatos = async () => {
@@ -31,6 +31,22 @@ const Dashboard = () => {
     };
     fetchDatos();
   }, []);
+
+  useEffect(() => {
+    if (valueGrupo === "Grupo") {
+      setSeleccionGrupo(false);
+      setValueAlumno("Alumno");
+    } else {
+      setSeleccionGrupo(true);
+    }
+    if (valueCurso === "Curso") {
+      setSeleccionCurso(false);
+      setValueGrupo("Grupo");
+      setValueAlumno("Alumno");
+    } else {
+      setSeleccionCurso(true);
+    }
+  }, [valueAlumno, valueCurso, valueGrupo]);
 
   return (
     <>
@@ -46,21 +62,16 @@ const Dashboard = () => {
           ) : (
             <div className=" container my-3">
               <div className="row">
-                <div className="col-3 m-auto text-center mb-5">
+                <div className="col-3 m-auto text-center my-5">
                   <select
                     className="form-select form-select-lg mb-3"
                     aria-label=".form-select-lg example"
                     value={valueCurso}
                     onChange={(e) => {
                       setValueCurso(e.target.value);
-                      if (valueCurso === "Curso") {
-                        setSeleccionCurso(false);
-                      } else {
-                        setSeleccionCurso(true);
-                      }
                     }}
                   >
-                    <option defaultValue={""}>Curso</option>
+                    <option value="Curso">Curso</option>
                     {cursos &&
                       cursos.length > 0 &&
                       cursos.map((curso, index) => (
@@ -77,15 +88,10 @@ const Dashboard = () => {
                     value={valueGrupo}
                     onChange={(e) => {
                       setValueGrupo(e.target.value);
-                      if (valueGrupo === "Grupo") {
-                        setSeleccionGrupo(false);
-                      } else {
-                        setSeleccionGrupo(true);
-                      }
                     }}
                     disabled={!seleccionCurso}
                   >
-                    <option defaultValue={""}>Grupo</option>
+                    <option value="Grupo">Grupo</option>
                     {grupos &&
                       grupos.length > 0 &&
                       grupos.map((grupo, index) => (
@@ -105,7 +111,7 @@ const Dashboard = () => {
                     }}
                     disabled={!seleccionGrupo}
                   >
-                    <option defaultValue={""}>Alumno</option>
+                    <option value="Alumno">Alumno</option>
                     {alumnos &&
                       alumnos.length > 0 &&
                       alumnos.map((alumno) => (
@@ -117,6 +123,13 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="row">
+                {valueAlumno !== "Alumno" ? (
+                  <h4 className="m-auto text-center mb-5 text-capitalize text-bg-light p-3 w-75 text-dark">
+                    {valueAlumno}
+                  </h4>
+                ) : (
+                  <h4 className="text-center mb-5">Seleccione un alumno</h4>
+                )}
                 <div className="col-4 m-auto shadow-lg bg-white rounded mb-5">
                   <div className="">
                     <h4 className="p-3 text-center text-secondary">

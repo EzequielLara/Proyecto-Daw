@@ -10,20 +10,19 @@ export default function Prueba() {
   };
 
   return (
-    <div className=" row mx-auto my-5">
-      <div className="col"></div>
-      <div className=" col-8 col-md-5 col-lg-3">
+    <div className=" row my-5">
+      <div className="col col-md-6 col-lg-4 m-auto">
         <div className="card shadow-lg rounded">
-          <div className="text-center ">
-            <img alt="Logo vocablo" src="/logo_vocablo.svg" width="150" />
+          <div className="text-center mt-3 ">
+            <img alt="Logo vocablo" src="/logo_vocablo.svg" width="255" />
           </div>
           <div className="card-body p-4">
-            <h5 className="card-title text-center">¿Desea cerrar su sesión?</h5>
-            <p className="card-text">
-              Una vez pulsado el botón se le redirigirá a la página de inicio.
+            <h5 className="card-title text-center">¿Desea cerrar la sesión?</h5>
+            <p className="card-text text-center mb-4">
+              Se le redirigirá a la página de inicio.
             </p>
             <button
-              className="mx-auto btn btn-outline-warning  m-2"
+              className="btn btn-outline-warning  w-100 text-center m-auto"
               onClick={(e) => borrar(e)}
             >
               Cerrar Sesión
@@ -31,7 +30,6 @@ export default function Prueba() {
           </div>
         </div>
       </div>
-      <div className="col"></div>
     </div>
   );
 }

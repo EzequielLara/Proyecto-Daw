@@ -16,8 +16,8 @@ export default NextAuth({
   secret: process.env.SECRET,
   pages: {
     signIn: "/signin",
-    // signOut: "/signOut",
-    // error: "/error",
+    signOut: "/signOut",
+    error: "/error",
   },
 
   // callbacks: {

@@ -5,6 +5,7 @@ import LayoutMainContent from "../componentes/layouts/LayoutMainContent";
 import { getProviders } from "next-auth/react";
 
 const Signin = ({ providers }) => {
+  console.log("PROVIDERS: ", providers);
   return (
     <>
       <LayoutMainContent title="login" content="vocablo">

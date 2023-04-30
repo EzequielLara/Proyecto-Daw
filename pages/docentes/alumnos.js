@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Listado from "../../componentes/Listado";
 import Layout from "../../componentes/layouts/Layout";
 import ModalAlumno from "../../componentes/modales/ModalAlumno";
@@ -7,33 +7,7 @@ import Navegacion from "../../componentes/navegacion/Navegacion";
 const Alumnos = () => {
   const [modal, setModal] = useState(true);
   const [animarModal, setAnimarModal] = useState(true);
-  const [alumnos, setAlumnos] = useState([
-    { nombre: "juan", apellidos: "perez perez", curso: "PRIMERO", grupo: "A2" },
-    {
-      nombre: "Maria",
-      apellidos: "perez perez",
-      curso: "SEGUNDO",
-      grupo: "A2",
-    },
-    {
-      nombre: "Antonio",
-      apellidos: "perez perez",
-      curso: "TERCERO",
-      grupo: "A2",
-    },
-    {
-      nombre: "Julieta",
-      apellidos: "perez perez",
-      curso: "CUARTO",
-      grupo: "A2",
-    },
-    {
-      nombre: "Silvia",
-      apellidos: "perez perez",
-      curso: "QUINTO",
-      grupo: "A2",
-    },
-  ]);
+  const [alumnos, setAlumnos] = useState([]);
   const [alumnoEditar, setAlumnoEditar] = useState({});
 
   const nuevoAlumno = (alumno) => {

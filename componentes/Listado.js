@@ -39,7 +39,7 @@ const Listado = ({ nuevoAlumno }) => {
     const fin = inicio + numElementosPorPagina;
     const datosPaginados = alumnos.slice(inicio, fin);
     setDatosPaginados(datosPaginados);
-  }, [paginaActual, numElementosPorPagina]);
+  }, [paginaActual, numElementosPorPagina, alumnos]);
 
   const cambiarPagina = (direccion) => {
     if (direccion === "siguiente") {
@@ -78,131 +78,136 @@ const Listado = ({ nuevoAlumno }) => {
         </div>
         <hr className="pb-4"></hr>
         <ul className="list-group zindex ">
-          {alumnos && !seleccionBuscador ? (
-            alumnos.map((alumno) => (
-              <li
-                className="list-group-item m-2 shadow-sm rounded lihover"
-                key={alumno._id}
-              >
-                <div className="card-body">
-                  <div className="row justify-content-center align-items-center ">
-                    <div className="col-4  ps-4">
-                      <h5 className="card-title">{alumno.nombre}</h5>
-                      <p className="card-subtitle font-weight-light colorTexto">
-                        {alumno.apellidos}
-                      </p>
-                    </div>
-                    <div className="col-4  text-center">
-                      <small className="card-subtitle text-capitalize">
-                        {alumno.curso} - {alumno.grupo}
-                      </small>
-                    </div>
-                    <div className="col-4">
-                      <div className="m-auto text-end pe-4">
-                        <button
-                          type="button"
-                          className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Ver mas información"
-                        >
-                          info
-                        </button>
-                        <button
-                          type="button"
-                          className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Editar cambios en alumno"
-                          onClick={() => {
-                            nuevoAlumno({
-                              _id: alumno._id,
-                              nombre: alumno.nombre,
-                              apellidos: alumno.apellidos,
-                              curso: alumno.curso,
-                              grupo: alumno.grupo,
-                            });
-                          }}
-                        >
-                          edit
-                        </button>
-                        <button
-                          type="button"
-                          className="border-0 bg-transparent text-danger material-icons iconhover"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Eliminar alumno"
-                        >
-                          delete
-                        </button>
+          {(datosPaginados.length > 0 && !seleccionBuscador) ||
+          (seleccionBuscador && seleccionBuscador.nombre === "todos")
+            ? datosPaginados.map((alumno) => (
+                <li
+                  className="list-group-item m-2 shadow-sm rounded lihover"
+                  key={alumno._id}
+                >
+                  <div className="card-body">
+                    <div className="row justify-content-center align-items-center ">
+                      <div className="col-4  ps-4">
+                        <h5 className="card-title">{alumno.nombre}</h5>
+                        <p className="card-subtitle font-weight-light colorTexto">
+                          {alumno.apellidos}
+                        </p>
+                      </div>
+                      <div className="col-4  text-center">
+                        <small className="card-subtitle text-capitalize">
+                          {alumno.curso} - {alumno.grupo}
+                        </small>
+                      </div>
+                      <div className="col-4">
+                        <div className="m-auto text-end pe-4">
+                          <button
+                            type="button"
+                            className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Ver mas información"
+                          >
+                            info
+                          </button>
+                          <button
+                            type="button"
+                            className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Editar cambios en alumno"
+                            onClick={() => {
+                              nuevoAlumno({
+                                _id: alumno._id,
+                                nombre: alumno.nombre,
+                                apellidos: alumno.apellidos,
+                                curso: alumno.curso,
+                                grupo: alumno.grupo,
+                              });
+                            }}
+                          >
+                            edit
+                          </button>
+                          <button
+                            type="button"
+                            className="border-0 bg-transparent text-danger material-icons iconhover"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Eliminar alumno"
+                          >
+                            delete
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            ))
-          ) : (
-            <li
-              className="list-group-item m-2 shadow-sm rounded lihover"
-              key={seleccionBuscador._id}
-            >
-              <div className="card-body">
-                <div className="row justify-content-center align-items-center ">
-                  <div className="col-4  ps-4">
-                    <h5 className="card-title">{seleccionBuscador.nombre}</h5>
-                    <p className="card-subtitle font-weight-light colorTexto">
-                      {seleccionBuscador.apellidos}
-                    </p>
-                  </div>
-                  <div className="col-4  text-center">
-                    <small className="card-subtitle text-capitalize">
-                      {seleccionBuscador.curso} - {seleccionBuscador.grupo}
-                    </small>
-                  </div>
-                  <div className="col-4">
-                    <div className="m-auto text-end pe-4">
-                      <button
-                        type="button"
-                        className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Ver mas información"
-                      >
-                        info
-                      </button>
-                      <button
-                        type="button"
-                        className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Editar cambios en alumno"
-                        onClick={() => {
-                          nuevoAlumno({
-                            _id: seleccionBuscador._id,
-                            nombre: seleccionBuscador.nombre,
-                            apellidos: seleccionBuscador.apellidos,
-                            curso: seleccionBuscador.curso,
-                            grupo: seleccionBuscador.grupo,
-                          });
-                        }}
-                      >
-                        edit
-                      </button>
-                      <button
-                        type="button"
-                        className="border-0 bg-transparent text-danger material-icons iconhover"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Eliminar alumno"
-                      >
-                        delete
-                      </button>
+                </li>
+              ))
+            : seleccionBuscador &&
+              seleccionBuscador.nombre !== "todos" && (
+                <li
+                  className="list-group-item m-2 shadow-sm rounded lihover"
+                  key={seleccionBuscador._id}
+                >
+                  {console.log("SELECCION BUSCADOR", seleccionBuscador)}
+                  <div className="card-body">
+                    <div className="row justify-content-center align-items-center ">
+                      <div className="col-4  ps-4">
+                        <h5 className="card-title">
+                          {seleccionBuscador.nombre}
+                        </h5>
+                        <p className="card-subtitle font-weight-light colorTexto">
+                          {seleccionBuscador.apellidos}
+                        </p>
+                      </div>
+                      <div className="col-4  text-center">
+                        <small className="card-subtitle text-capitalize">
+                          {seleccionBuscador.curso} - {seleccionBuscador.grupo}
+                        </small>
+                      </div>
+                      <div className="col-4">
+                        <div className="m-auto text-end pe-4">
+                          <button
+                            type="button"
+                            className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Ver mas información"
+                          >
+                            info
+                          </button>
+                          <button
+                            type="button"
+                            className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Editar cambios en alumno"
+                            onClick={() => {
+                              nuevoAlumno({
+                                _id: seleccionBuscador._id,
+                                nombre: seleccionBuscador.nombre,
+                                apellidos: seleccionBuscador.apellidos,
+                                curso: seleccionBuscador.curso,
+                                grupo: seleccionBuscador.grupo,
+                              });
+                            }}
+                          >
+                            edit
+                          </button>
+                          <button
+                            type="button"
+                            className="border-0 bg-transparent text-danger material-icons iconhover"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Eliminar alumno"
+                          >
+                            delete
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </li>
-          )}
+                </li>
+              )}
         </ul>
         {loading && (
           <div className="m-5">

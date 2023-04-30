@@ -49,6 +49,22 @@ const SearchBox = ({ suggestions, setSeleccion }) => {
         ></input>
         {filteredSuggestions.length > 0 && (
           <ul className="suggestions w-50 text-start">
+            <li
+              className="text-warning"
+              key={"000"}
+              onClick={() => {
+                setSeleccion({
+                  _id: "6437ce89e16be030092c4177",
+                  nombre: "todos",
+                  apellidos: "Lara",
+                  curso: "segundo",
+                  grupo: "C",
+                });
+                onSuggestionClick("");
+              }}
+            >
+              Lista completa
+            </li>
             {filteredSuggestions.map((suggestion) => (
               <li
                 key={suggestion._id}
