@@ -67,6 +67,7 @@ const Formulario = ({ providers }) => {
             <div className="form-group pt-2 pb-2">
               {providers &&
                 Object.values(providers).map((provider) => {
+                  console.log("imprimiendo..", provider);
                   const { id, type } = provider;
                   return (
                     <button

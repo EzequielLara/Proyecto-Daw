@@ -1,11 +1,20 @@
 import Formulario from "../componentes/Formulario";
 import Eslogan from "../componentes/Eslogan";
 import LayoutMainContent from "../componentes/layouts/LayoutMainContent";
+import { useEffect, useState } from "react";
 
 import { getProviders } from "next-auth/react";
 
-const Signin = ({ providers }) => {
-  console.log("PROVIDERS: ", providers);
+const Signin = () => {
+  const [providers, setProviders] = useState(null);
+  const pro = async () => {
+    const datos = await getProviders();
+    console.log("PROVIDERS: ", providers);
+    setProviders(datos);
+  };
+  useEffect(() => {
+    pro();
+  });
   return (
     <>
       <LayoutMainContent title="login" content="vocablo">
