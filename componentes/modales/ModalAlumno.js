@@ -127,66 +127,77 @@ const ModalAlumno = ({
           <legend>
             {alumnoEditar.nombre ? "Editar Alumno" : "Nuevo Alumno"}
           </legend>
-          <div className={style.campo}>
-            <label htmlFor="nombre">Nombre Alumno</label>
+          <div className="text-center mb-3">
+            <label className="w-25" htmlFor="nombre">
+              Nombre:
+            </label>
             <input
+              className="w-50 p-2 estiloInput"
               id="nombre"
               type="text"
-              placeholder="Añade el Nombre del Alumno"
+              placeholder="Nombre del Alumno"
               value={nombreAlumno}
               onChange={(e) => {
                 setNombreAlumno(e.target.value);
               }}
             />
           </div>
-          <div className={style.campo}>
-            <label htmlFor="apellidosAlumno">Apellidos Alumno</label>
+          <div className="text-center mb-3">
+            <label className="w-25" htmlFor="apellidosAlumno">
+              Apellidos:
+            </label>
             <input
+              className="w-50 p-2 estiloInput"
               type="text"
-              placeholder="Añade apellidos del Alumno"
+              placeholder="Apellidos del Alumno"
               value={apellidosAlumno}
               onChange={(e) => {
                 setApellidosAlumno(e.target.value);
               }}
             />
           </div>
-          <div className={style.campo}>
-            <div className="row">
-              <div className="col-12 col-lg-6">
-                <label htmlFor="cursoAlumno">Curso:</label>
-                <select
-                  id="cursoAlumno"
-                  value={cursoAlumno}
-                  onChange={(e) => {
-                    setCursoAlumno(e.target.value);
-                  }}
-                >
-                  <option value="">-- Seleccione --</option>
-                  {cursos.map((cur, index) => (
-                    <option key={index} value={cur}>
-                      {cur}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="col-6">
-                <label htmlFor="grupoAlumno">Grupo:</label>
-                <select
-                  id="grupoAlumno"
-                  value={grupoAlumno}
-                  onChange={(e) => {
-                    setGrupoAlumno(e.target.value);
-                  }}
-                >
-                  <option value="">-- Seleccione --</option>
-                  {grupos.map((grup, index) => (
-                    <option key={index} value={grup}>
-                      {grup}
-                    </option>
-                  ))}
-                </select>
-              </div>
+          <div className="text-center ">
+            <div className="mb-3">
+              <label htmlFor="cursoAlumno" className="w-25">
+                Curso:
+              </label>
+              <select
+                className="w-50 p-2 estiloSelect"
+                id="cursoAlumno"
+                value={cursoAlumno}
+                onChange={(e) => {
+                  setCursoAlumno(e.target.value);
+                }}
+              >
+                <option value="">* Curso *</option>
+                {cursos.map((cur, index) => (
+                  <option key={index} value={cur}>
+                    {cur}
+                  </option>
+                ))}
+              </select>
             </div>
+            <div className="mb-3">
+              <label className="w-25" htmlFor="grupoAlumno">
+                Grupo:
+              </label>
+              <select
+                className="w-50 p-2 estiloSelect"
+                id="grupoAlumno"
+                value={grupoAlumno}
+                onChange={(e) => {
+                  setGrupoAlumno(e.target.value);
+                }}
+              >
+                <option value="">* Grupo *</option>
+                {grupos.map((grup, index) => (
+                  <option key={index} value={grup}>
+                    {grup}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             {error && <h3 className="uno">*No se admiten campos vacíos</h3>}
             <input
               id="boton"
@@ -196,17 +207,21 @@ const ModalAlumno = ({
           </div>
         </form>
       </div>
-      <style>
-        {`
-              .uno{
-                color:tomato;
-                text-align: center;
-              }
-         @media (min-width: 768px) {
-
+      <style>{`
+          .estiloInput{
+            background-color:transparent;
+            border: 2px solid white;
+            color:white;
+            font-size:1.2rem;
           }
-      `}
-      </style>
+          .estiloSelect{
+            border-radius: 10px;
+            border: 2px solid white;
+            color:black;
+            font-size:1.2rem;
+            text-align:center;
+          }
+      `}</style>
     </>
   );
 };

@@ -9,19 +9,29 @@ import { Suspense } from "react";
 const Dashboard = () => {
   const [alumnos, setAlumnos] = useState([]);
   const [cursos, setCursos] = useState(["Primero", "Segundo", "Tercero"]);
+  const [grupos, setGrupos] = useState(["A", "B", "C"]);
   const [loading, setLoading] = useState(true);
+
+  const [seleccionCurso, setSeleccionCurso] = useState(false);
+  const [seleccionGrupo, setSeleccionGrupo] = useState(false);
+
+  const [valueCurso, setValueCurso] = useState("");
+  const [valueGrupo, setValueGrupo] = useState("");
+  const [valueAlumno, setValueAlumno] = useState("");
 
   useEffect(() => {
     const fetchDatos = async () => {
       const response = await fetch("/api/alumnos");
       const data = await response.json().catch((e) => {
         setLoading(false);
+        console.log("Error petición bbdd: ", e);
       });
       setAlumnos(data);
       setLoading(false);
     };
     fetchDatos();
   }, []);
+
   return (
     <>
       <Layout title="docente | gráficos">
@@ -40,8 +50,17 @@ const Dashboard = () => {
                   <select
                     className="form-select form-select-lg mb-3"
                     aria-label=".form-select-lg example"
+                    value={valueCurso}
+                    onChange={(e) => {
+                      setValueCurso(e.target.value);
+                      if (valueCurso === "Curso") {
+                        setSeleccionCurso(false);
+                      } else {
+                        setSeleccionCurso(true);
+                      }
+                    }}
                   >
-                    <option defaultValue={""}>Selecciona Curso</option>
+                    <option defaultValue={""}>Curso</option>
                     {cursos &&
                       cursos.length > 0 &&
                       cursos.map((curso, index) => (
@@ -55,19 +74,38 @@ const Dashboard = () => {
                   <select
                     className="form-select form-select-lg mb-3"
                     aria-label=".form-select-lg example"
+                    value={valueGrupo}
+                    onChange={(e) => {
+                      setValueGrupo(e.target.value);
+                      if (valueGrupo === "Grupo") {
+                        setSeleccionGrupo(false);
+                      } else {
+                        setSeleccionGrupo(true);
+                      }
+                    }}
+                    disabled={!seleccionCurso}
                   >
-                    <option defaultValue={""}>Selecciona Grupo</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option defaultValue={""}>Grupo</option>
+                    {grupos &&
+                      grupos.length > 0 &&
+                      grupos.map((grupo, index) => (
+                        <option key={index} value={grupo}>
+                          {grupo}
+                        </option>
+                      ))}
                   </select>
                 </div>
                 <div className="col-6 m-auto text-center mb-5">
                   <select
                     className="form-select form-select-lg mb-3"
                     aria-label=".form-select-lg example"
+                    value={valueAlumno}
+                    onChange={(e) => {
+                      setValueAlumno(e.target.value);
+                    }}
+                    disabled={!seleccionGrupo}
                   >
-                    <option defaultValue={""}>Selecciona Alumno</option>
+                    <option defaultValue={""}>Alumno</option>
                     {alumnos &&
                       alumnos.length > 0 &&
                       alumnos.map((alumno) => (

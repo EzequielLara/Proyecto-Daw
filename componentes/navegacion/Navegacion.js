@@ -1,7 +1,14 @@
 import Link from "next/link";
 import NavUsuario from "./NavUsuario";
+import { useState } from "react";
 
 const Navegacion = ({ usuario, loginAuth }) => {
+  const [display, setDisplay] = useState(false);
+
+  const toggle = () => {
+    setDisplay(!display);
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -17,75 +24,52 @@ const Navegacion = ({ usuario, loginAuth }) => {
             </a>
           </Link>
           <div className="navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
+            <button
+              className="d-lg-none my-3 font-size-large display-5 text-warning border-0 bg-transparent"
+              type="button"
+              onClick={toggle}
+            >
+              <i className="bi bi-list"></i>
+            </button>
+            <ul className={display ? "navbar-nav display" : "navbar-nav"}>
+              <li className="nav-item me-3">
                 <Link href={"/infovocablo"} className="nav-link">
-                  <a className="nav-link">Proyecto vocablo</a>
+                  <a className="nav-link">Inicio</a>
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link href={"/metodologias"}>
-                  <a className="nav-link" href="#">
-                    Metodologías
-                  </a>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href={"/docentes/dashboard"}>
-                  <a className="nav-link" href="#">
-                    Dashboard
-                  </a>
-                </Link>
-              </li>
-              <li className="nav-item">
+              <li className="nav-item me-3">
                 <Link href={"/docentes/creargrupo"}>
                   <a className="nav-link" href="#">
-                    Grupos
+                    Recursos
                   </a>
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item me-3">
+                <Link href={"/metodologias/doman/app-doman"}>
+                  <a className="nav-link" href="#">
+                    Cursos/Grupos
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item me-3">
                 <Link href={"/docentes/alumnos"}>
                   <a className="nav-link" href="#">
                     Alumnos
                   </a>
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link href={"/metodologias/doman/app-doman"}>
+              <li className="nav-item me-3">
+                <Link href={"/docentes/dashboard"}>
                   <a className="nav-link" href="#">
-                    Configuración
+                    Dashboard
                   </a>
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item ms-0 ms-lg-5 ms-md-0">
                 <NavUsuario
                   usuario={usuario}
                   loginAuth={loginAuth}
                 ></NavUsuario>
-              </li>
-              <li>
-                <Link href={loginAuth ? "/api/auth/signout" : "/logout"}>
-                  <a>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="22"
-                      height="22"
-                      fill="currentColor"
-                      className="bi bi-box-arrow-right mt-2"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
-                      />
-                      <path
-                        fillRule="evenodd"
-                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
-                      />
-                    </svg>
-                  </a>
-                </Link>
               </li>
             </ul>
           </div>
@@ -98,9 +82,10 @@ const Navegacion = ({ usuario, loginAuth }) => {
         .cristal{
           
            backdrop-filter: blur(5px);
-           border-bottom: 1px solid black;
-
-          
+           border-bottom: 1px solid black; 
+        }
+        .display{
+          display:none;
         }
       `}</style>
     </>

@@ -45,7 +45,7 @@ const SearchBox = ({ suggestions, setSeleccion }) => {
           type="text"
           value={value}
           onChange={onInputChange}
-          placeholder="Buscador..."
+          placeholder="Nombre..."
         ></input>
         {filteredSuggestions.length > 0 && (
           <ul className="suggestions w-50 text-start">

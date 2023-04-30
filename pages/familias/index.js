@@ -18,7 +18,7 @@ const Home = () => {
           <div className={styles.grid}>
             <TarjetasLink
               href="/carrusel"
-              titulo="Carrusel de palabras"
+              titulo="Carrusel"
               parrafo="Configura las opciones y comienza a mostrar tus palabras "
             />
             <TarjetasLink
