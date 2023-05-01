@@ -84,7 +84,7 @@ export default function Principal() {
           font-family: 'Fredoka One';
           font-style: normal;
           font-weight: 400;
-          src: url('fuentes/FredokaOne-Regular.ttf') format('truetype');
+          src: url('/fuentes/FredokaOne-Regular.ttf') format('truetype');
   }
       `}</style>
     </>
