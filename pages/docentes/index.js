@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 const Home = ({ usuario, loginAuth }) => {
   return (
-    <Layout title="docente | home">
+    <Layout title="docentes | home">
       <Navegacion usuario={usuario} loginAuth={loginAuth}></Navegacion>
       <main>
         <h1>Index</h1>

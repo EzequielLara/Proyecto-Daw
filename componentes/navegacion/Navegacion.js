@@ -33,21 +33,21 @@ const Navegacion = ({ usuario, loginAuth }) => {
             </button>
             <ul className={display ? "navbar-nav display" : "navbar-nav"}>
               <li className="nav-item me-3">
-                <Link href={"/infovocablo"} className="nav-link">
+                <Link href={"/docentes"} className="nav-link">
                   <a className="nav-link">Inicio</a>
                 </Link>
               </li>
               <li className="nav-item me-3">
-                <Link href={"/docentes/creargrupo"}>
+                <Link href={"/docentes/actividades"}>
                   <a className="nav-link" href="#">
-                    Recursos
+                    Actividades
                   </a>
                 </Link>
               </li>
               <li className="nav-item me-3">
-                <Link href={"/metodologias/doman/app-doman"}>
+                <Link href={"/docentes/grupos"}>
                   <a className="nav-link" href="#">
-                    Cursos/Grupos
+                    Grupos
                   </a>
                 </Link>
               </li>

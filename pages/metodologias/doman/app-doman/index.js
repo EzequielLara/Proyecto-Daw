@@ -20,7 +20,7 @@ const Aplicaciones = () => {
           <main className={styles.main}>
             <div className={styles.grid}>
               <TarjetasLink
-                href="/metodologias/doman/app-doman/app1"
+                href="/metodologias/doman/app-doman/app_1"
                 titulo="Acierta la imagen"
                 parrafo="Relaciona cada palabra con su imagen"
               />

@@ -80,6 +80,12 @@ export default function Principal() {
           .vocablo{
             color: #247c8c;
           }
+          @font-face {
+          font-family: 'Fredoka One';
+          font-style: normal;
+          font-weight: 400;
+          src: url('public/fuentes/FredokaOne-Regular.ttf') format('truetype');
+  }
       `}</style>
     </>
   );
