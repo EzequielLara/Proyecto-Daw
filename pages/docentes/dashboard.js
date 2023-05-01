@@ -24,7 +24,6 @@ const Dashboard = () => {
       const response = await fetch("/api/alumnos");
       const data = await response.json().catch((e) => {
         setLoading(false);
-        console.log("Error petición bbdd: ", e);
       });
       setAlumnos(data);
       setLoading(false);

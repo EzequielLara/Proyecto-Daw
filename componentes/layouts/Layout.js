@@ -18,10 +18,6 @@ const Layout = ({ children, title }) => {
             <title>vocablo | {title}</title>
             <meta name="description" content="teaching reading" />
             <link rel="icon" href="/icono_vocablo.svg" />
-            <link
-              href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
-              rel="stylesheet"
-            />
           </Head>
           <div>{children}</div>
         </>

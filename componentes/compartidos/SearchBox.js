@@ -4,7 +4,7 @@ import React, { useState } from "react";
  * @param {Array} suggestions Un array de objetos que contengan las propiedades "nombre" y "_id"
  * @returns
  */
-const SearchBox = ({ suggestions, setSeleccion }) => {
+const SearchBox = ({ suggestions, setSeleccion, cambiarPrimeraPagina }) => {
   const [value, setValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
@@ -61,6 +61,7 @@ const SearchBox = ({ suggestions, setSeleccion }) => {
                   grupo: "C",
                 });
                 onSuggestionClick("");
+                cambiarPrimeraPagina();
               }}
             >
               Lista completa

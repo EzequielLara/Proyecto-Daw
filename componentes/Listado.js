@@ -17,6 +17,9 @@ const Listado = ({ nuevoAlumno }) => {
   const setSeleccion = (e) => {
     setSeleccionBuscador(e);
   };
+  const cambiarPrimeraPagina = () => {
+    setPaginaActual(1);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -73,6 +76,7 @@ const Listado = ({ nuevoAlumno }) => {
             <SearchBox
               suggestions={alumnos}
               setSeleccion={setSeleccion}
+              cambiarPrimeraPagina={cambiarPrimeraPagina}
             ></SearchBox>
           </div>
         </div>
@@ -148,7 +152,6 @@ const Listado = ({ nuevoAlumno }) => {
                   className="list-group-item m-2 shadow-sm rounded lihover"
                   key={seleccionBuscador._id}
                 >
-                  {console.log("SELECCION BUSCADOR", seleccionBuscador)}
                   <div className="card-body">
                     <div className="row justify-content-center align-items-center ">
                       <div className="col-4  ps-4">
@@ -228,6 +231,7 @@ const Listado = ({ nuevoAlumno }) => {
                   onChange={(e) => {
                     let numero = parseInt(e.target.value);
                     setNumElementosPorPagina(numero);
+                    setPaginaActual(1);
                   }}
                 >
                   <option value="5">5</option>
