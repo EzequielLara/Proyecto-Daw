@@ -11,8 +11,7 @@ const Alumnos = () => {
   const [alumnoEditar, setAlumnoEditar] = useState({});
 
   const nuevoAlumno = (alumno) => {
-    const alum = alumno;
-    setAlumnoEditar(alum);
+    setAlumnoEditar(alumno);
     setModal(!modal);
   };
 
@@ -37,6 +36,7 @@ const Alumnos = () => {
             alumnos={alumnos}
             alumnoEditar={alumnoEditar}
             setAlumnoEditar={setAlumnoEditar}
+            setAlumnos={setAlumnos}
           ></ModalAlumno>
         )}
       </main>

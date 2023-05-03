@@ -76,7 +76,7 @@ const ModalAlumno = ({
       setAlumnoEditar({});
       return;
     }
-
+    //Nuevo
     setAlumnos([
       ...alumnos,
       {
@@ -94,15 +94,17 @@ const ModalAlumno = ({
     setNombreAlumno("");
     setApellidosAlumno("");
     setCursoAlumno("");
+    setGrupoAlumno("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (
-      [nombreAlumno, apellidosAlumno, cursoAlumno, grupoAlumno].includes(
-        "" || undefined
-      )
+      nombreAlumno.trim() == "" ||
+      apellidosAlumno.trim() == "" ||
+      cursoAlumno.trim() == "" ||
+      grupoAlumno.trim() == ""
     ) {
       setError(true);
       return;
@@ -111,6 +113,7 @@ const ModalAlumno = ({
     guardarAlumno();
     resetearFormularioModal();
     ocultarModal();
+    console.log("ALUMNOS: ", alumnos);
   };
   return (
     <>
@@ -158,7 +161,7 @@ const ModalAlumno = ({
           </div>
           <div className="text-center ">
             <div className="mb-3">
-              <label htmlFor="cursoAlumno" className="w-25">
+              <label className="w-25" htmlFor="cursoAlumno">
                 Curso:
               </label>
               <select
@@ -170,13 +173,14 @@ const ModalAlumno = ({
                 }}
               >
                 <option value="">Curso</option>
-                {cursos.map((cur, index) => (
-                  <option key={index} value={cur}>
-                    {cur}
+                {cursos.map((curso, index) => (
+                  <option key={index} value={curso}>
+                    {curso}
                   </option>
                 ))}
               </select>
             </div>
+
             <div className="mb-3">
               <label className="w-25" htmlFor="grupoAlumno">
                 Grupo:
@@ -198,7 +202,7 @@ const ModalAlumno = ({
               </select>
             </div>
 
-            {error && <h3 className="uno">*No se admiten campos vacíos</h3>}
+            {error && <h5 className="uno">*No se admiten campos vacíos</h5>}
             <input
               id="boton"
               type="submit"
@@ -208,6 +212,9 @@ const ModalAlumno = ({
         </form>
       </div>
       <style>{`
+          .uno{
+            color:tomato;
+          }
           .estiloInput{
             background-color:transparent;
             border: 2px solid white;
