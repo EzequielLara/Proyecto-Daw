@@ -3,8 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import TarjetasLink from "../componentes/compartidos/TarjetasLink";
 
-import "typeface-fredoka-one";
-
 export default function Principal() {
   return (
     <>
@@ -16,8 +14,7 @@ export default function Principal() {
       <div className={styles.container}>
         <main className={styles.main}>
           <Image
-            className="fuente"
-            src="/logo_vocablo.svg"
+            src="/logo_vocablo_700.png"
             width={700}
             height={250}
             alt="logo vocablo"
@@ -48,7 +45,6 @@ export default function Principal() {
           >
             - Create by EzequielLara -
           </a>
-          {/* <Link href="/infovocablo"> */}
           <a
             href="https://www.canva.com/design/DAFZWQEOF6Y/0W38RhZ8xtuax-4XEGE0_A/view?utm_content=DAFZWQEOF6Y&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink "
             className="text-decoration-none text-dark"
@@ -57,7 +53,6 @@ export default function Principal() {
           >
             <span className="vocablo">¿Qué es vocablo?</span>
           </a>
-          {/* </Link> */}
           <a
             href="https://github.com/EzequielLara/Proyecto-Daw"
             target="_blank"
@@ -78,10 +73,6 @@ export default function Principal() {
           .vocablo{
             color: #247c8c;
           }
-          .fuente{
-            font-family:'Fredoka One';
-          }
-
       `}</style>
     </>
   );

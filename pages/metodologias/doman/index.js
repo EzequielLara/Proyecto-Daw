@@ -10,7 +10,7 @@ const DomainInfo = () => {
         <div className="imgvocablo">
           <Link href={"/"}>
             <a>
-              <img alt="Logo vocablo" src="/logo_vocablo.svg" width="200" />
+              <img alt="Logo vocablo" src="/logo_vocablo_700.png" width="200" />
             </a>
           </Link>
         </div>

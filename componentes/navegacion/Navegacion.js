@@ -17,7 +17,7 @@ const Navegacion = ({ usuario, loginAuth }) => {
             <a className="logo">
               <img
                 alt="Logo vocablo"
-                src="/logo_vocablo.svg"
+                src="/logo_vocablo_700.png"
                 width="200"
                 className="d-inline-block align-top"
               />

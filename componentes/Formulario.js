@@ -47,7 +47,7 @@ const Formulario = ({ providers }) => {
         <Link href="/">
           <a>
             <Image
-              src="/logo_vocablo.svg"
+              src="/logo_vocablo_700.png"
               width={400}
               height={130}
               layout="responsive"

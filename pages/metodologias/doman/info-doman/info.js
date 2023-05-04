@@ -18,7 +18,7 @@ const Info = () => {
                 <a>
                   <img
                     alt="Logo vocablo"
-                    src="/logo_vocablo.svg"
+                    src="/logo_vocablo_700.png"
                     width="200"
                     className="m-2"
                   />
