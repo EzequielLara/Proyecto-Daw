@@ -14,7 +14,7 @@ export default function Principal() {
       <div className={styles.container}>
         <main className={styles.main}>
           <Image
-            src="/logo_vocablo_700.png"
+            src="/logo_vocablo.svg"
             width={700}
             height={250}
             alt="logo vocablo"

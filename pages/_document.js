@@ -4,16 +4,13 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <style>
-          {`
-          @font-face {
-              font-family: 'Fredoka One';
-              src: url('/fonts/FredokaOne-Regular.ttf') format('truetype');
-              font-weight: normal;
-              font-style: normal;
-            }
-        `}
-        </style>
+        <link
+          rel="preload"
+          href="/fonts/FredokaOne-Regular.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
       </Head>
       <body>
         <Main />
