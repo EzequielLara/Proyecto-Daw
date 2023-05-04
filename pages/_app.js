@@ -9,9 +9,6 @@ function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
       <Context>
-        <Head>
-          <link rel="stylesheet" href="/fonts/FredokaOne-Regular.ttf" />
-        </Head>
         <Component {...pageProps} />
       </Context>
     </SessionProvider>

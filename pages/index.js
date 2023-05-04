@@ -14,7 +14,7 @@ export default function Principal() {
       <div className={styles.container}>
         <main className={styles.main}>
           <Image
-            src="/logo_vocablo.svg"
+            src="/logo_vocablo_700.png"
             width={700}
             height={250}
             alt="logo vocablo"
@@ -60,12 +60,7 @@ export default function Principal() {
             className="text-decoration-none text-dark"
           >
             <span className="p-2">¿Quieres participar?</span>
-            <Image
-              src="/github-mark/github-mark.svg"
-              width={30}
-              height={30}
-              className=""
-            />
+            <Image src="/github-mark/github-mark.svg" width={30} height={30} />
           </a>
         </footer>
       </div>
