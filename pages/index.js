@@ -16,6 +16,7 @@ export default function Principal() {
       <div className={styles.container}>
         <main className={styles.main}>
           <Image
+            className="fuente"
             src="/logo_vocablo.svg"
             width={700}
             height={250}
@@ -76,6 +77,9 @@ export default function Principal() {
       <style>{`
           .vocablo{
             color: #247c8c;
+          }
+          .fuente{
+            font-family:'Fredoka One';
           }
 
       `}</style>

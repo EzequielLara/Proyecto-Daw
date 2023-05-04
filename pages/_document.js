@@ -9,6 +9,16 @@ export default function Document() {
           rel="stylesheet"
         ></link>
         <link rel="stylesheet" href="/fonts/FredokaOne-Regular.ttf" />
+        <style>
+          {`
+          @font-face {
+              font-family: 'Fredoka One';
+              src: url('/fonts/FredokaOne-Regular.ttf') format('truetype');
+              font-weight: normal;
+              font-style: normal;
+            }
+        `}
+        </style>
       </Head>
       <body>
         <Main />
