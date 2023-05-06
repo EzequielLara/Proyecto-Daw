@@ -5,7 +5,7 @@ const ModalAvatar = ({ seleccion, setSeleccion }) => {
         <div style={{ width: "19rem" }} className="card">
           <img
             alt="Logo vocablo"
-            src="/logo_vocablo.svg"
+            src="/logo_vocablo_700.png"
             width="230"
             className="d-inline-block align-top m-auto mt-4 mb-3"
           />

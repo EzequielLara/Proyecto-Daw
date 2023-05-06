@@ -14,7 +14,7 @@ export default function Prueba() {
       <div className="col col-md-6 col-lg-4 m-auto">
         <div className="card shadow-lg rounded">
           <div className="text-center mt-3 ">
-            <img alt="Logo vocablo" src="/logo_vocablo.svg" width="255" />
+            <img alt="Logo vocablo" src="/logo_vocablo_700.png" width="255" />
           </div>
           <div className="card-body p-4">
             <h5 className="card-title text-center">¿Desea cerrar la sesión?</h5>

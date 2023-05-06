@@ -34,13 +34,13 @@ const Navegacion = ({ usuario, loginAuth }) => {
             <ul className={display ? "navbar-nav display" : "navbar-nav"}>
               <li className="nav-item me-3">
                 <Link href={"/docentes"} className="nav-link">
-                  <a className="nav-link">Inicio</a>
+                  <a className="nav-link">Recursos</a>
                 </Link>
               </li>
               <li className="nav-item me-3">
                 <Link href={"/docentes/actividades"}>
                   <a className="nav-link" href="#">
-                    Actividades
+                    Evaluación Inicial
                   </a>
                 </Link>
               </li>
