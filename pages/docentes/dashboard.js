@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Layout title="docente | gráficos">
+      <Layout title="docente | estadísticas">
         <Navegacion usuario={"prueba"}></Navegacion>
         <main>
           {loading ? (

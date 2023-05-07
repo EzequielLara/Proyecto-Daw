@@ -4,8 +4,10 @@ import LayoutMainContent from "../componentes/layouts/LayoutMainContent";
 import { useEffect, useState } from "react";
 
 import { getProviders } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import { verify } from "jsonwebtoken";
 
-const Signin = () => {
+const Signin = ({ usuario, loginAuth }) => {
   const [providers, setProviders] = useState(null);
   const peticionProviders = async () => {
     const datos = await getProviders();
@@ -80,5 +82,28 @@ const Signin = () => {
 //   };
 // };
 // Al desplegar la aplicación no deja que los provider se obtengan desde el servidor asi que se hace desde el front
+
+export const getServerSideProps = async (context) => {
+  const usuario = await getSession(context);
+  const myTokenName = context.req.cookies.myTokenName;
+  if (!usuario)
+    try {
+      verify(myTokenName, process.env.SECRET_JWT);
+      return {
+        redirect: {
+          destination: "/docentes",
+          permanent: false,
+        },
+      };
+    } catch {
+      console.log("no registrado");
+    }
+  return {
+    props: {
+      usuario: null,
+      loginAuth: false,
+    },
+  };
+};
 
 export default Signin;

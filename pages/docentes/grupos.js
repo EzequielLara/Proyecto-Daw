@@ -3,7 +3,7 @@ import Navegacion from "../../componentes/navegacion/Navegacion";
 
 const Grupos = () => {
   return (
-    <Layout title="docentes | actividades">
+    <Layout title="docentes | grupos">
       <Navegacion usuario="prueba"></Navegacion>
       <main>
         <h1>Grupos</h1>

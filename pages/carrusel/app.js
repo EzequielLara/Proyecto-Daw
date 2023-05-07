@@ -5,11 +5,26 @@ import { useContext } from "react";
 
 const AppDomain = () => {
   const { datos, setDatos } = useContext(Configuracion);
+  const [posicion, setPosicion] = useState(0);
   const [contador, setContador] = useState(0);
   const [disabled, setDisabled] = useState(true);
 
   const { tematica, tema, sonido } = datos;
   const { imagenes } = tematica;
+
+  useEffect(() => {
+    console.log("tema", tema);
+    if (tema == "animales") {
+      setPosicion(0);
+    }
+    if (tema == "vehiculos") {
+      setPosicion(1);
+    }
+    if (tema == "alimentos") {
+      setPosicion(2);
+    }
+  }, []);
+
   useEffect(() => {
     if (sonido) {
       setTimeout(() => {
@@ -50,7 +65,11 @@ const AppDomain = () => {
         {datos.imagen && tematica[tema][contador] !== "" ? (
           <div className="row arriba">
             <div className="w-75 m-auto text-center">
-              <img src={imagenes[contador]} width={300} alt="imagen" />
+              <img
+                src={imagenes[posicion][contador]}
+                width={300}
+                alt="imagen"
+              />
             </div>
           </div>
         ) : (

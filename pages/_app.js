@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { SessionProvider } from "next-auth/react";
 import Context from "../contexts/context";
-import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   return (

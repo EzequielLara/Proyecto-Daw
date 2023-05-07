@@ -7,6 +7,7 @@ import { verify } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
 
 const Home = ({ usuario, loginAuth }) => {
+  const [recursoSeleccionado, setRecursoSeleccionado] = useState("");
   const [modal, setModal] = useState(false);
   const [seleccion, setSeleccion] = useState({});
   const { recursos, recursosColectivos } = seleccion;
@@ -51,22 +52,24 @@ const Home = ({ usuario, loginAuth }) => {
 
   return (
     <>
-      <Layout title="docentes | home">
+      <Layout title="docentes | recursos">
         <Navegacion usuario={usuario} loginAuth={loginAuth}></Navegacion>
         <main>
           {!modal ? (
             <>
               <h3 className="m-3 title mb-5">Recursos Didácticos</h3>
               <div className="row">
-                <div className="col-5">
+                <div className="col-md-4 col-sm-12">
                   {metodologias &&
                     metodologias.length > 0 &&
                     metodologias.map((met, index) => (
-                      <div key={index} className="text-end">
+                      <div key={index} className=" m-auto text-center">
                         <button
                           type="button"
-                          className="p-3 my-2 btn btn-outline-secondary w-75"
-                          onClick={() => setSeleccion(met)}
+                          className="p-3 my-2 m-auto btn btn-outline-secondary w-75"
+                          onClick={() => {
+                            setSeleccion(met);
+                          }}
                         >
                           <h5 className="ms-3">
                             Metodología {met.metodologia}
@@ -78,21 +81,22 @@ const Home = ({ usuario, loginAuth }) => {
                 <div className="col">
                   {seleccion && seleccion.metodologia !== undefined ? (
                     <>
-                      {console.log(seleccion.metodologia)}
-                      <h4 className="title text-capitalize m-auto w-75">
+                      <h4 className="title text-capitalize m-auto w-75 mt-2">
                         {seleccion.metodologia}
                       </h4>
                       <hr className="w-50 m-auto my-2"></hr>
 
-                      <div className="list-group w-50 ms-5 my-4">
-                        <h5>Recursos:</h5>
+                      <div className="w-50 m-auto text-center">
+                        <h5 className="mt-3">Recursos:</h5>
                         {recursos !== undefined &&
                           recursos.length > 0 &&
                           recursos.map((sel, index) => (
                             <button
                               key={index}
-                              className="list-group-item list-group-item-action list-group-item-primary text-center"
-                              onClick={() => {
+                              className="p-2 text-capitalize list-group-item list-group-item-action list-group-item-primary text-center"
+                              value={sel}
+                              onClick={(e) => {
+                                setRecursoSeleccionado(e.target.value);
                                 setModal(!modal);
                               }}
                             >
@@ -101,15 +105,19 @@ const Home = ({ usuario, loginAuth }) => {
                           ))}
                       </div>
 
-                      <div className="list-group w-50 ms-5 mb-3">
-                        <h5>Recursos Grupales:</h5>
+                      <div className="w-50 m-auto text-center pb-5">
+                        <h5 className="mt-2">Recursos Grupales:</h5>
                         {recursosColectivos !== undefined &&
                           recursosColectivos.length > 0 &&
                           recursosColectivos.map((sel, index) => (
                             <button
                               key={index}
-                              className="list-group-item list-group-item-action list-group-item-warning text-center"
-                              onClick={() => {
+                              className="p-2 text-capitalize list-group-item list-group-item-action list-group-item-warning text-center"
+                              value={sel}
+                              onClick={(e) => {
+                                setRecursoSeleccionado(
+                                  e.target.value + " " + "grupal"
+                                );
                                 setModal(!modal);
                               }}
                             >
@@ -127,7 +135,10 @@ const Home = ({ usuario, loginAuth }) => {
               </div>
             </>
           ) : (
-            <ModalRecurso cambiarModal={cambiarModal}></ModalRecurso>
+            <ModalRecurso
+              cambiarModal={cambiarModal}
+              recursoSeleccionado={recursoSeleccionado}
+            ></ModalRecurso>
           )}
         </main>
       </Layout>
