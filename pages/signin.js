@@ -85,23 +85,38 @@ const Signin = ({ usuario, loginAuth }) => {
 
 export const getServerSideProps = async (context) => {
   const usuario = await getSession(context);
-  const myTokenName = context.req.cookies.myTokenName;
-  if (!usuario)
-    try {
-      verify(myTokenName, process.env.SECRET_JWT);
-      return {
-        redirect: {
-          destination: "/docentes",
-          permanent: false,
-        },
-      };
-    } catch {
-      console.log("no registrado");
+  let myTokenName = context.req.cookies.myTokenName;
+  if (!usuario) {
+    if (myTokenName !== undefined) {
+      try {
+        verify(myTokenName, process.env.SECRET_JWT);
+        return {
+          redirect: {
+            destination: "/docentes",
+            permanent: false,
+          },
+        };
+      } catch {
+        myTokenName = undefined;
+        return {
+          props: {
+            usuario: null,
+            loginAuth: false,
+          },
+        };
+      }
     }
+    return {
+      props: {
+        usuario: null,
+        loginAuth: false,
+      },
+    };
+  }
   return {
-    props: {
-      usuario: null,
-      loginAuth: false,
+    redirect: {
+      destination: "/docentes",
+      permanent: false,
     },
   };
 };

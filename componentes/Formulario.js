@@ -1,7 +1,7 @@
 import styles from "../styles/Formularios.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import axios from "axios";

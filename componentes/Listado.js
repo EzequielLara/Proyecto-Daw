@@ -84,10 +84,10 @@ const Listado = ({ nuevoAlumno }) => {
         <ul className="list-group zindex ">
           {(datosPaginados.length > 0 && !seleccionBuscador) ||
           (seleccionBuscador && seleccionBuscador.nombre === "todos")
-            ? datosPaginados.map((alumno) => (
+            ? datosPaginados.map((alumno, index) => (
                 <li
                   className="list-group-item m-2 shadow-sm rounded lihover"
-                  key={alumno._id}
+                  key={index}
                 >
                   <div className="card-body">
                     <div className="row justify-content-center align-items-center ">
@@ -150,7 +150,7 @@ const Listado = ({ nuevoAlumno }) => {
               seleccionBuscador.nombre !== "todos" && (
                 <li
                   className="list-group-item m-2 shadow-sm rounded lihover"
-                  key={seleccionBuscador._id}
+                  key={index}
                 >
                   <div className="card-body">
                     <div className="row justify-content-center align-items-center ">

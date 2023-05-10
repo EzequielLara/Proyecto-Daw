@@ -162,7 +162,7 @@ const Home = ({ usuario, loginAuth }) => {
 export const getServerSideProps = async (context) => {
   const usuario = await getSession(context);
   const myTokenName = context.req.cookies.myTokenName;
-  if (!usuario)
+  if (!usuario) {
     try {
       verify(myTokenName, process.env.SECRET_JWT);
       return {
@@ -179,6 +179,7 @@ export const getServerSideProps = async (context) => {
         },
       };
     }
+  }
   return {
     props: {
       usuario: usuario.user.name,

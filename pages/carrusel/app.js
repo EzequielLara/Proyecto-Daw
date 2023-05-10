@@ -13,7 +13,6 @@ const AppDomain = () => {
   const { imagenes } = tematica;
 
   useEffect(() => {
-    console.log("tema", tema);
     if (tema == "animales") {
       setPosicion(0);
     }

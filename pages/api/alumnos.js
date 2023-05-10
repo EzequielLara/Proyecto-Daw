@@ -15,8 +15,11 @@ export default async function alumnos(req, res) {
   try {
     switch (req.method) {
       case "GET":
-        const usuarios = await collection.find().toArray();
-        res.status(200).json(usuarios);
+        const usuarios = await collection.findOne({
+          username: "Administrador",
+        });
+
+        res.status(200).json(usuarios.alumnos);
         break;
       case "POST":
         const { nombre, apellidos, curso, grupo } = req.body;
@@ -61,7 +64,6 @@ export default async function alumnos(req, res) {
         break;
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send("Error en la conexión con la base de datos");
   } finally {
     await client.close();

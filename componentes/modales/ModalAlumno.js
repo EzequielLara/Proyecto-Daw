@@ -113,7 +113,6 @@ const ModalAlumno = ({
     guardarAlumno();
     resetearFormularioModal();
     ocultarModal();
-    console.log("ALUMNOS: ", alumnos);
   };
   return (
     <>

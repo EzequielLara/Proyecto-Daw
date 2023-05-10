@@ -3,10 +3,10 @@ import Navegacion from "../../componentes/navegacion/Navegacion";
 
 const Grupos = () => {
   return (
-    <Layout title="docentes | grupos">
+    <Layout title="docentes | cursos">
       <Navegacion usuario="prueba"></Navegacion>
       <main>
-        <h1>Grupos</h1>
+        <h1>Cursos</h1>
       </main>
     </Layout>
   );
