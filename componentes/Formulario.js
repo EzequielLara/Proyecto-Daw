@@ -12,7 +12,11 @@ const Formulario = ({ providers }) => {
     email: "",
     password: "",
   });
-  const [datosUsuarioRegistro, setDatosUsuarioRegistro] = useState({});
+  const [datosUsuarioRegistro, setDatosUsuarioRegistro] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
 
   // Estados para controlar cual de los dos formularios se mostrará
   const [iniciarSesion, setIniciarSesion] = useState(false);
@@ -31,14 +35,30 @@ const Formulario = ({ providers }) => {
       [e.target.name]: e.target.value,
     });
   };
+  const handleChangeRegister = (e) => {
+    setDatosUsuarioRegistro({
+      ...datosUsuarioRegistro,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const respuesta = await axios
+    await axios
       .post("/api/auth/login", datosUsuarioSesion)
       .catch((e) => setError(e.response.data.error));
 
     router.push("/docentes");
+  };
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const usuarioValido = await axios
+      .post("/api/auth/register", datosUsuarioRegistro)
+      .catch((e) => setError(e.response.data.error));
+    if (usuarioValido && usuarioValido.status === 200) {
+      setError(null);
+      setIniciarSesion(!iniciarSesion);
+    }
   };
 
   return (
@@ -150,42 +170,54 @@ const Formulario = ({ providers }) => {
         <>
           {" "}
           <form className="w-75 m-auto p-2">
+            {error && (
+              <div className="alert alert-warning" role="alert">
+                {error}
+              </div>
+            )}
             <div className="form-group mb-4">
               <input
                 type="email"
+                name="email"
                 className="form-control"
                 id="email2"
                 aria-describedby="emailHelp"
                 placeholder="Email"
                 autoComplete="true"
+                onChange={handleChangeRegister}
                 required
               />
             </div>
             <div className="form-group mb-4">
               <input
                 type="text"
+                name="username"
                 className="form-control"
                 id="name2"
                 aria-describedby="name"
                 placeholder="Nombre"
                 autoComplete="true"
+                onChange={handleChangeRegister}
                 required
               />
             </div>
             <div className="form-group">
               <input
                 type="password"
+                name="password"
                 className="form-control"
                 id="password2"
                 placeholder="Password"
                 autoComplete="true"
+                onChange={handleChangeRegister}
                 required
               />
             </div>
             <div className="d-flex justify-content-center p-4">
               <button
-                type="submit"
+                type="button"
                 className="border border-dark text-dark bg-transparent rounded-2 p-2 w-100 pt-2 pb-2"
+                onClick={handleRegister}
               >
                 Registrarme
               </button>

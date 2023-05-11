@@ -33,6 +33,16 @@ const Navegacion = ({ usuario, loginAuth }) => {
             </button>
             <ul className={display ? "navbar-nav display" : "navbar-nav"}>
               <li className="nav-item me-3">
+                <Link
+                  href={"/descargas/adaptado-escuela.pdf"}
+                  className="nav-link"
+                >
+                  <a className="nav-link" target="_blank">
+                    Manual de usuario
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item me-3">
                 <Link href={"/docentes"} className="nav-link">
                   <a className="nav-link">Recursos</a>
                 </Link>

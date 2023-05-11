@@ -150,7 +150,7 @@ const Listado = ({ nuevoAlumno }) => {
               seleccionBuscador.nombre !== "todos" && (
                 <li
                   className="list-group-item m-2 shadow-sm rounded lihover"
-                  key={index}
+                  key={"000"}
                 >
                   <div className="card-body">
                     <div className="row justify-content-center align-items-center ">

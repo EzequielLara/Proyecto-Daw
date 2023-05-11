@@ -1,37 +1,116 @@
+// import { MongoClient } from "mongodb";
+// import jwt from "jsonwebtoken";
+// import { serialize } from "cookie";
+
+// export default async function loginHandler(req, res) {
+//   const { email, password } = req.body;
+
+//   const client = await MongoClient.connect(process.env.CONEXION_DB);
+//   client.connect((err) => {
+//     if (err) {
+//       return { Error: "Error al conectarse a la base de datos" };
+//     }
+//     console.log("Conectado a la base de datos");
+//   });
+//   const db = client.db("vocablo");
+//   const collection = db.collection("usuarios");
+
+//   try {
+//     switch (req.method) {
+//       case "POST":
+//         const usuarioExistente = await collection.findOne({ email, password });
+//         console.log("usuario", usuarioExistente);
+//         if (
+//           usuarioExistente !== undefined &&
+//           usuarioExistente.email === email &&
+//           usuarioExistente.password === password
+//         ) {
+//           //generar un token jwt
+//           const token = jwt.sign(
+//             {
+//               email: usuarioExistente.email,
+//               username: usuarioExistente.username,
+//               exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 30,
+//             },
+//             process.env.SECRET_JWT
+//           );
+//           // para no enviar el token directamente y sea facilmente identificable
+//           // mejor serializarlo antes (proceso de convertir un objeto en una secuencia de bytes para almacenarlo)
+//           const serialized = serialize("myTokenName", token, {
+//             //este tercer valor del metodo serialize no es obligatorio
+//             //cuando se esté en producción cambiar la variable NODE_ENV del archivo .env.local por 'production'
+//             httpOnly: true,
+//             secure: process.env.NODE_ENV === "production",
+//             sameSite: "strict",
+//             maxAge: 1000 * 60 * 60 * 24 * 30,
+//             path: "/",
+//           });
+//           res.setHeader("Set-Cookie", serialized);
+//           return res.status(200).json({ exito: "login satisfactorio" });
+//         } else {
+//           res.status(401).json({ error: "usuario o contraseña erróneo" });
+//         }
+
+//       default:
+//         return { Error: "Método HTTP no permitido" };
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return { Error: "Error en la conexión con la base de datos" };
+//   } finally {
+//     await client.close();
+//   }
+//  }
+import { MongoClient } from "mongodb";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
-import crudUsuarios from "../../../bbdd/crudUsuarios";
 
-export default function loginHandler(req, res) {
+export default async function loginHandler(req, res) {
   const { email, password } = req.body;
-  const usuario = crudUsuarios(req, res)
-    .then((e) => {
-      if (e.email === email && e.password === password) {
-        //generar un token jwt
-        const token = jwt.sign(
-          {
-            email: e.email,
-            username: e.username,
-            exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 30,
-          },
-          process.env.SECRET_JWT
-        );
-        // para no enviar el token directamente y sea facilmente identificable
-        // mejor serializarlo antes (proceso de convertir un objeto en una secuencia de bytes para almacenarlo)
-        const serialized = serialize("myTokenName", token, {
-          //este tercer valor del metodo serialize no es obligatorio
-          //cuando se esté en producción cambiar la variable NODE_ENV del archivo .env.local por 'production'
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "strict",
-          maxAge: 1000 * 60 * 60 * 24 * 30,
-          path: "/",
-        });
-        res.setHeader("Set-Cookie", serialized);
-        return res.status(200).json({ exito: "login satisfactorio" });
-      }
-    })
-    .catch((e) =>
-      res.status(401).json({ error: "Email o Password no válidos" })
-    );
+  const client = await MongoClient.connect(process.env.CONEXION_DB);
+
+  try {
+    const db = client.db("vocablo");
+    const collection = db.collection("usuarios");
+
+    switch (req.method) {
+      case "POST":
+        const usuarioExistente = await collection.findOne({ email });
+
+        if (!usuarioExistente || usuarioExistente.password !== password) {
+          return res.status(401).json({ error: "email o password incorrecto" });
+        } else {
+          const token = jwt.sign(
+            {
+              email: usuarioExistente.email,
+              username: usuarioExistente.username,
+              exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 30,
+            },
+            process.env.SECRET_JWT
+          );
+          const serialized = serialize("myTokenName", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 1000 * 60 * 60 * 24 * 30,
+            path: "/",
+          });
+
+          res.setHeader("Set-Cookie", serialized);
+          return res.status(200).json({ exito: "login satisfactorio" });
+        }
+
+      default:
+        return res.status(405).json({ error: "Método HTTP no permitido" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ error: "Error en la conexión con la base de datos" });
+  } finally {
+    if (client) {
+      await client.close();
+    }
+  }
 }

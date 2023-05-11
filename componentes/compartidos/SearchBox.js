@@ -66,9 +66,9 @@ const SearchBox = ({ suggestions, setSeleccion, cambiarPrimeraPagina }) => {
             >
               Lista completa
             </li>
-            {filteredSuggestions.map((suggestion) => (
+            {filteredSuggestions.map((suggestion, index) => (
               <li
-                key={suggestion._id}
+                key={index}
                 onClick={() => {
                   setSeleccion(suggestion);
                   onSuggestionClick(suggestion.nombre);

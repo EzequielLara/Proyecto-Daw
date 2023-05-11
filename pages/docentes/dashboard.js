@@ -123,8 +123,9 @@ const Dashboard = () => {
               </div>
               <div className="row">
                 {valueAlumno !== "Alumno" ? (
-                  <h4 className="m-auto text-center mb-5 text-capitalize text-bg-light p-3 w-75 text-dark">
-                    {valueAlumno}
+                  <h4 className="m-auto text-center mb-5 text-bg-light p-3 w-75 text-dark">
+                    Resultados de{" "}
+                    <span className="text-capitalize">{valueAlumno}</span>
                   </h4>
                 ) : (
                   <h4 className="text-center mb-5">Seleccione un alumno</h4>

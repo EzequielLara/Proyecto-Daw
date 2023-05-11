@@ -1,11 +1,10 @@
 import { MongoClient } from "mongodb";
 
-const crudUsuarios = async (req, res) => {
+const getUsuario = async (req, res) => {
   const client = await MongoClient.connect(process.env.CONEXION_DB);
   client.connect((err) => {
     if (err) {
-      console.log("Error al conectarse a la base de datos", err);
-      return;
+      return { Error: "Error al conectarse a la base de datos" };
     }
     console.log("Conectado a la base de datos");
   });
@@ -20,13 +19,13 @@ const crudUsuarios = async (req, res) => {
         return usuarioExistente;
 
       default:
-        return "Método HTTP no permitido";
+        return { Error: "Método HTTP no permitido" };
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send("Error en la conexión con la base de datos");
+    return { Error: "Error en la conexión con la base de datos" };
   } finally {
     await client.close();
   }
 };
-export default crudUsuarios;
+export default getUsuario;
