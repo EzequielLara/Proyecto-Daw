@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
+
 export default function Prueba() {
   const router = useRouter();
 

@@ -3,12 +3,16 @@ import Layout from "../../componentes/layouts/Layout";
 import Navegacion from "../../componentes/navegacion/Navegacion";
 import Spinner from "../../componentes/compartidos/Spinner";
 import { Suspense } from "react";
+import { Usuario } from "../../contexts/contextUsuario";
+import { useContext } from "react";
+import { useRouter } from "next/router";
 
 const Evaluacion = () => {
   // const [alumnos, setAlumnos] = useState([]);
   // const [cursos, setCursos] = useState(["Primero", "Segundo", "Tercero"]);
   // const [grupos, setGrupos] = useState(["A", "B", "C"]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   // const [seleccionCurso, setSeleccionCurso] = useState(false);
   // const [seleccionGrupo, setSeleccionGrupo] = useState(false);
@@ -45,13 +49,22 @@ const Evaluacion = () => {
   //   }
   // }, [valueAlumno, valueCurso, valueGrupo]);
 
+  const { datos, setDatos } = useContext(Usuario);
+
+  useEffect(() => {
+    if (datos === undefined || datos === null) {
+      router.push("/signin");
+    }
+  }, []);
+
   return (
     <>
-      <Layout title="docente | evaluación">
-        <Navegacion usuario={"prueba"}></Navegacion>
-        <main>
-          <h3 className="m-3 title mb-5">Evaluación Inicial</h3>
-          {/* {!loading ? (
+      {datos && (
+        <Layout title="docente | evaluación">
+          <Navegacion usuario={datos.usuario}></Navegacion>
+          <main>
+            <h3 className="m-3 title mb-5">Evaluación Inicial</h3>
+            {/* {!loading ? (
             <div className="m-5">
               <Suspense fallback={<div>Cargando...</div>}>
                 <Spinner />
@@ -131,12 +144,13 @@ const Evaluacion = () => {
               </div>
             </div>
           )} */}
-          <div className="row">
-            <div className="col-md-4 col-sm-12">Columna 1</div>
-            <div className="col">Columna 2</div>
-          </div>
-        </main>
-      </Layout>
+            <div className="row">
+              <div className="col-md-4 col-sm-12">Columna 1</div>
+              <div className="col">Columna 2</div>
+            </div>
+          </main>
+        </Layout>
+      )}
       <style>{`
          .title{
             margin-bottom:60px;

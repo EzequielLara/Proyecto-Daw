@@ -4,7 +4,14 @@ import Layout from "../../componentes/layouts/Layout";
 import ModalAlumno from "../../componentes/modales/ModalAlumno";
 import Navegacion from "../../componentes/navegacion/Navegacion";
 
+import { useContext, useEffect } from "react";
+import { Usuario } from "../../contexts/contextUsuario";
+import { useRouter } from "next/router";
+
 const Alumnos = () => {
+  const { datos, setDatos } = useContext(Usuario);
+  const router = useRouter();
+
   const [modal, setModal] = useState(true);
   const [animarModal, setAnimarModal] = useState(true);
   const [alumnos, setAlumnos] = useState([]);
@@ -21,26 +28,35 @@ const Alumnos = () => {
   const cambiarAnimarModal = () => {
     setAnimarModal(!modal);
   };
+  useEffect(() => {
+    if (datos === undefined || datos === null) {
+      router.push("/signin");
+    }
+  }, []);
 
   return (
-    <Layout title="docente | alumnos">
-      <Navegacion usuario={"prueba"}></Navegacion>
-      <main>
-        {modal ? (
-          <Listado nuevoAlumno={nuevoAlumno}></Listado>
-        ) : (
-          <ModalAlumno
-            cambiarModal={cambiarModal}
-            animarModal={animarModal}
-            setAnimarModal={cambiarAnimarModal}
-            alumnos={alumnos}
-            alumnoEditar={alumnoEditar}
-            setAlumnoEditar={setAlumnoEditar}
-            setAlumnos={setAlumnos}
-          ></ModalAlumno>
-        )}
-      </main>
-    </Layout>
+    <>
+      {datos && (
+        <Layout title="docente | alumnos">
+          <Navegacion usuario={datos.usuario}></Navegacion>
+          <main>
+            {modal ? (
+              <Listado nuevoAlumno={nuevoAlumno}></Listado>
+            ) : (
+              <ModalAlumno
+                cambiarModal={cambiarModal}
+                animarModal={animarModal}
+                setAnimarModal={cambiarAnimarModal}
+                alumnos={alumnos}
+                alumnoEditar={alumnoEditar}
+                setAlumnoEditar={setAlumnoEditar}
+                setAlumnos={setAlumnos}
+              ></ModalAlumno>
+            )}
+          </main>
+        </Layout>
+      )}
+    </>
   );
 };
 

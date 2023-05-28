@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-export const Configuracion = createContext(null);
+export const Configuracion = createContext();
 
 function Context({ children }) {
   const [datos, setDatos] = useState({

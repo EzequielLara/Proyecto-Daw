@@ -1,12 +1,24 @@
 import Layout from "../../componentes/layouts/Layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navegacion from "../../componentes/navegacion/Navegacion";
 import ModalRecurso from "../../componentes/modales/ModalRecurso";
 import { getSession } from "next-auth/react";
 import { verify } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
 
+import { Usuario } from "../../contexts/contextUsuario";
+import { useContext } from "react";
+
 const Home = ({ usuario, loginAuth }) => {
+  const { datos, setDatos } = useContext(Usuario);
+
+  useEffect(() => {
+    setDatos({
+      usuario: usuario,
+      loginAuth: loginAuth,
+    });
+  }, []);
+
   const [recursoSeleccionado, setRecursoSeleccionado] = useState("");
   const [modal, setModal] = useState(false);
   const [seleccion, setSeleccion] = useState({});

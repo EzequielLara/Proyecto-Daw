@@ -21,9 +21,6 @@ const Formulario = ({ providers }) => {
   // Estados para controlar cual de los dos formularios se mostrará
   const [iniciarSesion, setIniciarSesion] = useState(false);
 
-  //Estado para controlar si la validación del formulario es satisfactoria
-  const [validacionFormulario, setValidacionFormulario] = useState(false);
-
   //Errores al validar
   const [error, setError] = useState(null);
 

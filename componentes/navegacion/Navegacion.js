@@ -57,7 +57,7 @@ const Navegacion = ({ usuario, loginAuth }) => {
               <li className="nav-item me-3">
                 <Link href={"/docentes/grupos"}>
                   <a className="nav-link" href="#">
-                    Grupos
+                    Cursos
                   </a>
                 </Link>
               </li>
