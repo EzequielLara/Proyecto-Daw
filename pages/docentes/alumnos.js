@@ -38,7 +38,10 @@ const Alumnos = () => {
     <>
       {datos && (
         <Layout title="docente | alumnos">
-          <Navegacion usuario={datos.usuario}></Navegacion>
+          <Navegacion
+            usuario={datos.usuario}
+            loginAuth={datos.loginAuth}
+          ></Navegacion>
           <main>
             {modal ? (
               <Listado nuevoAlumno={nuevoAlumno}></Listado>

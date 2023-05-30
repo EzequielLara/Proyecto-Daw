@@ -18,7 +18,10 @@ const Grupos = () => {
     <>
       {datos && (
         <Layout title="docentes | cursos">
-          <Navegacion usuario={datos.usuario}></Navegacion>
+          <Navegacion
+            usuario={datos.usuario}
+            loginAuth={datos.loginAuth}
+          ></Navegacion>
           <main>
             <h1>Cursos</h1>
           </main>
