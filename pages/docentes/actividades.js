@@ -61,7 +61,10 @@ const Evaluacion = () => {
     <>
       {datos && (
         <Layout title="docente | evaluación">
-          <Navegacion usuario={datos.usuario}></Navegacion>
+          <Navegacion
+            usuario={datos.usuario}
+            loginAuth={datos.loginAuth}
+          ></Navegacion>
           <main>
             <h3 className="m-3 title mb-5">Evaluación Inicial</h3>
             {/* {!loading ? (

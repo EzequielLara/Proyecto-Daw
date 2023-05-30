@@ -64,7 +64,10 @@ const Dashboard = () => {
     <>
       {datos && (
         <Layout title="docente | estadísticas">
-          <Navegacion usuario={datos.usuario}></Navegacion>
+          <Navegacion
+            usuario={datos.usuario}
+            loginAuth={datos.loginAuth}
+          ></Navegacion>
 
           <main>
             {loading ? (
