@@ -7,19 +7,13 @@ import { useRouter } from "next/router";
 
 const Grupos = () => {
   const { datos, setDatos } = useContext(Usuario);
-  const router = useRouter();
 
-  useEffect(() => {
-    if (datos === undefined || datos === null) {
-      router.push("/signin");
-    }
-  }, []);
   return (
     <>
       {datos && (
         <Layout title="docentes | cursos">
           <Navegacion
-            usuario={datos.usuario}
+            usuario={datos.username}
             loginAuth={datos.loginAuth}
           ></Navegacion>
           <main>

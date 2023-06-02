@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import SearchBox from "./compartidos/SearchBox";
 import Spinner from "../componentes/compartidos/Spinner";
 import { Suspense } from "react";
+import { Usuario } from "../contexts/contextUsuario";
+import { useContext } from "react";
 
 const Listado = ({ nuevoAlumno }) => {
+  const { datos, setDatos } = useContext(Usuario);
+
   const [alumnos, setAlumnos] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -27,10 +31,13 @@ const Listado = ({ nuevoAlumno }) => {
 
   useEffect(() => {
     const fetchDatos = async () => {
-      const response = await fetch("/api/alumnos");
+      const response = await fetch(`/api/alumnos?username=${datos.username}`, {
+        method: "GET",
+      });
       const data = await response.json();
-      setAlumnos(data);
-      const totalPaginas = Math.ceil(data.length / numElementosPorPagina);
+      setDatos(data);
+      setAlumnos(data.alumnos);
+      const totalPaginas = Math.ceil(alumnos.length / numElementosPorPagina);
       setNumTotalPaginas(totalPaginas);
       setLoading(false);
     };

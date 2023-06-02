@@ -9,12 +9,13 @@ import jwt from "jsonwebtoken";
 import { Usuario } from "../../contexts/contextUsuario";
 import { useContext } from "react";
 
-const Home = ({ usuario, loginAuth }) => {
+const Home = ({ username, email, loginAuth }) => {
   const { datos, setDatos } = useContext(Usuario);
 
   useEffect(() => {
     setDatos({
-      usuario: usuario,
+      username: username,
+      email: email,
       loginAuth: loginAuth,
     });
   }, []);
@@ -65,7 +66,7 @@ const Home = ({ usuario, loginAuth }) => {
   return (
     <>
       <Layout title="docentes | recursos">
-        <Navegacion usuario={usuario} loginAuth={loginAuth}></Navegacion>
+        <Navegacion usuario={username} loginAuth={loginAuth}></Navegacion>
         <main>
           {!modal ? (
             <>
@@ -179,7 +180,7 @@ export const getServerSideProps = async (context) => {
       verify(myTokenName, process.env.SECRET_JWT);
       return {
         props: {
-          usuario: jwt.decode(myTokenName).username,
+          username: jwt.decode(myTokenName).username,
           loginAuth: false,
         },
       };
@@ -194,7 +195,8 @@ export const getServerSideProps = async (context) => {
   }
   return {
     props: {
-      usuario: usuario.user.name,
+      username: usuario.user.name,
+      email: usuario.user.email,
       loginAuth: true,
     },
   };

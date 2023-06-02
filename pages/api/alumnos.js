@@ -16,10 +16,13 @@ export default async function alumnos(req, res) {
     switch (req.method) {
       case "GET":
         const usuarios = await collection.findOne({
-          username: "Administrador",
+          username: req.query.username,
         });
-
-        res.status(200).json(usuarios.alumnos);
+        console.log("valor de usuarios", usuarios);
+        if (usuarios === undefined || usuarios === null) {
+          res.status(500).json({ error: "No existe el usuario" });
+        }
+        res.status(200).json(usuarios);
         break;
       case "POST":
         const { nombre, apellidos, curso, grupo } = req.body;

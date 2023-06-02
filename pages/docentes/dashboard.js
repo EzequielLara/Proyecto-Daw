@@ -15,8 +15,8 @@ const Dashboard = () => {
   const router = useRouter();
 
   const [alumnos, setAlumnos] = useState([]);
-  const [cursos, setCursos] = useState(["Primero", "Segundo", "Tercero"]);
-  const [grupos, setGrupos] = useState(["A", "B", "C"]);
+  const [cursos, setCursos] = useState([]);
+  const [grupos, setGrupos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [seleccionCurso, setSeleccionCurso] = useState(false);
@@ -27,21 +27,47 @@ const Dashboard = () => {
   const [valueAlumno, setValueAlumno] = useState("Alumno");
 
   useEffect(() => {
-    if (datos === undefined || datos === null) {
-      router.push("/signin");
+    // Guardar los datos en el Local Storage
+    if (datos != null && datos != undefined) {
+      localStorage.setItem("datos", JSON.stringify(datos));
     }
   }, []);
 
   useEffect(() => {
-    const fetchDatos = async () => {
-      const response = await fetch("/api/alumnos");
-      const data = await response.json().catch((e) => {
+    // Recuperar los datos del Local Storage
+    if (datos === null || datos === undefined) {
+      const storedData = localStorage.getItem("datos");
+      if (storedData) {
+        const data = JSON.parse(storedData);
+        setDatos(data);
+        setCursos(data.cursos);
+        setGrupos(data.grupos);
+        setAlumnos(data.alumnos);
         setLoading(false);
-      });
-      setAlumnos(data);
-      setLoading(false);
-    };
-    fetchDatos();
+        console.log("ALUMNOS", alumnos);
+      }
+    } else {
+      const fetchDatos = async () => {
+        const response = await fetch(
+          `/api/alumnos?username=${datos.username}`,
+          {
+            method: "GET",
+          }
+        );
+        const data = await response.json().catch((e) => {
+          setLoading(false);
+        });
+        // Guardar los datos en el Local Storage
+        localStorage.setItem("datos", JSON.stringify(datos));
+        setDatos(data);
+        setCursos(data.cursos);
+        setGrupos(data.grupos);
+        setAlumnos(data.alumnos);
+        setLoading(false);
+        console.log("Alumnosss:", alumnos);
+      };
+      fetchDatos();
+    }
   }, []);
 
   useEffect(() => {
@@ -65,7 +91,7 @@ const Dashboard = () => {
       {datos && (
         <Layout title="docente | estadísticas">
           <Navegacion
-            usuario={datos.usuario}
+            usuario={datos.username}
             loginAuth={datos.loginAuth}
           ></Navegacion>
 
@@ -92,8 +118,8 @@ const Dashboard = () => {
                       {cursos &&
                         cursos.length > 0 &&
                         cursos.map((curso, index) => (
-                          <option key={index} value={curso}>
-                            {curso}
+                          <option key={"11" + index} value={curso}>
+                            {curso.nombreCurso}
                           </option>
                         ))}
                     </select>
@@ -112,7 +138,7 @@ const Dashboard = () => {
                       {grupos &&
                         grupos.length > 0 &&
                         grupos.map((grupo, index) => (
-                          <option key={index} value={grupo}>
+                          <option key={"00" + index} value={grupo}>
                             {grupo}
                           </option>
                         ))}

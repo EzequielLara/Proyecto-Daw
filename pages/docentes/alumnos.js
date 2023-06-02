@@ -28,18 +28,13 @@ const Alumnos = () => {
   const cambiarAnimarModal = () => {
     setAnimarModal(!modal);
   };
-  useEffect(() => {
-    if (datos === undefined || datos === null) {
-      router.push("/signin");
-    }
-  }, []);
 
   return (
     <>
       {datos && (
         <Layout title="docente | alumnos">
           <Navegacion
-            usuario={datos.usuario}
+            usuario={datos.username}
             loginAuth={datos.loginAuth}
           ></Navegacion>
           <main>
