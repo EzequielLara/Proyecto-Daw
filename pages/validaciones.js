@@ -1,6 +1,6 @@
-export function validarNombreYContrasena(nombre, contrasena) {
+export function validarNombreYContrasena(nombre, contrasena, email) {
   // Validar el campo de nombre
-  if (nombre.length <= 4) {
+  if (nombre.length < 4) {
     return {
       status: 400,
       mensaje: "El nombre debe contener más de cuatro caracteres.",
@@ -18,6 +18,15 @@ export function validarNombreYContrasena(nombre, contrasena) {
   // Validar que la contraseña contenga al menos un dígito y un símbolo
   const digitos = /[0-9]/;
   const simbolos = /[$-/:-?{-~!"^_`\[\]]/;
+  const arroba = /@.+/;
+
+  if (!arroba.test(email)) {
+    return {
+      status: 400,
+      mensaje:
+        "El correo electrónico debe contener el símbolo '@' seguido de texto",
+    };
+  }
 
   if (!digitos.test(contrasena) || !simbolos.test(contrasena)) {
     return {

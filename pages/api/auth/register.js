@@ -4,8 +4,9 @@ import { validarNombreYContrasena } from "../../validaciones";
 export default async function loginHandler(req, res) {
   const nombre = req.body.username;
   const contrasena = req.body.password;
+  const email = req.body.email;
 
-  const error = validarNombreYContrasena(nombre, contrasena);
+  const error = validarNombreYContrasena(nombre, contrasena, email);
   if (error) {
     res.status(error.status).json({ error: error.mensaje });
   } else {

@@ -57,6 +57,10 @@ const Formulario = ({ providers }) => {
 
     if (usuarioValido && usuarioValido.status === 200) {
       setError(null);
+      setDatosUsuarioSesion({
+        email: datosUsuarioRegistro.email,
+        password: datosUsuarioRegistro.password,
+      });
       setIniciarSesion(!iniciarSesion);
     }
   };
@@ -124,6 +128,7 @@ const Formulario = ({ providers }) => {
               <input
                 name="email"
                 type="email"
+                value={datosUsuarioSesion.email}
                 className="form-control"
                 id="email"
                 aria-describedby="emailHelp"
@@ -137,6 +142,7 @@ const Formulario = ({ providers }) => {
               <input
                 name="password"
                 type="password"
+                value={datosUsuarioSesion.password}
                 className="form-control"
                 id="password"
                 placeholder="Password"
@@ -159,6 +165,13 @@ const Formulario = ({ providers }) => {
             <button
               className={styles.boton_registro}
               onClick={() => {
+                if (!iniciarSesion) {
+                  setDatosUsuarioRegistro({
+                    email: datosUsuarioSesion.email,
+                    username: "",
+                    password: datosUsuarioSesion.password,
+                  });
+                }
                 setIniciarSesion(!iniciarSesion);
               }}
             >
@@ -178,6 +191,7 @@ const Formulario = ({ providers }) => {
             <div className="form-group mb-4">
               <input
                 type="email"
+                value={datosUsuarioRegistro.email}
                 name="email"
                 className="form-control"
                 id="email2"
@@ -192,6 +206,7 @@ const Formulario = ({ providers }) => {
               <input
                 type="text"
                 name="username"
+                value={datosUsuarioRegistro.username}
                 className="form-control"
                 id="name2"
                 aria-describedby="name"
@@ -205,6 +220,7 @@ const Formulario = ({ providers }) => {
               <input
                 type="password"
                 name="password"
+                value={datosUsuarioRegistro.password}
                 className="form-control"
                 id="password2"
                 placeholder="Password"
