@@ -51,7 +51,10 @@ const Formulario = ({ providers }) => {
     e.preventDefault();
     const usuarioValido = await axios
       .post("/api/auth/register", datosUsuarioRegistro)
-      .catch((e) => setError(e.response.data.error));
+      .catch((e) => {
+        setError(e.response.data.error);
+      });
+
     if (usuarioValido && usuarioValido.status === 200) {
       setError(null);
       setIniciarSesion(!iniciarSesion);
