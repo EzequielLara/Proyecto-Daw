@@ -1,5 +1,10 @@
 import { MongoClient } from "mongodb";
 
+function filtrarDatos(data) {
+  const { password, ...datosFiltrados } = data;
+  return datosFiltrados;
+}
+
 export default async function alumnos(req, res) {
   const client = await MongoClient.connect(process.env.CONEXION_DB);
   client.connect((err) => {
@@ -18,11 +23,12 @@ export default async function alumnos(req, res) {
         const usuarios = await collection.findOne({
           username: req.query.username,
         });
-        console.log("valor de usuarios", usuarios);
         if (usuarios === undefined || usuarios === null) {
           res.status(500).json({ error: "No existe el usuario" });
         }
-        res.status(200).json(usuarios);
+        const datosfiltrados = filtrarDatos(usuarios);
+        console.log("valor de usuarios", datosfiltrados);
+        res.status(200).json(datosfiltrados);
         break;
       case "POST":
         const { nombre, apellidos, curso, grupo } = req.body;

@@ -16,6 +16,7 @@ const Dashboard = () => {
 
   const [alumnos, setAlumnos] = useState([]);
   const [cursos, setCursos] = useState([]);
+  const [cursoSeleccionado, setCursoSeleccionado] = useState("");
   const [grupos, setGrupos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -40,11 +41,8 @@ const Dashboard = () => {
       if (storedData) {
         const data = JSON.parse(storedData);
         setDatos(data);
-        setCursos(data.cursos);
-        setGrupos(data.grupos);
-        setAlumnos(data.alumnos);
+        obtenerNombreCursos(data);
         setLoading(false);
-        console.log("ALUMNOS", alumnos);
       }
     } else {
       const fetchDatos = async () => {
@@ -60,11 +58,8 @@ const Dashboard = () => {
         // Guardar los datos en el Local Storage
         localStorage.setItem("datos", JSON.stringify(datos));
         setDatos(data);
-        setCursos(data.cursos);
-        setGrupos(data.grupos);
-        setAlumnos(data.alumnos);
+        obtenerNombreCursos(data);
         setLoading(false);
-        console.log("Alumnosss:", alumnos);
       };
       fetchDatos();
     }
@@ -85,6 +80,29 @@ const Dashboard = () => {
       setSeleccionCurso(true);
     }
   }, [valueAlumno, valueCurso, valueGrupo]);
+
+  function obtenerNombreCursos(data) {
+    const cursosArray = data.cursos.map((curso) => curso.nombreCurso);
+    setCursos(cursosArray);
+  }
+  function obtenerGruposPorCurso(data, nombreCurso) {
+    const cursoEncontrado = data.cursos.find(
+      (curso) => curso.nombreCurso === nombreCurso
+    );
+
+    if (cursoEncontrado) {
+      setGrupos(cursoEncontrado.grupos);
+    } else {
+      setGrupos([]);
+    }
+  }
+  function obtenerAlumnosPorCursoYGrupo(data, nombreCurso, grupo) {
+    const alumnosFiltrados = data.alumnos.filter((alumno) => {
+      return alumno.curso === nombreCurso && alumno.grupo === grupo;
+    });
+
+    setAlumnos(alumnosFiltrados);
+  }
 
   return (
     <>
@@ -112,14 +130,16 @@ const Dashboard = () => {
                       value={valueCurso}
                       onChange={(e) => {
                         setValueCurso(e.target.value);
+                        obtenerGruposPorCurso(datos, e.target.value);
+                        setCursoSeleccionado(e.target.value);
                       }}
                     >
                       <option value="Curso">Curso</option>
                       {cursos &&
                         cursos.length > 0 &&
                         cursos.map((curso, index) => (
-                          <option key={"11" + index} value={curso}>
-                            {curso.nombreCurso}
+                          <option key={index} value={curso}>
+                            {curso}
                           </option>
                         ))}
                     </select>
@@ -131,6 +151,11 @@ const Dashboard = () => {
                       value={valueGrupo}
                       onChange={(e) => {
                         setValueGrupo(e.target.value);
+                        obtenerAlumnosPorCursoYGrupo(
+                          datos,
+                          cursoSeleccionado,
+                          e.target.value
+                        );
                       }}
                       disabled={!seleccionCurso}
                     >
@@ -138,7 +163,7 @@ const Dashboard = () => {
                       {grupos &&
                         grupos.length > 0 &&
                         grupos.map((grupo, index) => (
-                          <option key={"00" + index} value={grupo}>
+                          <option key={index} value={grupo}>
                             {grupo}
                           </option>
                         ))}
@@ -158,7 +183,7 @@ const Dashboard = () => {
                       {alumnos &&
                         alumnos.length > 0 &&
                         alumnos.map((alumno) => (
-                          <option key={alumno._id} value={alumno.nombre}>
+                          <option key={alumno.apellidos} value={alumno.nombre}>
                             {alumno.nombre} {alumno.apellidos}
                           </option>
                         ))}

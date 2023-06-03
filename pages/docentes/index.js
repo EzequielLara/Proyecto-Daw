@@ -20,44 +20,20 @@ const Home = ({ username, email, loginAuth }) => {
     });
   }, []);
 
+  useEffect(() => {
+    const fetchDatos = async () => {
+      const response = await fetch("/api/metodologias");
+      const data = await response.json();
+      setMetodologias(data);
+    };
+    fetchDatos();
+  }, []);
+
   const [recursoSeleccionado, setRecursoSeleccionado] = useState("");
   const [modal, setModal] = useState(false);
   const [seleccion, setSeleccion] = useState({});
   const { recursos, recursosColectivos } = seleccion;
-  const [metodologias, setMetodologias] = useState([
-    {
-      metodologia: "Doman",
-      recursosColectivos: ["recurso 1", "recurso 2"],
-      recursos: ["recurso 1", "recurso 2", "recurso 3", "recurso 4"],
-    },
-    {
-      metodologia: "Silábico",
-      recursosColectivos: ["recurso 1"],
-      recursos: ["recurso 1", "recurso 2", "recurso 3"],
-    },
-    {
-      metodologia: "Alfabético",
-      recursosColectivos: ["recurso 1", "recurso 2", "recurso 3"],
-      recursos: ["recurso 1", "recurso 2", "recurso 3", "recurso 4"],
-    },
-    {
-      metodologia: "Fonético",
-      recursosColectivos: ["recurso 1", "recurso 2"],
-      recursos: ["recurso 1"],
-    },
-    {
-      metodologia: "Global",
-      recursosColectivos: ["recurso 1", "recurso 2"],
-      recursos: [
-        "recurso 1",
-        "recurso 2",
-        "recurso 3",
-        "recurso 4",
-        "recurso 5",
-        "recurso 6",
-      ],
-    },
-  ]);
+  const [metodologias, setMetodologias] = useState();
 
   const cambiarModal = () => {
     setModal(!modal);

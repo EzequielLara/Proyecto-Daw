@@ -37,7 +37,9 @@ const Listado = ({ nuevoAlumno }) => {
       const data = await response.json();
       setDatos(data);
       setAlumnos(data.alumnos);
-      const totalPaginas = Math.ceil(alumnos.length / numElementosPorPagina);
+      const totalPaginas = Math.ceil(
+        data.alumnos.length / numElementosPorPagina
+      );
       setNumTotalPaginas(totalPaginas);
       setLoading(false);
     };
