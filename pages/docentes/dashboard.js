@@ -227,7 +227,7 @@ const Dashboard = () => {
                       <h4 className="p-3 text-center text-secondary">
                         Gráfico 2
                       </h4>
-                      <Radargrafico></Radargrafico>
+                      {/* <Radargrafico></Radargrafico> */}
                     </div>
                   </div>
                 </div>
