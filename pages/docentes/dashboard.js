@@ -219,7 +219,7 @@ const Dashboard = () => {
                       <h4 className="p-3 text-center text-secondary">
                         Gráfico 1
                       </h4>
-                      <Donut></Donut>
+                      {/* <Donut></Donut> */}
                     </div>
                   </div>
                   <div className="col-10 col-md-4 m-auto shadow-lg bg-white rounded mb-5">
