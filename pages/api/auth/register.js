@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { validarNombreYContrasena } from "../../validaciones";
+import validarNombreYContrasena from "../../validaciones";
 
 export default async function loginHandler(req, res) {
   const nombre = req.body.username;

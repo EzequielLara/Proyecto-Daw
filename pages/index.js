@@ -60,7 +60,12 @@ export default function Principal() {
             className="text-decoration-none text-dark"
           >
             <span className="p-2">¿Quieres participar?</span>
-            <Image src="/github-mark/github-mark.svg" width={30} height={30} />
+            <Image
+              src="/github-mark/github-mark.svg"
+              width={30}
+              height={30}
+              alt="logo github"
+            />
           </a>
         </footer>
       </div>

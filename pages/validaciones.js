@@ -1,4 +1,4 @@
-export function validarNombreYContrasena(nombre, contrasena, email) {
+export default function validarNombreYContrasena(nombre, contrasena, email) {
   // Validar el campo de nombre
   if (nombre.length < 4) {
     return {

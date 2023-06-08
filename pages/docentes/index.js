@@ -27,7 +27,7 @@ const Home = ({ username, email, loginAuth }) => {
       setMetodologias(data);
     };
     fetchDatos();
-  }, []);
+  }, [email, loginAuth, setDatos, username]);
 
   const [recursoSeleccionado, setRecursoSeleccionado] = useState("");
   const [modal, setModal] = useState(false);
