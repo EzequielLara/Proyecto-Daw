@@ -4,6 +4,7 @@ import Spinner from "../componentes/compartidos/Spinner";
 import { Suspense } from "react";
 import { Usuario } from "../contexts/contextUsuario";
 import { useContext } from "react";
+import Link from "next/link";
 
 const Listado = ({ nuevoAlumno }) => {
   const { datos, setDatos } = useContext(Usuario);
@@ -63,225 +64,247 @@ const Listado = ({ nuevoAlumno }) => {
 
   return (
     <>
-      <div className="container w-auto mt-5">
-        <div className="row justify-content-center align-items-center ">
-          <div className="col-3 ">
-            <h4 className="colorTexto">Alumnos</h4>
-          </div>
-          <div className="col-1 text-center">
-            <span
-              className="material-icons colorIcono"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Crear alumno nuevo"
-              onClick={() => {
-                nuevoAlumno({});
-              }}
-            >
-              person_add
-            </span>
-          </div>
-          <div className="col-8 text-end">
-            <SearchBox
-              suggestions={alumnos}
-              setSeleccion={setSeleccion}
-              cambiarPrimeraPagina={cambiarPrimeraPagina}
-            ></SearchBox>
-          </div>
+      {loading ? (
+        <div className="m-5">
+          <Suspense fallback={<div>Cargando...</div>}>
+            <Spinner />
+          </Suspense>
         </div>
-        <hr className="pb-4"></hr>
-        <ul className="list-group zindex ">
-          {(datosPaginados.length > 0 && !seleccionBuscador) ||
-          (seleccionBuscador && seleccionBuscador.nombre === "todos")
-            ? datosPaginados.map((alumno, index) => (
-                <li
-                  className="list-group-item m-2 shadow-sm rounded lihover"
-                  key={index}
-                >
-                  <div className="card-body">
-                    <div className="row justify-content-center align-items-center ">
-                      <div className="col-4  ps-4">
-                        <h5 className="card-title">{alumno.nombre}</h5>
-                        <p className="card-subtitle font-weight-light colorTexto">
-                          {alumno.apellidos}
-                        </p>
-                      </div>
-                      <div className="col-4  text-center">
-                        <small className="card-subtitle text-capitalize">
-                          {alumno.curso} - {alumno.grupo}
-                        </small>
-                      </div>
-                      <div className="col-4">
-                        <div className="m-auto text-end pe-4">
-                          <button
-                            type="button"
-                            className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Ver mas información"
-                          >
-                            info
-                          </button>
-                          <button
-                            type="button"
-                            className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Editar cambios en alumno"
-                            onClick={() => {
-                              nuevoAlumno({
-                                _id: alumno._id,
-                                nombre: alumno.nombre,
-                                apellidos: alumno.apellidos,
-                                curso: alumno.curso,
-                                grupo: alumno.grupo,
-                              });
-                            }}
-                          >
-                            edit
-                          </button>
-                          <button
-                            type="button"
-                            className="border-0 bg-transparent text-danger material-icons iconhover"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Eliminar alumno"
-                          >
-                            delete
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              ))
-            : seleccionBuscador &&
-              seleccionBuscador.nombre !== "todos" && (
-                <li
-                  className="list-group-item m-2 shadow-sm rounded lihover"
-                  key={"000"}
-                >
-                  <div className="card-body">
-                    <div className="row justify-content-center align-items-center ">
-                      <div className="col-4  ps-4">
-                        <h5 className="card-title">
-                          {seleccionBuscador.nombre}
-                        </h5>
-                        <p className="card-subtitle font-weight-light colorTexto">
-                          {seleccionBuscador.apellidos}
-                        </p>
-                      </div>
-                      <div className="col-4  text-center">
-                        <small className="card-subtitle text-capitalize">
-                          {seleccionBuscador.curso} - {seleccionBuscador.grupo}
-                        </small>
-                      </div>
-                      <div className="col-4">
-                        <div className="m-auto text-end pe-4">
-                          <button
-                            type="button"
-                            className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Ver mas información"
-                          >
-                            info
-                          </button>
-                          <button
-                            type="button"
-                            className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Editar cambios en alumno"
-                            onClick={() => {
-                              nuevoAlumno({
-                                _id: seleccionBuscador._id,
-                                nombre: seleccionBuscador.nombre,
-                                apellidos: seleccionBuscador.apellidos,
-                                curso: seleccionBuscador.curso,
-                                grupo: seleccionBuscador.grupo,
-                              });
-                            }}
-                          >
-                            edit
-                          </button>
-                          <button
-                            type="button"
-                            className="border-0 bg-transparent text-danger material-icons iconhover"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Eliminar alumno"
-                          >
-                            delete
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              )}
-        </ul>
-        {loading && (
-          <div className="m-5">
-            <Suspense fallback={<div>Cargando...</div>}>
-              <Spinner />
-            </Suspense>
+      ) : datos.cursos == undefined || datos.cursos.length == 0 ? (
+        <div
+          className="alert alert-warning text-center w-50 m-auto mt-5"
+          role="alert"
+        >
+          <p>
+            Antes de crear un listado de alumnos debes crear al menos un curso y
+            grupo
+          </p>
+          <Link href={"/docentes/grupos"}>
+            <a>Crear Curso</a>
+          </Link>
+        </div>
+      ) : (
+        <div className="container w-auto mt-5">
+          <div className="row justify-content-center align-items-center ">
+            <div className="col-3 ">
+              <h4 className="colorTexto">Alumnos</h4>
+            </div>
+            <div className="col-1 text-center">
+              <span
+                className="material-icons colorIcono"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Crear alumno nuevo"
+                onClick={() => {
+                  nuevoAlumno({});
+                }}
+              >
+                person_add
+              </span>
+            </div>
+            <div className="col-8 text-end">
+              <SearchBox
+                suggestions={alumnos}
+                setSeleccion={setSeleccion}
+                cambiarPrimeraPagina={cambiarPrimeraPagina}
+              ></SearchBox>
+            </div>
           </div>
-        )}
-        {alumnos && (
-          <div className="mt-4 ps-4">
-            <div className="row">
-              <div className="col-6">
-                Ver
-                <select
-                  id="n-enties"
-                  name="n-entries"
-                  className="m-2"
-                  onChange={(e) => {
-                    let numero = parseInt(e.target.value);
-                    setNumElementosPorPagina(numero);
-                    setPaginaActual(1);
-                  }}
-                >
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                </select>
-                resultados
-              </div>
-              <div className="col-6 text-end pe-5">
-                <div>
-                  <button
-                    className="border-0 bg-transparent flecha"
-                    disabled={paginaActual === 1}
-                    onClick={() => cambiarPagina("anterior")}
+          <hr className="pb-4"></hr>
+          <ul className="list-group zindex ">
+            {(datosPaginados.length > 0 && !seleccionBuscador) ||
+            (seleccionBuscador && seleccionBuscador.nombre === "todos")
+              ? datosPaginados.map((alumno, index) => (
+                  <li
+                    className="list-group-item m-2 shadow-sm rounded lihover"
+                    key={index}
                   >
-                    <img
-                      src="/arrow_circle_left.svg"
-                      href="botón izquierdo"
-                      width={35}
-                    ></img>
-                  </button>
-                  <span className="d-md-inline d-none">
-                    {paginaActual} de {numTotalPaginas}
-                  </span>
-                  <button
-                    className="border-0 bg-transparent flecha"
-                    disabled={paginaActual === numTotalPaginas}
-                    onClick={() => cambiarPagina("siguiente")}
+                    <div className="card-body">
+                      <div className="row justify-content-center align-items-center ">
+                        <div className="col-4  ps-4">
+                          <h5 className="card-title">{alumno.nombre}</h5>
+                          <p className="card-subtitle font-weight-light colorTexto">
+                            {alumno.apellidos}
+                          </p>
+                        </div>
+                        <div className="col-4  text-center">
+                          <small className="card-subtitle text-capitalize">
+                            {alumno.curso} - {alumno.grupo}
+                          </small>
+                        </div>
+                        <div className="col-4">
+                          <div className="m-auto text-end pe-4">
+                            <button
+                              type="button"
+                              className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Ver mas información"
+                            >
+                              info
+                            </button>
+                            <button
+                              type="button"
+                              className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Editar cambios en alumno"
+                              onClick={() => {
+                                nuevoAlumno({
+                                  _id: alumno._id,
+                                  nombre: alumno.nombre,
+                                  apellidos: alumno.apellidos,
+                                  curso: alumno.curso,
+                                  grupo: alumno.grupo,
+                                });
+                              }}
+                            >
+                              edit
+                            </button>
+                            <button
+                              type="button"
+                              className="border-0 bg-transparent text-danger material-icons iconhover"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Eliminar alumno"
+                            >
+                              delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ))
+              : seleccionBuscador &&
+                seleccionBuscador.nombre !== "todos" && (
+                  <li
+                    className="list-group-item m-2 shadow-sm rounded lihover"
+                    key={"000"}
                   >
-                    <img
-                      src="/arrow_circle_right.svg"
-                      href="botón izquierdo"
-                      width={35}
-                    ></img>
-                  </button>
+                    <div className="card-body">
+                      <div className="row justify-content-center align-items-center ">
+                        <div className="col-4  ps-4">
+                          <h5 className="card-title">
+                            {seleccionBuscador.nombre}
+                          </h5>
+                          <p className="card-subtitle font-weight-light colorTexto">
+                            {seleccionBuscador.apellidos}
+                          </p>
+                        </div>
+                        <div className="col-4  text-center">
+                          <small className="card-subtitle text-capitalize">
+                            {seleccionBuscador.curso} -{" "}
+                            {seleccionBuscador.grupo}
+                          </small>
+                        </div>
+                        <div className="col-4">
+                          <div className="m-auto text-end pe-4">
+                            <button
+                              type="button"
+                              className="border-0 bg-transparent text-secondary material-icons me-2 iconhover"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Ver mas información"
+                            >
+                              info
+                            </button>
+                            <button
+                              type="button"
+                              className="border-0 bg-transparent text-muted material-icons me-2 iconhover"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Editar cambios en alumno"
+                              onClick={() => {
+                                nuevoAlumno({
+                                  _id: seleccionBuscador._id,
+                                  nombre: seleccionBuscador.nombre,
+                                  apellidos: seleccionBuscador.apellidos,
+                                  curso: seleccionBuscador.curso,
+                                  grupo: seleccionBuscador.grupo,
+                                });
+                              }}
+                            >
+                              edit
+                            </button>
+                            <button
+                              type="button"
+                              className="border-0 bg-transparent text-danger material-icons iconhover"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Eliminar alumno"
+                            >
+                              delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                )}
+          </ul>
+          {loading && (
+            <div className="m-5">
+              <Suspense fallback={<div>Cargando...</div>}>
+                <Spinner />
+              </Suspense>
+            </div>
+          )}
+          {alumnos && (
+            <div className="mt-4 ps-4">
+              <div className="row">
+                <div className="col-6">
+                  Ver
+                  <select
+                    id="n-enties"
+                    name="n-entries"
+                    className="m-2"
+                    onChange={(e) => {
+                      let numero = parseInt(e.target.value);
+                      setNumElementosPorPagina(numero);
+                      setPaginaActual(1);
+                    }}
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                  </select>
+                  resultados
+                </div>
+                <div className="col-6 text-end pe-5">
+                  <div>
+                    <button
+                      className="border-0 bg-transparent flecha"
+                      disabled={paginaActual === 1}
+                      onClick={() => cambiarPagina("anterior")}
+                    >
+                      <img
+                        src="/arrow_circle_left.svg"
+                        href="botón izquierdo"
+                        width={35}
+                      ></img>
+                    </button>
+                    <span className="d-md-inline d-none">
+                      {paginaActual} de {numTotalPaginas}
+                    </span>
+                    <button
+                      className="border-0 bg-transparent flecha"
+                      disabled={paginaActual === numTotalPaginas}
+                      onClick={() => cambiarPagina("siguiente")}
+                    >
+                      <img
+                        src="/arrow_circle_right.svg"
+                        href="botón izquierdo"
+                        width={35}
+                      ></img>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
       <style>{`
          
             .lihover:hover{

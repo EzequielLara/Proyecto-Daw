@@ -7,6 +7,7 @@ import Navegacion from "../../componentes/navegacion/Navegacion";
 import { useContext, useEffect } from "react";
 import { Usuario } from "../../contexts/contextUsuario";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Alumnos = () => {
   const { datos, setDatos } = useContext(Usuario);

@@ -6,6 +6,7 @@ import Radargrafico from "../../componentes/dashboard/radargrafico";
 import Spinner from "../../componentes/compartidos/Spinner";
 import { Suspense } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import { useContext } from "react";
 import { Usuario } from "../../contexts/contextUsuario";
@@ -120,6 +121,20 @@ const Dashboard = () => {
                   <Spinner />
                 </Suspense>
               </div>
+            ) : datos.cursos == undefined || datos.cursos.length == 0 ? (
+              <div
+                className="alert alert-warning text-center w-50 m-auto mt-5"
+                role="alert"
+              >
+                <p>No hay estadisticas para mostrar.</p>
+                <p>
+                  Crea, al menos, un curso y grupo para poder crear tus alumnos
+                  y generar estadísticas
+                </p>
+                <Link href={"/docentes/grupos"}>
+                  <a>Crear Curso</a>
+                </Link>
+              </div>
             ) : (
               <div className=" container my-3">
                 <div className="row">
@@ -199,24 +214,24 @@ const Dashboard = () => {
                   ) : (
                     <h4 className="text-center mb-5">Seleccione un alumno</h4>
                   )}
-                  <div className="col-4 m-auto shadow-lg bg-white rounded mb-5">
+                  <div className="col-10 col-md-4 m-auto shadow-lg bg-white rounded mb-5">
                     <div className="">
                       <h4 className="p-3 text-center text-secondary">
                         Gráfico 1
                       </h4>
-                      {/* <Donut></Donut> */}
+                      <Donut></Donut>
                     </div>
                   </div>
-                  <div className="col-4 m-auto shadow-lg bg-white rounded mb-5">
+                  <div className="col-10 col-md-4 m-auto shadow-lg bg-white rounded mb-5">
                     <div className="">
                       <h4 className="p-3 text-center text-secondary">
                         Gráfico 2
                       </h4>
-                      {/* <Radargrafico></Radargrafico> */}
+                      <Radargrafico></Radargrafico>
                     </div>
                   </div>
                 </div>
-                <div className="row">
+                <div className="row mb-3">
                   <div className="col mb-5">
                     <div className="card shadow-lg efecto" key="parametro1">
                       <div className="card-body">
@@ -253,7 +268,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col">
+                  <div className="col mb-3">
                     <div className="card shadow-lg efecto" key="parametro3">
                       <div className="card-body">
                         <h5 className="card-title">Parámetro 3</h5>

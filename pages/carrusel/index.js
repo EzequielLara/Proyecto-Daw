@@ -56,36 +56,6 @@ const ConfiguracionDomain = () => {
                 <option value="alimentos">Alimentos</option>
               </select>
             </div>
-            {/* <div className="form-row pb-3 ">
-              <select
-                className="form-select mb-1"
-                aria-label="Default select example"
-                onChange={(e) => setNumeroTarjetas(e.target.value)}
-              >
-                <option defaultValue="5">Número de tarjetas</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </select>
-            </div>
-            <div className="form-row pb-3 ">
-              <select
-                className="form-select mb-3"
-                aria-label="Default select example"
-                onChange={(e) => setTiempo(e.target.value)}
-              >
-                <option defaultValue="6">Transición manual</option>
-                <option value="1">1 segundo</option>
-                <option value="2">2 segundos</option>
-                <option value="3">3 segundos</option>
-                <option value="4">4 segundos</option>
-                <option value="5">5 segundos</option>
-                <option value="6">6 segundos</option>
-              </select>
-            </div> */}
             <div className="form-group mb-3">
               <div className="form-check form-switch">
                 <input

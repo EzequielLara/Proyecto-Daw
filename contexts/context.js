@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const Configuracion = createContext();
 
@@ -87,6 +87,21 @@ function Context({ children }) {
     numeroTarjetas: 5,
     tiempo: 0,
   });
+  useEffect(() => {
+    if (datos === null || datos === undefined) {
+      const storedData = localStorage.getItem("myContextDataPalabras");
+
+      if (storedData) {
+        setDatos(JSON.parse(storedData));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (datos != null && datos != undefined) {
+      localStorage.setItem("myContextDataPalabras", JSON.stringify(datos));
+    }
+  }, [datos]);
 
   return (
     <Configuracion.Provider value={{ datos, setDatos }}>

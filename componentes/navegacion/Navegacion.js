@@ -34,7 +34,7 @@ const Navegacion = ({ usuario, loginAuth }) => {
             <ul className={display ? "navbar-nav display" : "navbar-nav"}>
               <li className="nav-item me-3">
                 <Link
-                  href={"/descargas/ManulaUsuario_vocablo.pdf"}
+                  href={"/descargas/ManualUsuario_vocablo.pdf"}
                   className="nav-link"
                 >
                   <a className="nav-link" target="_blank">
