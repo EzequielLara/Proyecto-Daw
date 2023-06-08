@@ -72,7 +72,7 @@ const Listado = ({ nuevoAlumno }) => {
         </div>
       ) : datos.cursos == undefined || datos.cursos.length == 0 ? (
         <div
-          className="alert alert-warning text-center w-50 m-auto mt-5"
+          className="alert alert-warning text-center w-75 m-auto mt-5"
           role="alert"
         >
           <p>

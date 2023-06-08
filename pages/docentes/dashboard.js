@@ -123,7 +123,7 @@ const Dashboard = () => {
               </div>
             ) : datos.cursos == undefined || datos.cursos.length == 0 ? (
               <div
-                className="alert alert-warning text-center w-50 m-auto mt-5"
+                className="alert alert-warning text-center w-75 m-auto mt-5"
                 role="alert"
               >
                 <p>No hay estadisticas para mostrar.</p>
@@ -219,7 +219,7 @@ const Dashboard = () => {
                       <h4 className="p-3 text-center text-secondary">
                         Gráfico 1
                       </h4>
-                      {/* <Donut></Donut> */}
+                      <Donut></Donut>
                     </div>
                   </div>
                   <div className="col-10 col-md-4 m-auto shadow-lg bg-white rounded mb-5">
@@ -227,7 +227,7 @@ const Dashboard = () => {
                       <h4 className="p-3 text-center text-secondary">
                         Gráfico 2
                       </h4>
-                      {/* <Radargrafico></Radargrafico> */}
+                      <Radargrafico></Radargrafico>
                     </div>
                   </div>
                 </div>
