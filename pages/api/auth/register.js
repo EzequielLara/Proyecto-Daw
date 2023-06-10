@@ -1,8 +1,17 @@
 import { MongoClient } from "mongodb";
 import validarNombreYContrasena from "../../../shared/validaciones";
+import crypto from "crypto";
 
 export default async function loginHandler(req, res) {
   const { email, username, loginAuth } = req.body;
+
+  const hashPassword = (password) => {
+    const hash = crypto.createHash("sha256");
+    hash.update(password);
+    const hashedPassword = hash.digest("hex");
+
+    return hashedPassword;
+  };
 
   if (loginAuth == false || loginAuth == null || loginAuth == undefined) {
     const error = validarNombreYContrasena(username, req.body.password, email);
@@ -16,6 +25,7 @@ export default async function loginHandler(req, res) {
         switch (req.method) {
           case "POST":
             const { email, username, password } = req.body;
+            const passwordhaseado = hashPassword(password);
             const usuarioExistente = await collection.findOne({ email });
             if (usuarioExistente) {
               res
@@ -26,7 +36,7 @@ export default async function loginHandler(req, res) {
             await collection.insertOne({
               email,
               username,
-              password,
+              password: passwordhaseado,
               loginAuth: false,
               cursos: [],
               alumnos: [],

@@ -1,9 +1,27 @@
 import { MongoClient } from "mongodb";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
+import crypto from "crypto";
 
 export default async function loginHandler(req, res) {
   const { email, password } = req.body;
+
+  const hashPassword = (password) => {
+    // Crear un hash SHA-256
+    const hash = crypto.createHash("sha256");
+
+    // Actualizar el hash con la contraseña
+    hash.update(password);
+
+    // Obtener el hash en formato hexadecimal
+    const hashedPassword = hash.digest("hex");
+
+    return hashedPassword;
+  };
+
+  const passwordhaseado = hashPassword(password);
+  console.log(passwordhaseado);
+
   const client = await MongoClient.connect(process.env.CONEXION_DB);
 
   try {
@@ -14,7 +32,10 @@ export default async function loginHandler(req, res) {
       case "POST":
         const usuarioExistente = await collection.findOne({ email });
 
-        if (!usuarioExistente || usuarioExistente.password !== password) {
+        if (
+          !usuarioExistente ||
+          usuarioExistente.password !== passwordhaseado
+        ) {
           return res.status(401).json({ error: "email o password incorrecto" });
         } else {
           const token = jwt.sign(
