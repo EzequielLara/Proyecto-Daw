@@ -18,6 +18,14 @@ const Home = ({ username, email, loginAuth }) => {
       email: email,
       loginAuth: loginAuth,
     });
+    const comprobacion = async () => {
+      if (loginAuth) {
+        await axios
+          .post("/api/auth/register", datos)
+          .catch((e) => setError(e.response.data.error));
+      }
+    };
+    comprobacion();
   }, []);
 
   useEffect(() => {
@@ -25,6 +33,7 @@ const Home = ({ username, email, loginAuth }) => {
       const response = await fetch("/api/metodologias");
       const data = await response.json();
       setMetodologias(data);
+      console.log("vamos a ver que tal: ", datos);
     };
     fetchDatos();
   }, [email, loginAuth, setDatos, username]);

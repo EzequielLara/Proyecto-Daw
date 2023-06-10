@@ -11,11 +11,13 @@ const Formulario = ({ providers }) => {
   const [datosUsuarioSesion, setDatosUsuarioSesion] = useState({
     email: "",
     password: "",
+    loginAuth: false,
   });
   const [datosUsuarioRegistro, setDatosUsuarioRegistro] = useState({
     email: "",
     username: "",
     password: "",
+    loginAuth: false,
   });
 
   // Estados para controlar cual de los dos formularios se mostrará
