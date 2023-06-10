@@ -2,13 +2,10 @@ import { MongoClient } from "mongodb";
 import validarNombreYContrasena from "../../../shared/validaciones";
 
 export default async function loginHandler(req, res) {
-  const nombre = req.body.username;
-  const contrasena = req.body.password || null;
-  const email = req.body.email;
-  const loginAuth = req.body.loginAuth;
+  const { email, username, loginAuth } = req.body;
 
-  if (!loginAuth || loginAuth == null || loginAuth == undefined) {
-    const error = validarNombreYContrasena(nombre, contrasena, email);
+  if (loginAuth == false || loginAuth == null || loginAuth == undefined) {
+    const error = validarNombreYContrasena(username, req.body.password, email);
     if (error) {
       res.status(error.status).json({ error: error.mensaje });
     } else {
@@ -50,6 +47,7 @@ export default async function loginHandler(req, res) {
       }
     }
   } else {
+    const client = await MongoClient.connect(process.env.CONEXION_DB);
     try {
       const db = client.db("vocablo");
       const collection = db.collection("usuarios");
