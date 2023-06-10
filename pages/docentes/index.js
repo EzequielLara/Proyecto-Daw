@@ -5,6 +5,7 @@ import ModalRecurso from "../../componentes/modales/ModalRecurso";
 import { getSession } from "next-auth/react";
 import { verify } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
+import axios from "axios";
 
 import { Usuario } from "../../contexts/contextUsuario";
 import { useContext } from "react";
@@ -33,7 +34,6 @@ const Home = ({ username, email, loginAuth }) => {
       const response = await fetch("/api/metodologias");
       const data = await response.json();
       setMetodologias(data);
-      console.log("vamos a ver que tal: ", datos);
     };
     fetchDatos();
   }, [email, loginAuth, setDatos, username]);
