@@ -23,7 +23,7 @@ const Home = ({ username, email, loginAuth }) => {
       if (loginAuth) {
         await axios
           .post("/api/auth/register", datos)
-          .catch((e) => setError(e.response.data.error));
+          .catch((e) => console.log(e.response.data.error));
       }
     };
     comprobacion();

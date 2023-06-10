@@ -57,9 +57,7 @@ export default async function loginHandler(req, res) {
           const { email, username, loginAuth } = req.body;
           const usuarioExistente = await collection.findOne({ email });
           if (usuarioExistente) {
-            res
-              .status(200)
-              .json({ message: "Existe un usuario ya creado con ese email" });
+            res.status(200).json({ message: "Usuario encontrado" });
             return;
           }
           await collection.insertOne({
