@@ -70,7 +70,7 @@ const Formulario = ({ providers }) => {
   return (
     <div className="border-1 rounded-4 shadow-lg">
       <div className={"w-75 m-auto p-2 pt-4 pb-4"}>
-        <Link href="/">
+        <Link href="/" as="image">
           <a>
             <Image
               src="/logo_vocablo_700.png"

@@ -13,7 +13,7 @@ const Navegacion = ({ usuario, loginAuth }) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
-          <Link href={"/"}>
+          <Link href={"/"} as="image">
             <a className="logo">
               <img
                 alt="Logo vocablo"

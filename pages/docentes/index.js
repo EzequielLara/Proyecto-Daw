@@ -13,20 +13,22 @@ import { useContext } from "react";
 const Home = ({ username, email, loginAuth }) => {
   const { datos, setDatos } = useContext(Usuario);
 
+  const comprobacion = async () => {
+    if (loginAuth) {
+      await axios
+        .post("/api/auth/register", { username, email, loginAuth })
+        .catch((e) => console.log(e.response.data.error));
+    } else {
+      return;
+    }
+  };
+
   useEffect(() => {
     setDatos({
       username: username,
       email: email,
       loginAuth: loginAuth,
     });
-    const comprobacion = async () => {
-      if (loginAuth) {
-        await axios
-          .post("/api/auth/register", datos)
-          .catch((e) => console.log(e.response.data.error));
-      }
-    };
-    comprobacion();
   }, []);
 
   useEffect(() => {
@@ -37,6 +39,10 @@ const Home = ({ username, email, loginAuth }) => {
     };
     fetchDatos();
   }, [email, loginAuth, setDatos, username]);
+
+  useEffect(() => {
+    comprobacion();
+  }, []);
 
   const [recursoSeleccionado, setRecursoSeleccionado] = useState("");
   const [modal, setModal] = useState(false);

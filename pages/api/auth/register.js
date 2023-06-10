@@ -7,7 +7,7 @@ export default async function loginHandler(req, res) {
   const email = req.body.email;
   const loginAuth = req.body.loginAuth;
 
-  if (!loginAuth) {
+  if (!loginAuth || loginAuth == null || loginAuth == undefined) {
     const error = validarNombreYContrasena(nombre, contrasena, email);
     if (error) {
       res.status(error.status).json({ error: error.mensaje });
@@ -30,6 +30,7 @@ export default async function loginHandler(req, res) {
               email,
               username,
               password,
+              loginAuth: false,
               cursos: [],
               alumnos: [],
             });
@@ -63,7 +64,7 @@ export default async function loginHandler(req, res) {
           await collection.insertOne({
             email,
             username,
-            loginAuth,
+            loginAuth: true,
             cursos: [],
             alumnos: [],
           });
