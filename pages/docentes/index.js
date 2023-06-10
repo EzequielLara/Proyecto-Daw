@@ -12,11 +12,16 @@ import { useContext } from "react";
 
 const Home = ({ username, email, loginAuth }) => {
   const { datos, setDatos } = useContext(Usuario);
+  console.log(username, email, loginAuth);
 
   const comprobacion = async () => {
     if (loginAuth) {
       await axios
-        .post("/api/auth/register", { username, email, loginAuth })
+        .post("/api/auth/register", {
+          username: username,
+          email: email,
+          loginAuth: loginAuth,
+        })
         .catch((e) => console.log(e.response.data.error));
     } else {
       return;

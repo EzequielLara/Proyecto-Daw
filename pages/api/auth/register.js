@@ -3,7 +3,7 @@ import validarNombreYContrasena from "../../../shared/validaciones";
 
 export default async function loginHandler(req, res) {
   const nombre = req.body.username;
-  const contrasena = req.body.password;
+  const contrasena = req.body.password || null;
   const email = req.body.email;
   const loginAuth = req.body.loginAuth;
 
@@ -59,7 +59,7 @@ export default async function loginHandler(req, res) {
           const usuarioExistente = await collection.findOne({ email });
           if (usuarioExistente) {
             res.status(200).json({ message: "Usuario encontrado" });
-            return;
+            break;
           }
           await collection.insertOne({
             email,
