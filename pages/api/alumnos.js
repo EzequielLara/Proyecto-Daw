@@ -62,10 +62,11 @@ export default async function alumnos(req, res) {
         res.status(200).json(resultadoActualizacion);
         break;
       case "DELETE":
-        const { id: idBorrar } = req.query;
-        const resultadoBorrar = await collection.deleteOne({
-          _id: ObjectId(idBorrar),
-        });
+        const { id: idBorrar, username } = req.query;
+        const resultadoBorrar = await collection.updateOne(
+          { username },
+          { $pull: { alumnos: { id: Number(idBorrar) } } }
+        );
         res.status(200).json(resultadoBorrar);
         break;
       default:

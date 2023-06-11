@@ -1,5 +1,6 @@
 import style from "../../styles/ModalAlumnos.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Usuario } from "../../contexts/contextUsuario";
 
 const ModalAlumno = ({
   cambiarModal,
@@ -10,21 +11,23 @@ const ModalAlumno = ({
   alumnoEditar,
   setAlumnoEditar,
 }) => {
+  const { datos, setDatos } = useContext(Usuario);
   const [nombreAlumno, setNombreAlumno] = useState("");
   const [apellidosAlumno, setApellidosAlumno] = useState("");
   const [cursoAlumno, setCursoAlumno] = useState("");
   const [grupoAlumno, setGrupoAlumno] = useState("");
   const [id, setId] = useState("");
-  const [cursos, setCursos] = useState([
-    "Primero",
-    "Segundo",
-    "Tercero",
-    "Cuarto",
-    "Quinto",
-  ]);
-  const [grupos, setGrupos] = useState(["A", "B", "C"]);
+  const [cursos, setCursos] = useState([]);
+  const [grupos, setGrupos] = useState([]);
 
   const [error, setError] = useState(false);
+  useEffect(() => {
+    const nombreCursos = [];
+    datos.cursos.map((curso) => {
+      nombreCursos.push(curso.nombreCurso);
+    });
+    setCursos(nombreCursos);
+  }, []);
 
   useEffect(() => {
     if (Object.keys(alumnoEditar).length > 0) {
@@ -35,6 +38,11 @@ const ModalAlumno = ({
       setId(alumnoEditar._id);
     }
   }, []);
+
+  const listadoGrupos = (curso) => {
+    const listado = datos.cursos.filter((cur) => cur.nombreCurso === curso);
+    setGrupos(listado[0].grupos);
+  };
 
   const ocultarModal = () => {
     setTimeout(() => {
@@ -169,6 +177,7 @@ const ModalAlumno = ({
                 value={cursoAlumno}
                 onChange={(e) => {
                   setCursoAlumno(e.target.value);
+                  listadoGrupos(e.target.value);
                 }}
               >
                 <option value="">Curso</option>

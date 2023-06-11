@@ -4,6 +4,7 @@ import Spinner from "../componentes/compartidos/Spinner";
 import { Suspense } from "react";
 import { Usuario } from "../contexts/contextUsuario";
 import { useContext } from "react";
+
 import Link from "next/link";
 
 const Listado = ({ nuevoAlumno }) => {
@@ -60,6 +61,35 @@ const Listado = ({ nuevoAlumno }) => {
     } else {
       setPaginaActual(paginaActual - 1);
     }
+  };
+
+  const eliminarAlumno = (id) => {
+    const fetchEliminarAlumno = async () => {
+      try {
+        const response = await fetch(
+          `/api/alumnos?username=${datos.username}&id=${id}`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (response.ok) {
+          await response.json();
+          // Actualizar el estado local de los alumnos
+          const updatedAlumnos = alumnos.filter((alumno) => alumno.id !== id);
+          setAlumnos(updatedAlumnos);
+        } else {
+          // Manejar el error de acuerdo a tus necesidades
+          console.error(
+            "Error al realizar la solicitud de borrado:",
+            response.status
+          );
+        }
+      } catch (error) {
+        // Manejar el error de acuerdo a tus necesidades
+        console.error("Error al realizar la solicitud de borrado:", error);
+      }
+    };
+    fetchEliminarAlumno();
   };
 
   return (
@@ -167,6 +197,9 @@ const Listado = ({ nuevoAlumno }) => {
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Eliminar alumno"
+                              onClick={() => {
+                                eliminarAlumno(alumno.id);
+                              }}
                             >
                               delete
                             </button>
