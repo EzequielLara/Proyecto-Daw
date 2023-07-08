@@ -20,7 +20,6 @@ export default async function loginHandler(req, res) {
   };
 
   const passwordhaseado = hashPassword(password);
-  console.log(passwordhaseado);
 
   const client = await MongoClient.connect(process.env.CONEXION_DB);
 

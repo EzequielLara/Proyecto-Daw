@@ -1,6 +1,9 @@
 import style from "../../styles/ModalAlumnos.module.css";
 import { useState, useEffect, useContext } from "react";
 import { Usuario } from "../../contexts/contextUsuario";
+import { generarFecha } from "../../shared/generarFecha";
+import { generarId } from "../../shared/generarId";
+import axios from "axios";
 
 const ModalAlumno = ({
   cambiarModal,
@@ -13,6 +16,7 @@ const ModalAlumno = ({
 }) => {
   const { datos, setDatos } = useContext(Usuario);
   const [nombreAlumno, setNombreAlumno] = useState("");
+  const [fechaCreacion, setFechaCreacion] = useState("");
   const [apellidosAlumno, setApellidosAlumno] = useState("");
   const [cursoAlumno, setCursoAlumno] = useState("");
   const [grupoAlumno, setGrupoAlumno] = useState("");
@@ -30,18 +34,22 @@ const ModalAlumno = ({
   }, []);
 
   useEffect(() => {
+    console.log("alumnoEditar: ", alumnoEditar);
     if (Object.keys(alumnoEditar).length > 0) {
       setNombreAlumno(alumnoEditar.nombre);
+      setFechaCreacion(alumnoEditar.fecha_creacion);
       setApellidosAlumno(alumnoEditar.apellidos);
       setCursoAlumno(alumnoEditar.curso);
       setGrupoAlumno(alumnoEditar.grupo);
-      setId(alumnoEditar._id);
+      setId(alumnoEditar.id);
     }
   }, []);
 
   const listadoGrupos = (curso) => {
     const listado = datos.cursos.filter((cur) => cur.nombreCurso === curso);
-    setGrupos(listado[0].grupos);
+    if (listado[0] && listado[0].grupos) {
+      setGrupos(listado[0].grupos);
+    }
   };
 
   const ocultarModal = () => {
@@ -51,51 +59,44 @@ const ModalAlumno = ({
       cambiarModal();
     }, 400);
   };
-  const generarId = () => {
-    const random = Math.random().toString(36).substring(2);
-    const fecha = Date.now().toString(36);
-    return random + fecha;
-  };
 
-  const generarFecha = () => {
-    const fecha = new Date();
-    const parametrosFecha = { year: "numeric", month: "long", day: "2-digit" };
-    const datoFecha = fecha.toLocaleDateString("es-ES", parametrosFecha);
-
-    return datoFecha;
-  };
-
-  const guardarAlumno = () => {
+  const guardarAlumno = async () => {
+    const usuario = datos;
     if (alumnoEditar.id) {
       const alumnoNuevo = {
         id: alumnoEditar.id,
-        fecha: generarFecha(),
+        fecha_creacion: fechaCreacion,
+        fecha_modificacion: generarFecha(),
         nombreAlumno,
         apellidosAlumno,
         cursoAlumno,
         grupoAlumno,
       };
+      console.log("ALUMNO NUEVO: ", alumnoEditar);
       //Actualizar
       const alumnosActualizados = alumnos.map((alumnoState) =>
-        alumnoState.id === alumnoEditar.id ? alumnoNuevo : alumnoState
+        alumnoState.id == alumnoEditar.id ? alumnoNuevo : alumnoState
       );
-
       setAlumnos(alumnosActualizados);
       setAlumnoEditar({});
+      await axios
+        .put("/api/alumnos", { alumnoNuevo, usuario })
+        .catch((e) => console.log(e.response.data.error));
       return;
     }
     //Nuevo
-    setAlumnos([
-      ...alumnos,
-      {
-        id: generarId(),
-        fecha: generarFecha(),
-        nombreAlumno,
-        apellidosAlumno,
-        cursoAlumno,
-        grupoAlumno,
-      },
-    ]);
+    const nuevo = {
+      id: generarId(),
+      fecha_creacion: generarFecha(),
+      nombre: nombreAlumno,
+      apellidos: apellidosAlumno,
+      curso: cursoAlumno,
+      grupo: grupoAlumno,
+    };
+
+    await axios
+      .post("/api/alumnos", { nuevo, usuario })
+      .catch((e) => console.log(e.response.data.error));
   };
 
   const resetearFormularioModal = () => {

@@ -33,7 +33,7 @@ const Listado = ({ nuevoAlumno }) => {
 
   useEffect(() => {
     const fetchDatos = async () => {
-      const response = await fetch(`/api/alumnos?username=${datos.username}`, {
+      const response = await fetch(`/api/alumnos?email=${datos.email}`, {
         method: "GET",
       });
       const data = await response.json();
@@ -63,11 +63,11 @@ const Listado = ({ nuevoAlumno }) => {
     }
   };
 
-  const eliminarAlumno = (id) => {
+  const eliminarAlumno = (alumnoid) => {
     const fetchEliminarAlumno = async () => {
       try {
         const response = await fetch(
-          `/api/alumnos?username=${datos.username}&id=${id}`,
+          `/api/alumnos?usuarioEmail=${datos.email}&alumnoId=${alumnoid}`,
           {
             method: "DELETE",
           }
@@ -75,7 +75,9 @@ const Listado = ({ nuevoAlumno }) => {
         if (response.ok) {
           await response.json();
           // Actualizar el estado local de los alumnos
-          const updatedAlumnos = alumnos.filter((alumno) => alumno.id !== id);
+          const updatedAlumnos = alumnos.filter(
+            (alumno) => alumno.id !== alumnoid
+          );
           setAlumnos(updatedAlumnos);
         } else {
           // Manejar el error de acuerdo a tus necesidades
@@ -144,10 +146,10 @@ const Listado = ({ nuevoAlumno }) => {
           <ul className="list-group zindex ">
             {(datosPaginados.length > 0 && !seleccionBuscador) ||
             (seleccionBuscador && seleccionBuscador.nombre === "todos")
-              ? datosPaginados.map((alumno, index) => (
+              ? datosPaginados.map((alumno) => (
                   <li
                     className="list-group-item m-2 shadow-sm rounded lihover"
-                    key={index}
+                    key={alumno.id}
                   >
                     <div className="card-body">
                       <div className="row justify-content-center align-items-center ">
@@ -181,11 +183,12 @@ const Listado = ({ nuevoAlumno }) => {
                               title="Editar cambios en alumno"
                               onClick={() => {
                                 nuevoAlumno({
-                                  _id: alumno._id,
+                                  id: alumno.id,
                                   nombre: alumno.nombre,
                                   apellidos: alumno.apellidos,
                                   curso: alumno.curso,
                                   grupo: alumno.grupo,
+                                  fecha_creacion: alumno.fecha_creacion,
                                 });
                               }}
                             >

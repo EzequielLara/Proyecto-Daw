@@ -21,53 +21,58 @@ export default async function alumnos(req, res) {
     switch (req.method) {
       case "GET":
         const usuarios = await collection.findOne({
-          username: req.query.username,
+          email: req.query.email,
         });
         if (usuarios === undefined || usuarios === null) {
           res.status(500).json({ error: "No existe el usuario" });
         }
         const datosfiltrados = filtrarDatos(usuarios);
-        console.log("valor de usuarios", datosfiltrados);
         res.status(200).json(datosfiltrados);
         break;
       case "POST":
-        const { nombre, apellidos, curso, grupo } = req.body;
-        const resultado = await collection.insertOne({
-          nombre,
-          apellidos,
-          curso,
-          grupo,
-        });
-        res.status(201).json(resultado.ops[0]);
+        const { nuevo, usuario } = req.body;
+        const userId = usuario._id;
+        // Agregar el nuevo alumno al array de alumnos del usuario específico
+        const alumnoIntroducido = await collection.updateOne(
+          { username: usuario.username },
+          { $push: { alumnos: nuevo } },
+          (err) => {
+            if (err) {
+              res.status(500).send("Error al insertar el alumno");
+            } else {
+              res.status(200).json(alumnoIntroducido);
+            }
+          }
+        );
         break;
       case "PUT":
-        const { id } = req.query;
-        const {
-          nombre: nombreActualizado,
-          apellidos: apellidosActualizados,
-          curso: cursoActualizado,
-          grupo: grupoActualizado,
-        } = req.body;
+        console.log("coleguita: ", req.body);
+        const { alumnoNuevo } = req.body;
+        const index = req.body.usuario.alumnos.findIndex(
+          (elemento) => elemento.id === alumnoNuevo.id
+        );
+        console.log("que pasas monada", index);
+
         const resultadoActualizacion = await collection.updateOne(
-          { _id: ObjectId(id) },
           {
-            $set: {
-              nombre: nombreActualizado,
-              apellidos: apellidosActualizados,
-              curso: cursoActualizado,
-              grupo: grupoActualizado,
-            },
-          }
+            email: req.body.usuario.email,
+            alumnos: req.body.usuario.alumnos[index],
+          },
+          { $set: { "alumnos.$": alumnoNuevo } }
         );
         res.status(200).json(resultadoActualizacion);
         break;
       case "DELETE":
-        const { id: idBorrar, username } = req.query;
-        const resultadoBorrar = await collection.updateOne(
-          { username },
-          { $pull: { alumnos: { id: Number(idBorrar) } } }
-        );
-        res.status(200).json(resultadoBorrar);
+        try {
+          const { alumnoId, usuarioEmail } = req.query;
+          const resultadoBorrar = await collection.updateOne(
+            { email: usuarioEmail },
+            { $pull: { alumnos: { id: alumnoId } } }
+          );
+          res.status(200).json(resultadoBorrar);
+        } catch (e) {
+          res.status(300).json({ error: "no se pudo realizar el DELETE" });
+        }
         break;
       default:
         res.status(400).send("Método HTTP no permitido");

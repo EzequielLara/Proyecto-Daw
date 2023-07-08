@@ -177,6 +177,7 @@ export const getServerSideProps = async (context) => {
       return {
         props: {
           username: jwt.decode(myTokenName).username,
+          email: jwt.decode(myTokenName).email,
           loginAuth: false,
         },
       };
