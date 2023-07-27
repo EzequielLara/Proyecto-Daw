@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import { ObjectId } from "mongodb";
 
 function filtrarDatos(data) {
   const { password, ...datosFiltrados } = data;
@@ -31,10 +32,9 @@ export default async function alumnos(req, res) {
         break;
       case "POST":
         const { nuevo, usuario } = req.body;
-        const userId = usuario._id;
         // Agregar el nuevo alumno al array de alumnos del usuario específico
         const alumnoIntroducido = await collection.updateOne(
-          { username: usuario.username },
+          { email: usuario.email },
           { $push: { alumnos: nuevo } },
           (err) => {
             if (err) {
@@ -46,12 +46,10 @@ export default async function alumnos(req, res) {
         );
         break;
       case "PUT":
-        console.log("coleguita: ", req.body);
         const { alumnoNuevo } = req.body;
         const index = req.body.usuario.alumnos.findIndex(
           (elemento) => elemento.id === alumnoNuevo.id
         );
-        console.log("que pasas monada", index);
 
         const resultadoActualizacion = await collection.updateOne(
           {

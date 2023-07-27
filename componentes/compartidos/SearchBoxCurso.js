@@ -41,15 +41,14 @@ const SearchBox = ({ suggestions, setSeleccion, cambiarPrimeraPagina }) => {
     <>
       <div className="search-box-container">
         <input
-          className="input w-50"
-          name="nombre"
+          className="input w-75"
           type="text"
           value={value}
           onChange={onInputChange}
-          placeholder="Nombre..."
+          placeholder="Curso..."
         ></input>
         {filteredSuggestions.length > 0 && (
-          <ul className="suggestions w-50 text-start">
+          <ul className="suggestions w-75 text-start">
             <li
               className="text-warning"
               key={"000"}

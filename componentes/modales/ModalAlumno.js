@@ -145,6 +145,7 @@ const ModalAlumno = ({
             <input
               className="w-50 p-2 estiloInput"
               id="nombre"
+              name="nombre"
               type="text"
               placeholder="Nombre del Alumno"
               value={nombreAlumno}
@@ -159,6 +160,8 @@ const ModalAlumno = ({
             </label>
             <input
               className="w-50 p-2 estiloInput"
+              id="apellidosAlumno"
+              name="apellidosAlumno"
               type="text"
               placeholder="Apellidos del Alumno"
               value={apellidosAlumno}
@@ -214,6 +217,7 @@ const ModalAlumno = ({
             {error && <h5 className="uno">*No se admiten campos vacíos</h5>}
             <input
               id="boton"
+              name="boton"
               type="submit"
               value={alumnoEditar.nombre ? "Modificar Alumno" : "Añadir Alumno"}
             />

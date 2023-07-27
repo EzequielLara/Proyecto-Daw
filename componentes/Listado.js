@@ -4,8 +4,12 @@ import Spinner from "../componentes/compartidos/Spinner";
 import { Suspense } from "react";
 import { Usuario } from "../contexts/contextUsuario";
 import { useContext } from "react";
-
 import Link from "next/link";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const Listado = ({ nuevoAlumno }) => {
   const { datos, setDatos } = useContext(Usuario);
@@ -80,14 +84,90 @@ const Listado = ({ nuevoAlumno }) => {
           );
           setAlumnos(updatedAlumnos);
         } else {
-          // Manejar el error de acuerdo a tus necesidades
           console.error(
             "Error al realizar la solicitud de borrado:",
             response.status
           );
         }
       } catch (error) {
-        // Manejar el error de acuerdo a tus necesidades
+        console.error("Error al realizar la solicitud de borrado:", error);
+      }
+    };
+    Swal.fire({
+      text: "¿Desea eliminar al alumno?",
+      icon: "info",
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Yes",
+      denyButtonText: "No",
+      customClass: {
+        actions: "my-actions",
+        cancelButton: "order-1 right-gap",
+        confirmButton: "order-2",
+        denyButton: "order-3",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetchEliminarAlumno();
+        Swal.fire({
+          text: "Alumno eliminado",
+          icon: "success",
+        });
+      } else if (result.isDenied) {
+        Swal.fire({
+          text: "Opción de eliminar alumno descartada",
+          icon: "error",
+        });
+      }
+    });
+  };
+  const eliminarAlumnoBuscador = (alumnoid) => {
+    const fetchEliminarAlumno = async () => {
+      try {
+        const response = await fetch(
+          `/api/alumnos?usuarioEmail=${datos.email}&alumnoId=${alumnoid}`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (response.ok) {
+          Swal.fire({
+            text: "¿Desea eliminar al alumno?",
+            icon: "info",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Yes",
+            denyButtonText: "No",
+            customClass: {
+              actions: "my-actions",
+              cancelButton: "order-1 right-gap",
+              confirmButton: "order-2",
+              denyButton: "order-3",
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetchEliminarAlumno();
+              Swal.fire({
+                text: "Alumno eliminado",
+                icon: "success",
+              });
+              setTimeout(() => {
+                window.location.reload();
+              }, 1000);
+            } else if (result.isDenied) {
+              Swal.fire({
+                text: "Opción de eliminar alumno descartada",
+                icon: "error",
+              });
+            }
+          });
+        } else {
+          console.error(
+            "Error al realizar la solicitud de borrado:",
+            response.status
+          );
+        }
+      } catch (error) {
         console.error("Error al realizar la solicitud de borrado:", error);
       }
     };
@@ -118,7 +198,7 @@ const Listado = ({ nuevoAlumno }) => {
       ) : (
         <div className="container w-auto mt-5">
           <div className="row justify-content-center align-items-center ">
-            <div className="col-3 ">
+            <div className="col-4 ">
               <h4 className="colorTexto">Alumnos</h4>
             </div>
             <div className="col-1 text-center">
@@ -134,7 +214,7 @@ const Listado = ({ nuevoAlumno }) => {
                 person_add
               </span>
             </div>
-            <div className="col-8 text-end">
+            <div className="col-7 text-end">
               <SearchBox
                 suggestions={alumnos}
                 setSeleccion={setSeleccion}
@@ -269,6 +349,9 @@ const Listado = ({ nuevoAlumno }) => {
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Eliminar alumno"
+                              onClick={() => {
+                                eliminarAlumnoBuscador(seleccionBuscador.id);
+                              }}
                             >
                               delete
                             </button>
