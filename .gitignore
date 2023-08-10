@@ -36,4 +36,4 @@ yarn-error.log*
 next-env.d.ts
 
 # notas de seguimiento del proyecto
-.NOTAS.md
+NOTAS.md
